@@ -1,46 +1,48 @@
-import { TextField } from '@mui/material';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import {  TextField, Typography } from '@mui/material';
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
-const RegisterForm = (props) => {
-  const { open, handleClose } = props;
-  const form = useForm({
-    defaultValues: {
-      taiKhoan: '',
-      mauKhau: '',
-      hoTen: '',
-      email: '',
-      soDt: '',
-    },
-  });
-  return (
-    <div>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
-          <form>
-            <TextField fullWidth variant="outlined"></TextField>
-          </form>
-        </DialogContent>
+import * as yup from 'yup'
+import {yupResolver} from '@hookform/resolvers/yup'
+import Avatar from '@mui/material/Avatar';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 
-        <DialogActions>
-          <Button type onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleClose}>Subscribe</Button>
-        </DialogActions>
-      </Dialog>
+const RegisterForm = (props) => {
+ 
+  const schema = yup.object().shape({
+    taiKhoan : yup.string().required('Required'),
+    mauKhau : yup.string().required('Required'),
+    email : yup.string().required('Required'),
+    soDt : yup.string().required('Required'),
+  })
+
+
+  const form = useForm({
+    resolver : yupResolver(schema)
+  });
+  const {register, handleSubmit} = form
+  const onSubmit = (values) => {
+    console.log(values);
+  }
+  return (
+    <div >
+        <Avatar sx = {{ backgroundColor : 'purple' , margin : 1.5}}>
+          <LockOpenIcon/>
+        </Avatar>
+        <Typography component = "h3" variant = 'h5'>
+          Create an account
+        </Typography>
+          <form onSubmit = {handleSubmit(onSubmit)}>
+            <TextField name = "taiKhoan"  variant="outlined" label = "Full name" form = {form}/>
+            <TextField name = "mauKhau"  variant="outlined" label = "Password" form = {form}/>
+            <TextField name = "retypePassword"  variant="outlined" label = "Retype Password" form = {form}/>
+            <TextField name = "email"  variant="outlined" label = "Email" form = {form}/>
+            <TextField name = "soDt"  variant="outlined" label = "Phone Number" form = {form}/>
+          </form>
     </div>
   );
 };
 
 export default RegisterForm;
+
+
