@@ -19,24 +19,22 @@ export default function RegisterMain() {
   const handleSubmit = (values) => {
     console.log(values);
   };
-  // TODO : Style Form 
+  // TODO : Style Form
   // TODO : Replace TextField by Reusable InputField by controller of react-hook-form - Composition
   // TODO : Research and setup fiverr API - setup axiosClient.
   return (
     <div>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="outlined" onClick={handleClickOpen}>
         Register
-      </Button> */}
-      
+      </Button>
+
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>
-            <RegisterForm onSubmit = {handleSubmit}/>
+          <RegisterForm onSubmit={handleSubmit} />
         </DialogContent>
         <DialogActions>
-          <Button type onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleClose}>Sign Up</Button>
+          {/* <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>Sign Up</Button> */}
         </DialogActions>
       </Dialog>
     </div>
