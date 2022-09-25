@@ -11,20 +11,41 @@ import Button from '@mui/material/Button';
 import PasswordField from '../../../../Components/PasswordField';
 const RegisterForm = (props) => {
   const schema = yup.object().shape({
-    taiKhoan: yup.string().required('Please enter username'),
-    matKhau: yup.string().required('Please enter password').min(6).max(20),
+    name: yup.string().required('Please enter your username'),
+    password: yup.string().required('Please enter password').min(6).max(20),
     retypePassword: yup
       .string()
-      .oneOf([yup.ref('matKhau'), null])
+      .oneOf([yup.ref('password'), null])
       .required(),
-    email: yup.string().email().required('Please enter email'),
-    soDt: yup.string().required('Phone number is required'),
+    email: yup.string().email().required('Please enter your email'),
+    phone: yup.string().required('Phone number is required'),
+    birthday: yup.date().required('Please enter your date of birth'),
+    gender: yup.bool(),
+    role: yup.string(),
+    skill: yup.array().of(yup.string()),
+    certification: yup.array(),
   });
 
   const form = useForm({
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      phone: '',
+      birthday: '',
+      gender: true,
+      role: '',
+      skill: [''],
+      certification: [''],
+    },
     resolver: yupResolver(schema),
   });
-  const { register, handleSubmit } = form;
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = form;
   const onSubmit = (values) => {
     console.log(values);
   };
@@ -42,34 +63,38 @@ const RegisterForm = (props) => {
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputField
-          name="taiKhoan"
+          name="name"
           label="Username"
-          {...register('taiKhoan')}
+          {...register('name')}
           form={form}
+          ref={null}
         />
         <PasswordField
-          name="matKhau"
+          name="password"
           label="Password"
-          {...register('matKhau')}
+          {...register('password')}
           form={form}
+          ref={null}
         />
         <PasswordField
           name="retypePassword"
           label="Retype Password"
-          {...register('retypePassword')}
           form={form}
+          ref={null}
         />
         <InputField
           name="email"
           label="Email"
           {...register('email')}
           form={form}
+          ref={null}
         />
         <InputField
-          name="soDt"
+          name="phone"
           label="Phone Number"
-          {...register('soDt')}
+          {...register('phone')}
           form={form}
+          ref={null}
         />
         <Button
           sx={{

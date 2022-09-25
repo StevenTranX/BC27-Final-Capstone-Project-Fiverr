@@ -19,13 +19,11 @@ export default function RegisterMain() {
   const handleSubmit = (values) => {
     console.log(values);
   };
-  // TODO : Style Form
-  // TODO : Replace TextField by Reusable InputField by controller of react-hook-form - Composition
   // TODO : Research and setup fiverr API - setup axiosClient.
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Register
+        Join
       </Button>
 
       <Dialog open={open} onClose={handleClose}>
