@@ -22,20 +22,20 @@ const PasswordField = React.forwardRef((props, ref) => {
 
   return (
     <Controller
+      disabled={disabled}
       control={control}
       name={name}
+      label={label}
       render={({
-        field: { name },
+        field,
         fieldState: { isTouched, isDirty, error },
         formState,
       }) => (
         <FormControl fullWidth margin="normal" variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">{label}</InputLabel>
           <OutlinedInput
-            ref={ref}
             label={label}
-            name={name}
-            id="standard-adornment-password"
+            {...field}
             type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
@@ -48,7 +48,12 @@ const PasswordField = React.forwardRef((props, ref) => {
               </InputAdornment>
             }
           />
-          <FormHelperText error={false}>{errors[name]?.message}</FormHelperText>
+          <FormHelperText
+            sx={{ margin: 0, marginTop: '12px', fontWeight: '14px' }}
+            error={!!hasError}
+          >
+            {errors[name]?.message}
+          </FormHelperText>
         </FormControl>
       )}
     />

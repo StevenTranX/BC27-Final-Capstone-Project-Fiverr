@@ -1,6 +1,9 @@
+import axiosClient from './axiosClient';
+
 const authAPI = {
-  register() {
-    const url = 'auth/signup';
+  register(data) {
+    const url = '/auth/signup';
+    return axiosClient.post(url, data);
   },
 };
 export default authAPI;

@@ -1,20 +1,35 @@
 import { TextField } from '@mui/material';
 import React from 'react';
 import { Controller } from 'react-hook-form';
+import { FormHelperText } from '@mui/material';
 
 const InputField = (props) => {
-  const { form, name, label, disabled } = props;
-  const { formState, control } = form;
-  //   const hasError = formState.touched[name] && errors[name];
+  const { form, name, label, disabled, type } = props;
+  const {
+    formState: { errors },
+    control,
+  } = form;
+  const hasError = errors[name];
   return (
     <>
       <Controller
+        error={!!hasError}
+        label={label}
         control={control}
         name={name}
-        render={({ field: { name } }) => (
-          <TextField fullWidth margin="normal" name={name} label={label} />
+        render={({ field }) => (
+          <TextField
+            type={type}
+            fullWidth
+            margin="normal"
+            label={label}
+            {...field}
+          />
         )}
       />
+      <FormHelperText sx={{ fontWeight: '14px' }} error={!!hasError}>
+        {errors[name]?.message}
+      </FormHelperText>
     </>
   );
 };

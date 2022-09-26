@@ -4,10 +4,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import React from 'react';
 import RegisterForm from '../RegisterForm/RegisterForm';
-
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../../../slices/authSlice';
 export default function RegisterMain() {
   const [open, setOpen] = React.useState(false);
-
+  const dispatch = useDispatch();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -16,10 +17,13 @@ export default function RegisterMain() {
     setOpen(false);
   };
 
-  const handleSubmit = (values) => {
-    console.log(values);
+  const handleSubmit = async (values) => {
+    try {
+      await dispatch(registerUser(values)).unwrap();
+    } catch (error) {
+      console.log(error);
+    }
   };
-  // TODO : Research and setup fiverr API - setup axiosClient.
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
