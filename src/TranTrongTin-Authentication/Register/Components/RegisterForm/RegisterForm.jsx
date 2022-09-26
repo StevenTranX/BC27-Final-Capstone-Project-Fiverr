@@ -6,11 +6,12 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Avatar from '@mui/material/Avatar';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
-import InputField from '../../../../Components/InputField';
+import InputField from '../../../../Components/FormControl/InputField';
 import Button from '@mui/material/Button';
-import PasswordField from '../../../../Components/PasswordField';
-import SelectField from '../../../../Components/SelectField';
+import PasswordField from '../../../../Components/FormControl/PasswordField';
+import SelectField from '../../../../Components/FormControl/SelectField';
 import Grid from '@mui/material/Grid';
+import DatePickerField from '../../../../Components/FormControl/DatePickerField';
 const RegisterForm = (props) => {
   const schema = yup.object().shape({
     name: yup.string().required('Please enter your username'),
@@ -42,7 +43,11 @@ const RegisterForm = (props) => {
     },
     resolver: yupResolver(schema),
   });
-  const { register, handleSubmit } = form;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = form;
 
   const handleSubmitChild = (values) => {
     const { onSubmit } = props;
@@ -96,7 +101,7 @@ const RegisterForm = (props) => {
         />
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
-            <InputField
+            <DatePickerField
               name="birthday"
               label="Birthday"
               refs={register('birthday')}
