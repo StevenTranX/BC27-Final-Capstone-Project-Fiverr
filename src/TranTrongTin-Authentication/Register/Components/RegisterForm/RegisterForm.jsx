@@ -12,20 +12,22 @@ import PasswordField from '../../../../Components/FormControl/PasswordField';
 import SelectField from '../../../../Components/FormControl/SelectField';
 import Grid from '@mui/material/Grid';
 import DatePickerField from '../../../../Components/FormControl/DatePickerField';
+import MultipleSelectSkillField from '../../../../Components/FormControl/MultipleSelectField/MultipleSelectSkillField';
+import MultipleSelectCertification from '../../../../Components/FormControl/MultipleSelectField/MultipleSelectCertification';
 const RegisterForm = (props) => {
   const schema = yup.object().shape({
-    name: yup.string().required('Please enter your username'),
-    password: yup.string().required('Please enter password').min(6).max(20),
-    retypePassword: yup
-      .string()
-      .oneOf([yup.ref('password'), null])
-      .required('Please Retype your Password'),
-    email: yup.string().email().required('Please enter your email'),
-    phone: yup.string().required('Phone number is required'),
-    // birthday: yup.date().required('Please enter your date of birth'),
-    gender: yup.bool().required('Please select your gender'),
-    role: yup.string().required('Please enter your role'),
-    // skill: yup.array().of(yup.string()),
+    // name: yup.string().required('Please enter your username'),
+    // password: yup.string().required('Please enter password').min(6).max(20),
+    // retypePassword: yup
+    //   .string()
+    //   .oneOf([yup.ref('password'), null])
+    //   .required('Please Retype your Password'),
+    // email: yup.string().email().required('Please enter your email'),
+    // phone: yup.string().required('Phone number is required'),
+    // // birthday: yup.date().required('Please enter your date of birth'),
+    // gender: yup.bool().required('Please select your gender'),
+    // role: yup.string().required('Please enter your role'),
+    skill: yup.array().of(yup.string()),
     // certification: yup.array(),
   });
 
@@ -38,8 +40,8 @@ const RegisterForm = (props) => {
       birthday: '',
       gender: true,
       role: '',
-      skill: [''],
-      certification: [''],
+      skill: [],
+      certification: [],
     },
     resolver: yupResolver(schema),
   });
@@ -47,14 +49,15 @@ const RegisterForm = (props) => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
+    setValue,
   } = form;
-
   const handleSubmitChild = (values) => {
     const { onSubmit } = props;
     if (onSubmit) {
       onSubmit(values);
     }
-    // form.reset();
+    form.reset();
   };
   return (
     <div>
@@ -88,7 +91,6 @@ const RegisterForm = (props) => {
             <PasswordField
               name="retypePassword"
               label="Retype Password"
-              refs={register('retypePassword')}
               form={form}
             />
           </Grid>
@@ -138,19 +140,21 @@ const RegisterForm = (props) => {
         </Grid>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
-            <InputField
+            <MultipleSelectSkillField
               name="skill"
               label="Skill"
-              refs={register('skill')}
+              inputRef={register('skill')}
               form={form}
+              onChange={setValue}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <InputField
+            <MultipleSelectCertification
               name="certification"
               label="Certification"
               refs={register('certification')}
               form={form}
+              onChange={setValue}
             />
           </Grid>
         </Grid>

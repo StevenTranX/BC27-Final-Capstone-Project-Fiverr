@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { FormControl, TextField } from '@mui/material';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -13,9 +13,7 @@ const DatePickerField = (props) => {
   } = form;
   const hasError = errors[name];
 
-  const [date, setDate] = React.useState(new Date());
-  console.log(dayjs(date).format('DD/MM/YYYY'));
-
+  const [date, setDate] = React.useState(null);
   const handleChange = (event) => {
     setDate(event);
   };
@@ -27,22 +25,22 @@ const DatePickerField = (props) => {
         label={label}
         control={control}
         name={name}
+        fullWidth
         render={({ field }) => (
-          <LocalizationProvider
-            fullWidth
-            margin="normal"
-            dateAdapter={AdapterDayjs}
-          >
-            <DatePicker
-              label="Basic example"
-              value={date}
-              onChange={(newDate) => {
-                handleChange(newDate);
-              }}
-              renderInput={(params) => <TextField {...params} />}
-              inputFormat="DD/MM/YYYY"
-            />
-          </LocalizationProvider>
+          <FormControl fullWidth margin="normal">
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                {...field}
+                label="Date of Birth"
+                value={date}
+                onChange={(newDate) => {
+                  handleChange(newDate);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+                inputFormat="DD/MM/YYYY"
+              />
+            </LocalizationProvider>
+          </FormControl>
         )}
       />
     </>

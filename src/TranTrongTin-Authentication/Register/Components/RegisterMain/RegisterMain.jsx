@@ -18,6 +18,7 @@ export default function RegisterMain() {
   };
 
   const handleSubmit = async (values) => {
+    console.log(values);
     try {
       await dispatch(registerUser(values)).unwrap();
     } catch (error) {
