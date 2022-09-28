@@ -1,4 +1,4 @@
-import { TextField, Typography } from '@mui/material';
+import { LinearProgress, TextField, Typography } from '@mui/material';
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -52,12 +52,13 @@ const RegisterForm = (props) => {
     watch,
     setValue,
   } = form;
-  const handleSubmitChild = (values) => {
+  const { isSubmitting } = form.formState;
+  const handleSubmitChild = async (values) => {
     const { onSubmit } = props;
     if (onSubmit) {
-      onSubmit(values);
+      await onSubmit(values);
     }
-    form.reset();
+    // form.reset();
   };
   return (
     <div>
@@ -71,6 +72,7 @@ const RegisterForm = (props) => {
       >
         Create an account
       </Typography>
+      {isSubmitting && <LinearProgress color="secondary" />}
       <form onSubmit={handleSubmit(handleSubmitChild)}>
         <InputField
           name="name"

@@ -7,12 +7,11 @@ export const registerUser = createAsyncThunk(
       const { data } = await authAPI.register(signupData);
       // localStorage.setItem('accessToken');
       localStorage.setItem('user', JSON.stringify(data.content));
-      alert('SignUp Successfully');
       console.log(data);
       return data.content;
     } catch (error) {
-      console.log(error);
-      rejectWithValue(error);
+      console.log(error.response.data.content);
+      throw error.response.data.content;
     }
   }
 );
