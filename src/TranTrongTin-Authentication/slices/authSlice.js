@@ -11,6 +11,21 @@ export const registerUser = createAsyncThunk(
       return data.content;
     } catch (error) {
       console.log(error.response.data.content);
+      rejectWithValue(error);
+    }
+  }
+);
+export const loginUser = createAsyncThunk(
+  'auth/register',
+  async (loginData, { rejectWithValue }) => {
+    try {
+      const { data } = await authAPI.login(loginData);
+      // localStorage.setItem('accessToken');
+      localStorage.setItem('user', JSON.stringify(data.content));
+      console.log(data);
+      return data.content;
+    } catch (error) {
+      console.log(error.response.data.content);
       throw error.response.data.content;
     }
   }
@@ -24,6 +39,9 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: {
     [registerUser.fulfilled]: (state, action) => {
+      state.current = action.payload;
+    },
+    [loginUser.fulfilled]: (state, action) => {
       state.current = action.payload;
     },
   },
