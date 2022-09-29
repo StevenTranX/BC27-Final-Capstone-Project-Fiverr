@@ -7,18 +7,10 @@ import LoginForm from '../LoginForm/LoginForm';
 import { useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { loginUser } from '../../../slices/authSlice';
-export default function LoginMain() {
-  const [open, setOpen] = React.useState(false);
+export default function LoginMain(props) {
+  const { onClose } = props;
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
-  // TODO : Make header and User logged in
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const handleSubmit = async (values) => {
     console.log(values);
@@ -27,7 +19,7 @@ export default function LoginMain() {
         .unwrap()
         .then(() => {
           enqueueSnackbar('Login Successfully', { variant: 'success' });
-          handleClose();
+          onClose();
         });
     } catch (error) {
       console.log(error);
@@ -36,17 +28,13 @@ export default function LoginMain() {
   };
   return (
     <div>
-      <Button onClick={handleClickOpen}>Sign In</Button>
-
-      <Dialog open={open} onClose={handleClose}>
-        <DialogContent>
-          <LoginForm closeDiaglog={handleClose} onSubmit={handleSubmit} />
-        </DialogContent>
-        <DialogActions>
-          {/* <Button onClick={handleClose}>Cancel</Button>
+      <DialogContent>
+        <LoginForm closeDiaglog={onClose} onSubmit={handleSubmit} />
+      </DialogContent>
+      <DialogActions>
+        {/* <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Sign Up</Button> */}
-        </DialogActions>
-      </Dialog>
+      </DialogActions>
     </div>
   );
 }
