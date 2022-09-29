@@ -11,6 +11,7 @@ export default function LoginMain() {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
+  // TODO : Make header and User logged in
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -35,9 +36,7 @@ export default function LoginMain() {
   };
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Login
-      </Button>
+      <Button onClick={handleClickOpen}>Sign In</Button>
 
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>

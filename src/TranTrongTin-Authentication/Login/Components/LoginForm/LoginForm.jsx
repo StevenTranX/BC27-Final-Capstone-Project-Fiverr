@@ -6,14 +6,14 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Avatar from '@mui/material/Avatar';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
-import InputField from '../../../../Components/FormControl/InputField';
+import InputField from '../../../../ReusableComponents/FormControl/InputField';
 import Button from '@mui/material/Button';
-import PasswordField from '../../../../Components/FormControl/PasswordField';
-import SelectField from '../../../../Components/FormControl/SelectField';
+import PasswordField from '../../../../ReusableComponents/FormControl/PasswordField';
+import SelectField from '../../../../ReusableComponents/FormControl/SelectField';
 import Grid from '@mui/material/Grid';
-import DatePickerField from '../../../../Components/FormControl/DatePickerField';
-import MultipleSelectSkillField from '../../../../Components/FormControl/MultipleSelectField/MultipleSelectSkillField';
-import MultipleSelectCertification from '../../../../Components/FormControl/MultipleSelectField/MultipleSelectCertification';
+import DatePickerField from '../../../../ReusableComponents/FormControl/DatePickerField';
+import MultipleSelectSkillField from '../../../../ReusableComponents/FormControl/MultipleSelectField/MultipleSelectSkillField';
+import MultipleSelectCertification from '../../../../ReusableComponents/FormControl/MultipleSelectField/MultipleSelectCertification';
 const LoginForm = (props) => {
   const schema = yup.object().shape({
     // name: yup.string().required('Please enter your username'),
