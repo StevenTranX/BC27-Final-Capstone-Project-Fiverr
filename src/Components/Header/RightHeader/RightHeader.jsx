@@ -1,18 +1,22 @@
 import React from 'react';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, IconButton, Stack, Typography } from '@mui/material';
 import LoginMain from '../../../TranTrongTin-Authentication/Login/Components/LoginMain/LoginMain';
 import RegisterMain from '../../../TranTrongTin-Authentication/Register/Components/RegisterMain';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { AccountCircleRounded } from '@mui/icons-material';
+import UserDropdown from './UserDropdown';
 const RightHeader = () => {
   const [open, setOpen] = React.useState(false);
-
   const MODE = {
     LOGIN: 'login',
     REGISTER: 'register',
   };
   const [mode, setMode] = useState(MODE.REGISTER);
+  const { user } = useSelector((state) => state.auth.current);
+  const isLoggedIn = !!user?.id;
   const handleOpen = () => {
     setOpen(true);
   };
@@ -20,22 +24,70 @@ const RightHeader = () => {
   const handleClose = () => {
     setOpen(false);
   };
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const openMenu = Boolean(anchorEl);
+  const handleDropdown = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseDropdown = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <>
       <Box>
-        <Stack direction="row" spacing={2}>
+        <Stack
+          direction="row"
+          spacing={2}
+          alignItems="center"
+          justifyContent="space-between"
+        >
           <Typography component="p" variant="h6">
             Become a Seller
           </Typography>
-          <Button
-            onClick={() => {
-              handleOpen();
-              setMode(MODE.LOGIN);
-            }}
-          >
-            Sign In
-          </Button>
+          {!isLoggedIn && (
+            <>
+              <Button
+                onClick={() => {
+                  handleOpen();
+                  setMode(MODE.LOGIN);
+                }}
+              >
+                Sign In
+              </Button>
+              <Button
+                disabled={false}
+                variant="outlined"
+                onClick={() => {
+                  handleOpen();
+                  setMode(MODE.REGISTER);
+                }}
+              >
+                Join
+              </Button>
+            </>
+          )}
+          {isLoggedIn && (
+            <>
+              <UserDropdown
+                open={openMenu}
+                handleClick={handleDropdown}
+                handleClose={handleCloseDropdown}
+                anchorEl={anchorEl}
+              />
+              <Button
+                disabled={true}
+                variant="outlined"
+                onClick={() => {
+                  handleOpen();
+                  setMode(MODE.REGISTER);
+                }}
+              >
+                Join
+              </Button>
+            </>
+          )}
+
           {mode === MODE.LOGIN && (
             <Dialog open={open} onClose={handleClose}>
               <LoginMain sx={{ color: '#000' }} />
@@ -52,16 +104,6 @@ const RightHeader = () => {
               </Box>
             </Dialog>
           )}
-
-          <Button
-            variant="outlined"
-            onClick={() => {
-              handleOpen();
-              setMode(MODE.REGISTER);
-            }}
-          >
-            Join
-          </Button>
 
           {mode === MODE.REGISTER && (
             <Dialog open={open} onClose={handleClose}>

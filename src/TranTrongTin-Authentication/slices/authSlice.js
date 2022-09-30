@@ -20,9 +20,9 @@ export const loginUser = createAsyncThunk(
   async (loginData, { rejectWithValue }) => {
     try {
       const { data } = await authAPI.login(loginData);
-      // localStorage.setItem('accessToken');
+
       localStorage.setItem('user', JSON.stringify(data.content));
-      localStorage.setItem('access_token', JSON.stringify());
+      localStorage.setItem('access_token', JSON.stringify(data.content.token));
       console.log(data);
       return data.content;
     } catch (error) {
@@ -34,10 +34,16 @@ export const loginUser = createAsyncThunk(
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    current: {},
+    current: JSON.parse(localStorage.getItem('user')) || {},
     settings: {},
   },
-  reducers: {},
+  reducers: {
+    logout(state) {
+      state.current = {};
+      localStorage.removeItem('user');
+      localStorage.removeItem('access_token');
+    },
+  },
   extraReducers: {
     [registerUser.fulfilled]: (state, action) => {
       state.current = action.payload;
@@ -47,5 +53,6 @@ const authSlice = createSlice({
     },
   },
 });
-
-export default authSlice.reducer;
+const { actions, reducer } = authSlice;
+export const { logout } = actions;
+export default reducer;
