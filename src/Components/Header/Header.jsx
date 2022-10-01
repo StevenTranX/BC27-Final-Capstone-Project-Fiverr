@@ -5,18 +5,16 @@ import RightHeader from './RightHeader/RightHeader';
 
 const Header = () => {
   return (
-    <Container maxWidth="xl" fixed={true}>
-      <Box>
-        <Stack
-          flexDirection="row"
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <LeftHeader />
-          <RightHeader />
-        </Stack>
-      </Box>
-    </Container>
+    <Box>
+      <Stack
+        flexDirection="row"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <LeftHeader />
+        <RightHeader />
+      </Stack>
+    </Box>
   );
 };
 

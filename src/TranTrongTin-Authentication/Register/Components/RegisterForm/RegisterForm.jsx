@@ -1,19 +1,18 @@
-import { LinearProgress, TextField, Typography } from '@mui/material';
-
+import { LinearProgress, Typography } from '@mui/material';
+import { yupResolver } from '@hookform/resolvers/yup';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import Avatar from '@mui/material/Avatar';
-import LockOpenIcon from '@mui/icons-material/LockOpen';
+import DatePickerField from '../../../../ReusableComponents/FormControl/DatePickerField';
 import InputField from '../../../../ReusableComponents/FormControl/InputField';
-import Button from '@mui/material/Button';
+import MultipleSelectCertification from '../../../../ReusableComponents/FormControl/MultipleSelectField/MultipleSelectCertification';
+import MultipleSelectSkillField from '../../../../ReusableComponents/FormControl/MultipleSelectField/MultipleSelectSkillField';
 import PasswordField from '../../../../ReusableComponents/FormControl/PasswordField';
 import SelectField from '../../../../ReusableComponents/FormControl/SelectField';
-import Grid from '@mui/material/Grid';
-import DatePickerField from '../../../../ReusableComponents/FormControl/DatePickerField';
-import MultipleSelectSkillField from '../../../../ReusableComponents/FormControl/MultipleSelectField/MultipleSelectSkillField';
-import MultipleSelectCertification from '../../../../ReusableComponents/FormControl/MultipleSelectField/MultipleSelectCertification';
 const RegisterForm = (props) => {
   const schema = yup.object().shape({
     // name: yup.string().required('Please enter your username'),
@@ -45,20 +44,18 @@ const RegisterForm = (props) => {
     },
     resolver: yupResolver(schema),
   });
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-    setValue,
-  } = form;
+  const { register, handleSubmit, setValue } = form;
   const { isSubmitting } = form.formState;
   const handleSubmitChild = async (values) => {
     const { onSubmit } = props;
-    if (onSubmit) {
-      await onSubmit(values);
+    try {
+      if (onSubmit) {
+        await onSubmit(values);
+        form.reset();
+      }
+    } catch (error) {
+      console.log(error);
     }
-    // form.reset();
   };
   return (
     <div>

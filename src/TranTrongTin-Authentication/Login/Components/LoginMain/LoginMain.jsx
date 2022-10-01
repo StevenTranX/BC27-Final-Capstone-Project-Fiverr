@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { loginUser } from '../../../slices/authSlice';
 export default function LoginMain(props) {
-  const { onClose } = props;
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -19,7 +18,6 @@ export default function LoginMain(props) {
         .unwrap()
         .then(() => {
           enqueueSnackbar('Login Successfully', { variant: 'success' });
-          onClose();
         });
     } catch (error) {
       console.log(error);
@@ -29,7 +27,7 @@ export default function LoginMain(props) {
   return (
     <div>
       <DialogContent>
-        <LoginForm closeDiaglog={onClose} onSubmit={handleSubmit} />
+        <LoginForm onSubmit={handleSubmit} />
       </DialogContent>
       <DialogActions>
         {/* <Button onClick={handleClose}>Cancel</Button>

@@ -15,7 +15,7 @@ const RightHeader = () => {
     REGISTER: 'register',
   };
   const [mode, setMode] = useState(MODE.REGISTER);
-  const { user } = useSelector((state) => state.auth.current);
+  const { user } = useSelector((state) => state?.auth?.current);
   const isLoggedIn = !!user?.id;
   const handleOpen = () => {
     setOpen(true);

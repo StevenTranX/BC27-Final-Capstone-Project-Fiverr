@@ -3,14 +3,15 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import React from 'react';
+import { useState } from 'react';
 import RegisterForm from '../RegisterForm/RegisterForm';
 import { useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { registerUser } from '../../../slices/authSlice';
 export default function RegisterMain(props) {
-  const { onClose } = props;
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
+  const { onClose } = props;
 
   const handleSubmit = async (values) => {
     console.log(values);
@@ -19,7 +20,6 @@ export default function RegisterMain(props) {
         .unwrap()
         .then(() => {
           enqueueSnackbar('Register Successfully', { variant: 'success' });
-          onClose();
         });
     } catch (error) {
       console.log(error);
