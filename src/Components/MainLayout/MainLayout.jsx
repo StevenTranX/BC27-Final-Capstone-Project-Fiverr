@@ -2,11 +2,16 @@ import React from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { Container } from '@mui/material';
+import LandingPage from '../../Modules/LandingPage/Pages/LandingPage';
+import styles from './MainLayout.module.scss';
 const MainLayout = () => {
   return (
     <div>
-      <Container maxWidth="lg" fixed={true}>
+      <Container className={styles.headerContainer}>
         <Header />
+      </Container>
+      <LandingPage className={styles.landingPage} />
+      <Container>
         <Footer />
       </Container>
     </div>

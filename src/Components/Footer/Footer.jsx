@@ -16,7 +16,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LanguageIcon from '@mui/icons-material/Language';
-
+import styles from './Footer.module.scss';
 export const StyledBox = styled(
   Box,
   {}
@@ -25,11 +25,10 @@ export const StyledBox = styled(
   fontSize: '17px',
   marginBottom: 1.5,
 });
-const styledText = styled(Typography)({});
 const Footer = () => {
   return (
-    <>
-      <footer>
+    <div className={styles.landingFooter}>
+      <footer className={styles.footer}>
         <Box>
           <Grid container spacing={10}>
             <Grid item>
@@ -76,7 +75,7 @@ const Footer = () => {
         </Box>
       </footer>
       <Divider />
-      <footer>
+      <footer className={styles.subFooter}>
         <Grid
           container
           flexDirection="row"
@@ -170,7 +169,7 @@ const Footer = () => {
           </Grid>
         </Grid>
       </footer>
-    </>
+    </div>
   );
 };
 

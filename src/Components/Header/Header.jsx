@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Stack, Container } from '@mui/material';
 import LeftHeader from './LeftHeader/LeftHeader';
 import RightHeader from './RightHeader/RightHeader';
-
+import styles from './Header.module.scss';
 const Header = () => {
   return (
     <Box>
