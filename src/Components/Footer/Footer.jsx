@@ -23,7 +23,7 @@ export const StyledBox = styled(
 )({
   fontWeight: 600,
   fontSize: '17px',
-  marginBottom: 1.3,
+  marginBottom: 1.5,
 });
 const styledText = styled(Typography)({});
 const Footer = () => {
@@ -96,8 +96,21 @@ const Footer = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item flexDirection="row" sx={{ display: 'flex' }}>
-            <Grid container flexDirection="row" spacing={3}>
+          <Grid
+            item
+            flexDirection="row"
+            sx={{ display: 'flex' }}
+            justifyContent="space-between"
+            spacing={3}
+          >
+            <Grid
+              container
+              flexDirection="row"
+              spacing={3}
+              justifyContent="space-between"
+              flexWrap="nowrap"
+              marginRight={5}
+            >
               <Grid item>
                 <TwitterIcon
                   sx={{ width: '25px', height: '25px', color: '#74767e' }}
@@ -124,22 +137,36 @@ const Footer = () => {
                 />
               </Grid>
             </Grid>
-            <Grid item flexDirection="row" sx={{ display: 'flex' }}>
-              <Grid container sx={{ display: 'flex' }}>
-                <Grid alignContent="center" item flexDirection="row">
-                  <Typography color="#74767e" alignItems="center">
-                    <LanguageIcon sx={{ color: '#74767e' }} />
-                    English
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography color="#74767e">US$ USD</Typography>
-                </Grid>
-                <Grid item>
-                  <img src={custom} />
-                </Grid>
+            {/* <Grid item> */}
+            <Grid
+              container
+              fullWidth
+              sx={{ display: 'flex' }}
+              flexDirection="row"
+              alignItems="center"
+              justifyContent="space-around"
+              spacing={2}
+            >
+              <Grid item>
+                <Typography color="#74767e" alignItems="center">
+                  <LanguageIcon
+                    sx={{
+                      color: '#74767e',
+                      fontSize: '18px',
+                      marginRight: '7px',
+                    }}
+                  />
+                  English
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography color="#74767e">US$ USD</Typography>
+              </Grid>
+              <Grid item>
+                <img src={custom} />
               </Grid>
             </Grid>
+            {/* </Grid> */}
           </Grid>
         </Grid>
       </footer>
