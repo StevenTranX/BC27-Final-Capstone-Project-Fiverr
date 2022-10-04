@@ -1,14 +1,14 @@
 .container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 0;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // bottom: 0;
+  // right: 0;
+  // z-index: 0;
   .mySwiper {
     width: 100%;
     height: 680px;
-    position: relative;
+    // position: relative;
     // img {
     //   width: 100%;
     //   height: 100%;
@@ -48,6 +48,16 @@
       background-size: auto 100%;
       background-repeat: no-repeat;
       background-color: #b64762;
+    }
+  }
+  .sliderContainer {
+    position: relative;
+    height: 100%;
+    .sliderHeader {
+      position: absolute;
+      z-index: 999999;
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
 }
