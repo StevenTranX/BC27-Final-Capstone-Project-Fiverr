@@ -7,10 +7,12 @@ import styles from './MainLayout.module.scss';
 const MainLayout = () => {
   return (
     <div>
-      <Container className={styles.headerContainer}>
+      <div className={styles.headerContainer}>
         <Header />
-      </Container>
-      <LandingPage className={styles.landingPage} />
+      </div>
+      <div className={styles.landingPage}>
+        <LandingPage />
+      </div>
       <Container>
         <Footer />
       </Container>

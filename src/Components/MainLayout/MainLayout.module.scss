@@ -3,6 +3,10 @@
   top: 0;
   left: 0;
   right: 0;
-  margin: auto;
+  margin: 0 auto;
   z-index: 10;
+  max-width: 1200px;
+}
+.landingPage {
+  width: 100%;
 }

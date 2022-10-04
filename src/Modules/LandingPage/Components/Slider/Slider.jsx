@@ -26,10 +26,6 @@ const Slider = () => {
         <SwiperSlide className={styles.backGround3}></SwiperSlide>
         <SwiperSlide className={styles.backGround4}></SwiperSlide>
         <SwiperSlide className={styles.backGround5}></SwiperSlide>
-
-        <Container width="lg" className={styles.sliderContainer}>
-          <SliderHeader className={styles.sliderHeader} />
-        </Container>
       </Swiper>
     </div>
   );

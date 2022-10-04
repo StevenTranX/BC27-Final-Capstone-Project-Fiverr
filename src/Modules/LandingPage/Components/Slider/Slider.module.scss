@@ -1,63 +1,44 @@
+@mixin backGroundSlider($color, $url) {
+  background-position: 100% 100%;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-color: #023a15;
+  background-image: $url;
+}
 .container {
-  position: relative;
-
-  // position: relative;
-  // img {
-  //   width: 100%;
-  //   height: 100%;
-  //   object-fit: cover;
-  // }
+  width: 100%;
   .mySwiper {
     width: 100%;
     height: 680px;
     .backGround1 {
-      background-image: url('https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049984/bg-hero-1-1792-x2.png');
-      background-position: 100% 100%;
-      background-size: auto 100%;
-      background-repeat: no-repeat;
-      background-color: #023a15;
+      @include backGroundSlider(
+        #023a15,
+        url('https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049984/bg-hero-1-1792-x2.png')
+      );
     }
     .backGround2 {
-      background-image: url('https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/2413b8415dda9dbd7756d02cb87cd4b1-1599595203021/bg-hero-2-1792-x2.png');
-      background-position: 100% 100%;
-      background-size: auto 100%;
-      background-repeat: no-repeat;
-      background-color: #b64762;
+      @include backGroundSlider(
+        _,
+        url('https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/2413b8415dda9dbd7756d02cb87cd4b1-1599595203021/bg-hero-2-1792-x2.png')
+      );
     }
     .backGround3 {
-      background-image: url('https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/d14871e2d118f46db2c18ad882619ea8-1599835783974/bg-hero-3-1792-x2.png');
-      background-position: 100% 100%;
-      background-size: auto 100%;
-      background-repeat: no-repeat;
-      background-color: #b64762;
+      @include backGroundSlider(
+        _,
+        url('https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/d14871e2d118f46db2c18ad882619ea8-1599835783974/bg-hero-3-1792-x2.png')
+      );
     }
     .backGround4 {
-      background-image: url('https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/93085acc959671e9e9e77f3ca8147f82-1599427734106/bg-hero-4-1792-x2.png');
-      background-position: 100% 100%;
-      background-size: auto 100%;
-      background-repeat: no-repeat;
-      background-color: #b64762;
+      @include backGroundSlider(
+        _,
+        url('https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/93085acc959671e9e9e77f3ca8147f82-1599427734106/bg-hero-4-1792-x2.png')
+      );
     }
     .backGround5 {
-      background-image: url('https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049977/bg-hero-5-1792-x2.png');
-      background-position: 100% 100%;
-      background-size: auto 100%;
-      background-repeat: no-repeat;
-      background-color: #b64762;
-    }
-  }
-  .sliderContainer {
-    position: absolute;
-    height: 100%;
-    z-index: 10;
-    top: 0;
-    left: 0;
-    .sliderHeader {
-      position: absolute;
-      z-index: 99;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
+      @include backGroundSlider(
+        _,
+        url('https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049977/bg-hero-5-1792-x2.png')
+      );
     }
   }
 }

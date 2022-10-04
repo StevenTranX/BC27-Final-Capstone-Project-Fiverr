@@ -1,0 +1,16 @@
+.landingPage {
+  max-width: 1200px;
+  .slider {
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: aqua;
+  }
+  .sliderHeader {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+}
