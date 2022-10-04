@@ -1,19 +1,15 @@
 .container {
-  // position: absolute;
-  // top: 0;
-  // left: 0;
-  // bottom: 0;
-  // right: 0;
-  // z-index: 0;
+  position: relative;
+
+  // position: relative;
+  // img {
+  //   width: 100%;
+  //   height: 100%;
+  //   object-fit: cover;
+  // }
   .mySwiper {
     width: 100%;
     height: 680px;
-    // position: relative;
-    // img {
-    //   width: 100%;
-    //   height: 100%;
-    //   object-fit: cover;
-    // }
     .backGround1 {
       background-image: url('https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049984/bg-hero-1-1792-x2.png');
       background-position: 100% 100%;
@@ -51,12 +47,16 @@
     }
   }
   .sliderContainer {
-    position: relative;
+    position: absolute;
     height: 100%;
+    z-index: 10;
+    top: 0;
+    left: 0;
     .sliderHeader {
       position: absolute;
-      z-index: 999999;
+      z-index: 99;
       top: 50%;
+      left: 0;
       transform: translateY(-50%);
     }
   }
