@@ -1,0 +1,35 @@
+.contentWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 200px;
+  .content {
+    width: 40%;
+    & > h2 {
+      font-size: 32px;
+    }
+    .contentHeader {
+      & > h6 {
+        display: flex;
+        align-items: flex-start;
+        font-size: 18px;
+        margin: 0 0;
+      }
+      & > h6 > svg {
+        margin-right: 10px;
+      }
+      & > p {
+        font-size: 18px;
+        line-height: 26px;
+      }
+    }
+  }
+  .video {
+    width: 60%;
+    .videoWrapper {
+      & > img {
+        width: 100%;
+        display: block;
+      }
+    }
+  }
+}
