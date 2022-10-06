@@ -1,0 +1,51 @@
+.marketPlace {
+  .marketPlace__header {
+  }
+  .marketPlace__items {
+    & img {
+      width: 48px;
+      display: block;
+      height: 48px;
+      margin: auto 15px;
+    }
+    .gridContainer {
+      padding-left: 50px;
+      margin-left: -65px;
+      margin-top: 30px;
+      & > .marketPlace__gridItem {
+        padding: 10px 50px;
+        padding-bottom: 50px;
+      }
+      & > .marketPlace__gridItem2 {
+        padding: 10px 50px;
+        padding-bottom: 50px;
+        margin-top: -20px;
+      }
+    }
+
+    .marketPlace__item {
+      & > a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+
+        color: #222325;
+        text-align: center;
+        position: relative;
+      }
+      & > a::after {
+        content: '';
+        position: absolute;
+        top: 36px;
+        right: 50%;
+        z-index: 1;
+        transform: translateX(50%);
+        padding: 0 0 8px;
+        width: 48px;
+        height: 10px;
+        border-bottom: 2px solid #c5c6c9;
+      }
+    }
+  }
+}

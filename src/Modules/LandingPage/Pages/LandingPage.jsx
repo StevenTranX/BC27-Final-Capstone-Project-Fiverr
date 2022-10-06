@@ -5,6 +5,7 @@ import SliderHeader from '../Components/Slider/SliderHeader/SliderHeader';
 import scss from './landingPage.module.scss';
 import Services from '../Components/Services/Services';
 import Freelance from '../Components/Freelance/Freelance';
+import MarketPlace from '../Components/MarketPlace/MarketPlace';
 const LandingPage = () => {
   return (
     <>
@@ -19,6 +20,9 @@ const LandingPage = () => {
       </div>
       <div className={scss.freelance}>
         <Freelance />
+      </div>
+      <div className={scss.marketPlace}>
+        <MarketPlace />
       </div>
     </>
   );
