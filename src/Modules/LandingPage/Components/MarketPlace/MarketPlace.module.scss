@@ -1,5 +1,10 @@
 .marketPlace {
   .marketPlace__header {
+    margin-bottom: 60px;
+    & > h2 {
+      font-size: 32px;
+      line-height: 120%;
+    }
   }
   .marketPlace__items {
     & img {
@@ -9,21 +14,26 @@
       margin: auto 15px;
     }
     .gridContainer {
-      padding-left: 50px;
-      margin-left: -65px;
+      padding-left: 30px;
+      margin-left: -20px;
       margin-top: 30px;
       & > .marketPlace__gridItem {
-        padding: 10px 50px;
+        padding: 10px 40px;
         padding-bottom: 50px;
       }
       & > .marketPlace__gridItem2 {
-        padding: 10px 50px;
+        padding: 10px 40px;
         padding-bottom: 50px;
         margin-top: -20px;
       }
     }
 
     .marketPlace__item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
       & > a {
         display: flex;
         justify-content: space-between;

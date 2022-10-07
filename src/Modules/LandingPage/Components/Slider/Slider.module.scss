@@ -1,12 +1,11 @@
 @mixin backGroundSlider($color, $url) {
-  background-position: 100% 100%;
+  background-position: bottom;
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-color: #023a15;
   background-image: $url;
 }
-.container {
-  width: 100%;
+.sliderContainer {
   .mySwiper {
     width: 100%;
     height: 680px;

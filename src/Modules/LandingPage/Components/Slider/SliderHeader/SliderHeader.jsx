@@ -1,5 +1,12 @@
 import React from 'react';
-import { Box, TextField, Typography, Grid, Button } from '@mui/material';
+import {
+  Box,
+  TextField,
+  Typography,
+  Grid,
+  Button,
+  Container,
+} from '@mui/material';
 import styles from './SliderHeader.module.scss';
 import { styled } from '@mui/material/styles';
 
@@ -21,6 +28,8 @@ const StyledInput = styled(TextField)({
   borderTopRightRadius: '0px',
   borderBottomRightRadius: '0px',
   border: 0,
+  backgroundColor: '#fff',
+  cursor: 'pointer',
 });
 const StyledOutlinedButton = styled(Button)({
   boxShadow: 'none',
@@ -29,15 +38,23 @@ const StyledOutlinedButton = styled(Button)({
     opacity: 0.9,
   },
   borderRadius: '50px',
-  border: '1px black solid',
+  border: '1px #fff solid',
   color: '#000',
   height: '26px',
+  color: '#fff',
+  cursor: 'pointer',
 });
 const SliderHeader = () => {
   return (
-    <>
-      <Box maxWidth={'560px'} height={'222px'}>
-        <Typography component="h3" variant="h3">
+    <Container className={styles.sliderHeader}>
+      <Box
+        maxWidth={'600px'}
+        height={'222px'}
+        justifyContent={'center'}
+        display={'flex'}
+        flexDirection={'column'}
+      >
+        <Typography component="h3" variant="h3" sx={{ marginBottom: '18px' }}>
           Find the perfect <i>freelance</i> services for your business
         </Typography>
         <Box fullWidth height={'48px'}>
@@ -49,6 +66,7 @@ const SliderHeader = () => {
                 sx={{ height: '40px' }}
                 type="search"
                 size="small"
+                placeholder={`Try "building mobile app"`}
               ></StyledInput>
             </Grid>
             <Grid item lg={2} md={2}>
@@ -64,7 +82,7 @@ const SliderHeader = () => {
           </Grid>
         </Box>
         <Box>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} sx={{ marginTop: '10px', color: '#fff' }}>
             <Grid item>
               <Typography> Popular:</Typography>
             </Grid>
@@ -91,8 +109,7 @@ const SliderHeader = () => {
           </Grid>
         </Box>
       </Box>
-      ;
-    </>
+    </Container>
   );
 };
 

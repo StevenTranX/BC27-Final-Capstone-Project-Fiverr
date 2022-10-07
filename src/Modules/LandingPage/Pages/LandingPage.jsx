@@ -2,29 +2,30 @@ import React from 'react';
 import Slider from '../Components/Slider/Slider';
 import { Box, Container } from '@mui/material';
 import SliderHeader from '../Components/Slider/SliderHeader/SliderHeader';
-import scss from './landingPage.module.scss';
 import Services from '../Components/Services/Services';
 import Freelance from '../Components/Freelance/Freelance';
 import MarketPlace from '../Components/MarketPlace/MarketPlace';
+import styles from './LandingPage.module.scss';
 const LandingPage = () => {
   return (
-    <>
-      <div className={scss.slider}>
+    <div className={styles.landingPage}>
+      <div className={styles.slider}>
         <Slider />
+        <div maxWidth="xl" className={styles.sliderHeaderContainer}>
+          <SliderHeader />
+        </div>
       </div>
-      <div className={scss.sliderHeader}>
-        <SliderHeader />
-      </div>
-      <div className={scss.services}>
+
+      <div className={styles.services}>
         <Services />
       </div>
-      <div className={scss.freelance}>
+      <div className={styles.freelance}>
         <Freelance />
       </div>
-      <div className={scss.marketPlace}>
+      <div className={styles.marketPlace}>
         <MarketPlace />
       </div>
-    </>
+    </div>
   );
 };
 

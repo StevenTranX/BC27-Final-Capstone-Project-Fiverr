@@ -8,7 +8,7 @@ const Services = () => {
     <Container maxWidth="lg">
       <div className={styles.servicesHeader}>
         <header>
-          <h4>Popular professional services</h4>
+          <h2>Popular professional services</h2>
         </header>
       </div>
       <div className={styles.servicesSlider}>

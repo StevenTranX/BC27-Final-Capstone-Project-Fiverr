@@ -10,7 +10,7 @@ import SliderHeader from './SliderHeader/SliderHeader';
 import { Box, Container } from '@mui/material';
 const Slider = () => {
   return (
-    <div className={styles.container}>
+    <div className={styles.sliderContainer}>
       <Swiper
         className={styles.mySwiper}
         modules={[Navigation, EffectFade, Autoplay]}

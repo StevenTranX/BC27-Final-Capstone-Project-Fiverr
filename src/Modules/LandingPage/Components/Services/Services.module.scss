@@ -2,6 +2,10 @@
   width: 100%;
   & header {
     width: 100%;
+    & > header > h2 {
+      font-size: 32px;
+      line-height: 120%;
+    }
   }
 }
 .servicesSlider {
