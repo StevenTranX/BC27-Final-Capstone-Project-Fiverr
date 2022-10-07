@@ -2,7 +2,7 @@
   position: relative;
   top: 0;
   left: 0;
-  z-index: -99999999;
+  z-index: 5;
   .slider {
     width: 100%;
     z-index: -10;
@@ -26,5 +26,6 @@
   .freelance {
   }
   .marketPlace {
+    margin-top: 100px;
   }
 }

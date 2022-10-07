@@ -4,7 +4,7 @@ import styles from './Freelance.module.scss';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 const Freelance = () => {
   return (
-    <section>
+    <section className={styles.freelance}>
       <Container>
         <div className={styles.contentWrapper}>
           <div className={styles.content}>

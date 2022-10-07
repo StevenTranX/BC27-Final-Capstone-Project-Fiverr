@@ -1,4 +1,4 @@
-import { Box, Container, Grid } from '@mui/material';
+import { Box, Container, Divider, Grid } from '@mui/material';
 import React from 'react';
 import styles from './MarketPlace.module.scss';
 const MarketPlace = () => {
@@ -145,6 +145,7 @@ const MarketPlace = () => {
           </Box>
         </div>
       </Container>
+      <Divider />
     </section>
   );
 };
