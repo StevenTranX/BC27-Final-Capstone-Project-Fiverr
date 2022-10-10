@@ -14,11 +14,18 @@ const EarnBadges = () => {
               />
             </div>
           </header>
-          <div className={styles.badge__content}>
-            <div className={styles.badge__contentWrapper}>
-              <h5>Earn badges and stand out</h5>
-              <p>Boost your sales, by boosting your expertise.</p>
-              <Button>Enroll Now</Button>
+          <div className={styles.badge__item}>
+            <div className={styles.badge__content}>
+              <div className={styles.badge__contentWrapper}>
+                <h5>Earn badges and stand out</h5>
+                <p>Boost your sales, by boosting your expertise.</p>
+                <Button
+                  sx={{ marginBottom: '20px', backgroundColor: '#1dbf73' }}
+                  variant="contained"
+                >
+                  Enroll Now
+                </Button>
+              </div>
             </div>
           </div>
         </div>
