@@ -1,0 +1,33 @@
+.badge {
+  max-width: 400px;
+  height: 370px;
+  border: 1px solid #dadbdd;
+  margin-top: 30px;
+  padding: 30px;
+  .badgeWrapper {
+    .badge__header {
+      .badge__logo {
+        width: 83px;
+        height: 29px;
+        & > img {
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+    .badge__content {
+      .badge__contentWrapper {
+        width: 100%;
+        & > h5::before {
+          content: '';
+          background: url('https://npm-assets.fiverrcdn.com/assets/@fiverr-private/fiverr_learn/enroll-icon.69b770f.svg')
+            50% no-repeat;
+          display: block;
+          height: 96px;
+          margin-bottom: 16px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

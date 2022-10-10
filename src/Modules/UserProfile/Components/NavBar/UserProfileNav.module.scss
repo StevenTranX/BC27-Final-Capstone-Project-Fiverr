@@ -1,0 +1,22 @@
+.userProfileNav {
+  .userProfileNav__container {
+    .userProfileNav__list {
+      .userProfileNav__listNav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .userProfileNav__item {
+          padding-left: 12px;
+          margin-left: -12px;
+        }
+      }
+      .userProfileNav__listNav2 {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        .userProfileNav__item {
+        }
+      }
+    }
+  }
+}

@@ -16,7 +16,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import fiverrLogo from '../../../../Images/UserProfile/vector14.svg';
-import { Container } from '@mui/material';
+import { Container, Divider } from '@mui/material';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -226,6 +226,7 @@ export default function UserProfileHeader() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      <Divider />
     </Box>
   );
 }
