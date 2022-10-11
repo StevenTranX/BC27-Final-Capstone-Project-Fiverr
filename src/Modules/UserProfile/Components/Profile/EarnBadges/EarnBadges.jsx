@@ -20,7 +20,11 @@ const EarnBadges = () => {
                 <h5>Earn badges and stand out</h5>
                 <p>Boost your sales, by boosting your expertise.</p>
                 <Button
-                  sx={{ marginBottom: '20px', backgroundColor: '#1dbf73' }}
+                  sx={{
+                    marginBottom: '20px',
+                    backgroundColor: '#1dbf73',
+                    textTransform: 'capitalize',
+                  }}
                   variant="contained"
                 >
                   Enroll Now

@@ -1,0 +1,30 @@
+.cardLayout {
+  max-width: 400px;
+  border: 1px solid #dadbdd;
+  margin-top: 30px;
+  background-color: #fff;
+  .cardWrapper {
+    padding: 30px;
+    .description {
+      .desc__row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .desc__col {
+        }
+      }
+    }
+    .language {
+      .language__row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .language__col {
+        }
+      }
+      .language__detail {
+        margin-bottom: 40px;
+      }
+    }
+  }
+}
