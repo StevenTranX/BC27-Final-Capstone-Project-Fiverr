@@ -1,6 +1,7 @@
 import { Divider } from '@mui/material';
 import React from 'react';
 import BioTags from '../../../../../ReusableComponents/Profile__Bio /BioTags/BioTags';
+import DescriptionDialog from './DescriptionDialog/DescriptionDialog';
 import LinkedAccountsList from './LinkedAccountsList/LinkedAccountsList';
 import styles from './Profile__Bio.module.scss';
 const Profile__Bio = () => {
