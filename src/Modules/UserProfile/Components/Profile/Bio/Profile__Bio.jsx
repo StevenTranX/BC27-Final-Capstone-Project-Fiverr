@@ -7,9 +7,12 @@ import BioTag__Certificate from '../../../../../ReusableComponents/Profile__Bio/
 import BioTag__DateOfBirth from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__DateOfBirth';
 import BioTag__Phone from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__Phone';
 import BioTag__Skill from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__Skill';
+import BioTag__Name from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__Name';
 import LinkedAccountsList from './LinkedAccountsList/LinkedAccountsList';
 import styles from './Profile__Bio.module.scss';
+import { useSelector } from 'react-redux';
 const Profile__Bio = (props) => {
+  const { user } = useSelector((state) => state.auth?.current);
   const schema = yup.object().shape({
     // name: yup.string().required('Please enter your username'),
     // password: yup.string().required('Please enter password').min(6).max(20),
@@ -58,6 +61,19 @@ const Profile__Bio = (props) => {
       <div className={styles.cardLayout}>
         <div className={styles.cardWrapper}>
           <form>
+            <BioTag__Name
+              form={form}
+              leftHeader="Full Name"
+              rightHeader="Edit Your Full Name"
+              headerTitle="Name"
+              headerContent=" Type to edit your name"
+              label="Full Name"
+              name="name"
+              type="text"
+              refs={register('name')}
+            >
+              <span>{user.name}</span>
+            </BioTag__Name>
             <BioTag__Phone
               form={form}
               leftHeader="Phone"
@@ -67,9 +83,10 @@ const Profile__Bio = (props) => {
               label="Phone Number"
               name="phone"
               type="number"
-            />
-          </form>
-          <form>
+              refs={register('phone')}
+            >
+              <span>{user.phone}</span>
+            </BioTag__Phone>
             <BioTag__DateOfBirth
               form={form}
               leftHeader="Date of Birth"
@@ -79,10 +96,11 @@ const Profile__Bio = (props) => {
               label="Date of Birth"
               name="birthday"
               type="date"
-            />
-          </form>
+              refs={register('birthday')}
+            >
+              <span>{user.birthday}</span>
+            </BioTag__DateOfBirth>
 
-          <form>
             <div className={styles.linkedAccount}>
               <header className={styles.linkedAccount__header}>
                 <div className={styles.linkedAccount_col}>
@@ -94,8 +112,6 @@ const Profile__Bio = (props) => {
               </div>
               <Divider />
             </div>
-          </form>
-          <form>
             <BioTag__Skill
               form={form}
               leftHeader="Skills"
@@ -106,10 +122,11 @@ const Profile__Bio = (props) => {
               name="skill"
               type="date"
               onChange={setValue}
-            />
-          </form>
+              refs={register('skill')}
+            >
+              <span>{user.skill.join(', ')}</span>
+            </BioTag__Skill>
 
-          <form>
             <BioTag__Certificate
               form={form}
               leftHeader="Certificate"
@@ -120,7 +137,10 @@ const Profile__Bio = (props) => {
               name="certificate"
               type=""
               onChange={setValue}
-            />
+              refs={register('certificate')}
+            >
+              <span>{user.certification.join(', ')}</span>
+            </BioTag__Certificate>
           </form>
         </div>
       </div>

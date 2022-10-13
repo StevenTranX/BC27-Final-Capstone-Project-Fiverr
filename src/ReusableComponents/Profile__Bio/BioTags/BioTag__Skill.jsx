@@ -25,6 +25,7 @@ const BioTag__Skill = (props) => {
     headerContent,
     type,
     onChange,
+    children,
   } = props;
   return (
     <div className={styles.bio}>
@@ -49,7 +50,7 @@ const BioTag__Skill = (props) => {
       </header>
       <div className={styles.bio__detail}>
         <span>
-          <span>{content}</span> <span>{subContent}</span>
+          <span>{children}</span> <span>{subContent}</span>
           <span>
             <Link>{linkedContent}</Link>
           </span>

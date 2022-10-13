@@ -21,7 +21,7 @@ const Profile__Avatar = () => {
                 <Avatar className={styles.camera__image}>N</Avatar>
               </div>
               <div className={styles.profile__label_name}>
-                <p>{user?.name}</p>
+                <p>{user?.email}</p>
               </div>
               <div className={styles.profile__label_edit}>
                 <EditIcon

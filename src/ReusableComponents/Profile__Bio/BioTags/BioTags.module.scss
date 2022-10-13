@@ -7,6 +7,10 @@
     }
   }
   .bio__detail {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    & > span {
+      color: grey;
+      line-height: 2;
+    }
   }
 }

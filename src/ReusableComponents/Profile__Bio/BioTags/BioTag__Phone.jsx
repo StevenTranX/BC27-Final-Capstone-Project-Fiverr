@@ -24,6 +24,7 @@ const BioTag__Edit = (props) => {
     headerTitle,
     headerContent,
     type,
+    children,
   } = props;
   return (
     <div className={styles.bio}>
@@ -47,7 +48,7 @@ const BioTag__Edit = (props) => {
       </header>
       <div className={styles.bio__detail}>
         <span>
-          <span>{content}</span> <span>{subContent}</span>
+          <span>{children}</span> <span>{subContent}</span>
           <span>
             <Link>{linkedContent}</Link>
           </span>

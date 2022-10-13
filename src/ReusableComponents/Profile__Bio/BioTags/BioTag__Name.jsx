@@ -1,9 +1,9 @@
 import { Divider } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Profile__SelectCertification from '../Dialog/Profile__SelectCertification';
+import Profile__Dialog from '../Dialog/Profile__Dialog';
 import styles from './BioTags.module.scss';
-const BioTag__Certificate = (props) => {
+const BioTag__Name = (props) => {
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -24,7 +24,6 @@ const BioTag__Certificate = (props) => {
     headerTitle,
     headerContent,
     type,
-    onChange,
     children,
   } = props;
   return (
@@ -35,7 +34,7 @@ const BioTag__Certificate = (props) => {
         </div>
         <div className={styles.bio__col}>
           <Link onClick={handleClickOpen}>{rightHeader}</Link>
-          <Profile__SelectCertification
+          <Profile__Dialog
             form={form}
             label={label}
             name={name}
@@ -43,14 +42,14 @@ const BioTag__Certificate = (props) => {
             onClose={handleClose}
             headerContent={headerContent}
             headerTitle={headerTitle}
-            type="date"
-            onChange={onChange}
+            type={type}
           />
         </div>
       </header>
       <div className={styles.bio__detail}>
         <span>
-          <span>{children}</span> <span>{subContent}</span>
+          <span>{children}</span>
+          <span>{subContent}</span>
           <span>
             <Link>{linkedContent}</Link>
           </span>
@@ -61,4 +60,4 @@ const BioTag__Certificate = (props) => {
   );
 };
 
-export default BioTag__Certificate;
+export default BioTag__Name;
