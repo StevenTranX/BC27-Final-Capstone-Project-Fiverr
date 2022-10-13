@@ -1,9 +1,8 @@
+import { Divider } from '@mui/material';
 import React from 'react';
-import { Divider, Button } from '@mui/material';
-import styles from './BioTags.module.scss';
 import { Link } from 'react-router-dom';
-import Profile__DatePicker from '../Dialog/Profile__DatePicker';
-import Profile__Dialog from '../Dialog/Profile__DatePicker';
+import Profile__SelectCertification from '../Dialog/Profile__SelectCertification';
+import styles from './BioTags.module.scss';
 const BioTag__Certificate = (props) => {
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
@@ -25,6 +24,7 @@ const BioTag__Certificate = (props) => {
     headerTitle,
     headerContent,
     type,
+    onChange,
   } = props;
   return (
     <div className={styles.bio}>
@@ -33,7 +33,8 @@ const BioTag__Certificate = (props) => {
           <h3>{leftHeader}</h3>
         </div>
         <div className={styles.bio__col}>
-          <Profile__DatePicker
+          <Link onClick={handleClickOpen}>{rightHeader}</Link>
+          <Profile__SelectCertification
             form={form}
             label={label}
             name={name}
@@ -42,6 +43,7 @@ const BioTag__Certificate = (props) => {
             headerContent={headerContent}
             headerTitle={headerTitle}
             type="date"
+            onChange={onChange}
           />
         </div>
       </header>

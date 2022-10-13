@@ -15,6 +15,11 @@ export default function Profile__SelectCertification({
   headerTitle,
   headerContent,
   placeholder,
+  name,
+  form,
+  label,
+  type,
+  onChange,
 }) {
   const StyledTextArea = styled(TextareaAutosize)({
     font: '400 16px macan,helvetica neue,Helvetica,Arial,sans-serif',
@@ -28,11 +33,17 @@ export default function Profile__SelectCertification({
   });
   return (
     <div>
-      <Dialog open={open} onClose={onClose}>
+      <Dialog open={open} onClose={onClose} fullWidth>
         <DialogTitle>{headerTitle}</DialogTitle>
         <DialogContent>
           <DialogContentText>{headerContent}</DialogContentText>
-          <MultipleSelectCertification />
+          <MultipleSelectCertification
+            form={form}
+            name={name}
+            label={label}
+            type={type}
+            onChange={onChange}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose}>Cancel</Button>

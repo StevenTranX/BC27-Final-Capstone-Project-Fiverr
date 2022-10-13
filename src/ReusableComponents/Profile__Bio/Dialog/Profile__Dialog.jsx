@@ -31,7 +31,7 @@ export default function Profile__Dialog({
   });
   return (
     <div>
-      <Dialog open={open} onClose={onClose}>
+      <Dialog open={open} onClose={onClose} fullWidth>
         <DialogTitle>{headerTitle}</DialogTitle>
         <DialogContent>
           <DialogContentText>{headerContent}</DialogContentText>

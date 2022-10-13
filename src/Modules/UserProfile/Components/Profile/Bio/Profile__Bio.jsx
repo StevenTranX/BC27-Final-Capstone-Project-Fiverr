@@ -105,6 +105,7 @@ const Profile__Bio = (props) => {
               label="Skills"
               name="skill"
               type="date"
+              onChange={setValue}
             />
           </form>
 
@@ -117,7 +118,8 @@ const Profile__Bio = (props) => {
               headerContent="Select your certificates"
               label="Certificate"
               name="certificate"
-              type="date"
+              type=""
+              onChange={setValue}
             />
           </form>
         </div>
