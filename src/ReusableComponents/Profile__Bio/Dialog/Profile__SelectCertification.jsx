@@ -8,7 +8,14 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/system';
 import { TextareaAutosize } from '@mui/material';
-export default function DescriptionDialog({ open, onClose }) {
+import MultipleSelectCertification from '../../FormControl/MultipleSelectField/MultipleSelectCertification';
+export default function Profile__SelectCertification({
+  open,
+  onClose,
+  headerTitle,
+  headerContent,
+  placeholder,
+}) {
   const StyledTextArea = styled(TextareaAutosize)({
     font: '400 16px macan,helvetica neue,Helvetica,Arial,sans-serif',
     color: '#7a7d85',
@@ -22,18 +29,10 @@ export default function DescriptionDialog({ open, onClose }) {
   return (
     <div>
       <Dialog open={open} onClose={onClose}>
-        <DialogTitle>Description</DialogTitle>
+        <DialogTitle>{headerTitle}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Please tell us about any hobbies, additional expertise, or anything
-            else you'd like to add
-          </DialogContentText>
-          <StyledTextArea
-            maxRows={4}
-            aria-label="maximum height"
-            placeholder=""
-            style={{ width: '100%', height: '100px' }}
-          />
+          <DialogContentText>{headerContent}</DialogContentText>
+          <MultipleSelectCertification />
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose}>Cancel</Button>

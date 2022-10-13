@@ -1,9 +1,9 @@
+import { Divider } from '@mui/material';
 import React from 'react';
-import { Divider, Button } from '@mui/material';
-import styles from './BioTags.module.scss';
 import { Link } from 'react-router-dom';
-import DescriptionDialog from '../../../Modules/UserProfile/Components/Profile/Bio/DescriptionDialog/DescriptionDialog';
-const BioTags = (props) => {
+import Profile__Dialog from '../Dialog/Profile__Dialog';
+import styles from './BioTags.module.scss';
+const BioTag__Edit = (props) => {
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -12,7 +12,19 @@ const BioTags = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
-  const { leftHeader, rightHeader, content, subContent, linkedContent } = props;
+  const {
+    leftHeader,
+    rightHeader,
+    content,
+    subContent,
+    linkedContent,
+    form,
+    label,
+    name,
+    headerTitle,
+    headerContent,
+    type,
+  } = props;
   return (
     <div className={styles.bio}>
       <header className={styles.bio__header}>
@@ -21,7 +33,16 @@ const BioTags = (props) => {
         </div>
         <div className={styles.bio__col}>
           <Link onClick={handleClickOpen}>{rightHeader}</Link>
-          <DescriptionDialog open={open} onClose={handleClose} />
+          <Profile__Dialog
+            form={form}
+            label={label}
+            name={name}
+            open={open}
+            onClose={handleClose}
+            headerContent={headerContent}
+            headerTitle={headerTitle}
+            type="number"
+          />
         </div>
       </header>
       <div className={styles.bio__detail}>
@@ -37,4 +58,4 @@ const BioTags = (props) => {
   );
 };
 
-export default BioTags;
+export default BioTag__Edit;

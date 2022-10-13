@@ -1,6 +1,6 @@
 import React from 'react';
 import CardLayout from '../../../../../ReusableComponents/Profile_CardLayOut/CardLayout';
-import BioTags from '../../../../../ReusableComponents/Profile__Bio /BioTags/BioTags';
+import BioTags from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTags';
 const ShareActivity = () => {
   return (
     <div>

@@ -1,25 +1,87 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Divider } from '@mui/material';
 import React from 'react';
-import BioTags from '../../../../../ReusableComponents/Profile__Bio /BioTags/BioTags';
-import DescriptionDialog from './DescriptionDialog/DescriptionDialog';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import BioTag__Certificate from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__Certificate';
+import BioTag__DateOfBirth from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__DateOfBirth';
+import BioTag__Phone from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__Phone';
+import BioTag__Skill from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__Skill';
 import LinkedAccountsList from './LinkedAccountsList/LinkedAccountsList';
 import styles from './Profile__Bio.module.scss';
-const Profile__Bio = () => {
+const Profile__Bio = (props) => {
+  const schema = yup.object().shape({
+    // name: yup.string().required('Please enter your username'),
+    // password: yup.string().required('Please enter password').min(6).max(20),
+    // retypePassword: yup
+    //   .string()
+    //   .oneOf([yup.ref('password'), null])
+    //   .required('Please Retype your Password'),
+    // email: yup.string().email().required('Please enter your email'),
+    // phone: yup.string().required('Phone number is required'),
+    // // birthday: yup.date().required('Please enter your date of birth'),
+    // gender: yup.bool().required('Please select your gender'),
+    // role: yup.string().required('Please enter your role'),
+    skill: yup.array().of(yup.string()),
+    // certification: yup.array(),
+  });
+
+  const form = useForm({
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      phone: '',
+      birthday: '',
+      gender: true,
+      role: '',
+      skill: [],
+      certification: [],
+    },
+    resolver: yupResolver(schema),
+  });
+  const { register, handleSubmit, setValue } = form;
+  // const { isSubmitting } = form.formState;
+  // const handleSubmitChild = async (values) => {
+  //   const { onSubmit } = props;
+  //   try {
+  //     if (onSubmit) {
+  //       await onSubmit(values);
+  //       form.reset();
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   return (
     <>
       <div className={styles.cardLayout}>
         <div className={styles.cardWrapper}>
           <form>
-            <BioTags leftHeader="Description" rightHeader="Edit Description" />
-          </form>
-          <form>
-            <BioTags
-              leftHeader="Languages"
-              rightHeader="Add New"
-              content="English"
-              subContent="- Basic"
+            <BioTag__Phone
+              form={form}
+              leftHeader="Phone"
+              rightHeader="Edit Phone Number"
+              headerTitle="Phone Number"
+              headerContent=" Type to edit your phone number "
+              label="Phone Number"
+              name="phone"
+              type="number"
             />
           </form>
+          <form>
+            <BioTag__DateOfBirth
+              form={form}
+              leftHeader="Date of Birth"
+              rightHeader="Edit Date of Birth"
+              headerTitle="Date of Birth"
+              headerContent="Select your date of birth"
+              label="Date of Birth"
+              name="birthday"
+              type="date"
+            />
+          </form>
+
           <form>
             <div className={styles.linkedAccount}>
               <header className={styles.linkedAccount__header}>
@@ -34,24 +96,28 @@ const Profile__Bio = () => {
             </div>
           </form>
           <form>
-            <BioTags
+            <BioTag__Skill
+              form={form}
               leftHeader="Skills"
-              rightHeader="Add New"
-              content="Add your Skills"
+              rightHeader="Edit Skills"
+              headerTitle="Skills"
+              headerContent="Select your skills"
+              label="Skills"
+              name="skill"
+              type="date"
             />
           </form>
+
           <form>
-            <BioTags
-              leftHeader="Education"
-              rightHeader="Add New"
-              content="Add your Education"
-            />
-          </form>
-          <form>
-            <BioTags
-              leftHeader="Certification"
-              rightHeader="Add New"
-              content="Add your Certification"
+            <BioTag__Certificate
+              form={form}
+              leftHeader="Certificate"
+              rightHeader="Edit Certificate"
+              headerTitle="Certificate"
+              headerContent="Select your certificates"
+              label="Certificate"
+              name="certificate"
+              type="date"
             />
           </form>
         </div>
