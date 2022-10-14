@@ -18,6 +18,7 @@ export default function Profile__Dialog({
   form,
   label,
   type,
+  setValue,
 }) {
   const StyledTextArea = styled(TextareaAutosize)({
     font: '400 16px macan,helvetica neue,Helvetica,Arial,sans-serif',
@@ -35,15 +36,20 @@ export default function Profile__Dialog({
         <DialogTitle>{headerTitle}</DialogTitle>
         <DialogContent>
           <DialogContentText>{headerContent}</DialogContentText>
-          <DatePickerField form={form} name={name} label={label} type={type} />
+          <DatePickerField
+            form={form}
+            name={name}
+            label={label}
+            type={type}
+            setValue={setValue}
+          />
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose}>Cancel</Button>
           <Button
             sx={{ color: '#fff', backgroundColor: '#1dbf73' }}
             onClick={onClose}
           >
-            Update
+            Close
           </Button>
         </DialogActions>
       </Dialog>

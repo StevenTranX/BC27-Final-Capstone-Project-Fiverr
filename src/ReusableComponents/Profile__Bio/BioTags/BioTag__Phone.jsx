@@ -25,6 +25,7 @@ const BioTag__Edit = (props) => {
     headerContent,
     type,
     children,
+    setValue,
   } = props;
   return (
     <div className={styles.bio}>
@@ -42,7 +43,8 @@ const BioTag__Edit = (props) => {
             onClose={handleClose}
             headerContent={headerContent}
             headerTitle={headerTitle}
-            type="number"
+            type={type}
+            setValue={setValue}
           />
         </div>
       </header>

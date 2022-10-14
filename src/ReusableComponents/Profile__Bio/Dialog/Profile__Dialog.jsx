@@ -9,6 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/system';
 import { TextareaAutosize } from '@mui/material';
 import InputField from '../../FormControl/InputField/InputField';
+import { useSelector } from 'react-redux';
 export default function Profile__Dialog({
   open,
   onClose,
@@ -18,6 +19,7 @@ export default function Profile__Dialog({
   form,
   label,
   type,
+  setValue,
 }) {
   const StyledTextArea = styled(TextareaAutosize)({
     font: '400 16px macan,helvetica neue,Helvetica,Arial,sans-serif',
@@ -29,21 +31,29 @@ export default function Profile__Dialog({
     borderRadius: '3px',
     boxSizing: 'border-box',
   });
+  const { user } = useSelector((state) => state.auth?.current);
+
   return (
     <div>
       <Dialog open={open} onClose={onClose} fullWidth>
         <DialogTitle>{headerTitle}</DialogTitle>
         <DialogContent>
           <DialogContentText>{headerContent}</DialogContentText>
-          <InputField form={form} name={name} label={label} type={type} />
+          <InputField
+            form={form}
+            name={name}
+            label={label}
+            type={type}
+            onChange={setValue}
+            defaultValue={user?.name}
+          />
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose}>Cancel</Button>
           <Button
             sx={{ color: '#fff', backgroundColor: '#1dbf73' }}
             onClick={onClose}
           >
-            Update
+            Close
           </Button>
         </DialogActions>
       </Dialog>

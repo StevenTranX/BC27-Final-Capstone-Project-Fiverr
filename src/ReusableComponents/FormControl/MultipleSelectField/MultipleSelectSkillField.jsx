@@ -60,7 +60,7 @@ export default function MultipleSelectSkillField(props) {
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value
     );
-    // onChange('skill', skill);
+    onChange('skill', skill);
   };
   useEffect(() => {
     onChange('skill', skill);
@@ -82,7 +82,6 @@ export default function MultipleSelectSkillField(props) {
               id={label}
               multiple
               value={skill}
-              defaultValue={[]}
               onChange={handleChange}
               input={<OutlinedInput label="skill" />}
               MenuProps={MenuProps}

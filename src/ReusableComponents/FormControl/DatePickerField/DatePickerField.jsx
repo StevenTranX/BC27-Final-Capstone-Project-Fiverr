@@ -1,12 +1,12 @@
 import { FormControl, TextField } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Controller } from 'react-hook-form';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 const DatePickerField = (props) => {
-  const { form, name, label, disabled } = props;
+  const { form, name, label, disabled, setValue } = props;
   const {
     formState: { errors },
     control,
@@ -14,8 +14,10 @@ const DatePickerField = (props) => {
   const hasError = errors[name];
 
   const [date, setDate] = React.useState(null);
+  console.log(date);
   const handleChange = (event) => {
     setDate(event);
+    setValue('birthday', event);
   };
   return (
     <>

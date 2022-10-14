@@ -26,6 +26,7 @@ const BioTag__DateOfBirth = (props) => {
     headerContent,
     type,
     children,
+    setValue,
   } = props;
   return (
     <div className={styles.bio}>
@@ -44,6 +45,7 @@ const BioTag__DateOfBirth = (props) => {
             headerContent={headerContent}
             headerTitle={headerTitle}
             type="date"
+            setValue={setValue}
           />
         </div>
       </header>

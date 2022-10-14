@@ -11,6 +11,7 @@ import BioTag__Name from '../../../../../ReusableComponents/Profile__Bio/BioTags
 import LinkedAccountsList from './LinkedAccountsList/LinkedAccountsList';
 import styles from './Profile__Bio.module.scss';
 import { useSelector } from 'react-redux';
+import dayjs from 'dayjs';
 const Profile__Bio = (props) => {
   const { user } = useSelector((state) => state.auth?.current);
   const schema = yup.object().shape({
@@ -28,39 +29,43 @@ const Profile__Bio = (props) => {
     skill: yup.array().of(yup.string()),
     // certification: yup.array(),
   });
-
+  const defaultValues = {
+    name: user?.name,
+    email: user?.email,
+    password: user?.password,
+    phone: user?.phone,
+    birthday: user?.birthday,
+    gender: user?.gender,
+    role: user?.role,
+    skill: user?.skill,
+    certification: user?.certification,
+  };
   const form = useForm({
-    defaultValues: {
-      name: '',
-      email: '',
-      password: '',
-      phone: '',
-      birthday: '',
-      gender: true,
-      role: '',
-      skill: [],
-      certification: [],
-    },
+    defaultValues,
     resolver: yupResolver(schema),
   });
-  const { register, handleSubmit, setValue } = form;
-  // const { isSubmitting } = form.formState;
-  // const handleSubmitChild = async (values) => {
-  //   const { onSubmit } = props;
-  //   try {
-  //     if (onSubmit) {
-  //       await onSubmit(values);
-  //       form.reset();
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+
+  const { register, handleSubmit, setValue, watch, getValues } = form;
+  const values = getValues();
+  const { isSubmitting } = form.formState;
+  // loading progression
+  console.log(watch('skill'));
+  const handleSubmitChild = async (values) => {
+    const { onSubmit } = props;
+    try {
+      if (onSubmit) {
+        await onSubmit(values);
+        // form.reset();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className={styles.cardLayout}>
         <div className={styles.cardWrapper}>
-          <form>
+          <form onSubmit={handleSubmit(handleSubmitChild)}>
             <BioTag__Name
               form={form}
               leftHeader="Full Name"
@@ -71,8 +76,9 @@ const Profile__Bio = (props) => {
               name="name"
               type="text"
               refs={register('name')}
+              setValue={setValue}
             >
-              <span>{user.name}</span>
+              <span>{values.name}</span>
             </BioTag__Name>
             <BioTag__Phone
               form={form}
@@ -84,8 +90,9 @@ const Profile__Bio = (props) => {
               name="phone"
               type="number"
               refs={register('phone')}
+              setValue={setValue}
             >
-              <span>{user.phone}</span>
+              <span>{values.phone}</span>
             </BioTag__Phone>
             <BioTag__DateOfBirth
               form={form}
@@ -97,8 +104,9 @@ const Profile__Bio = (props) => {
               name="birthday"
               type="date"
               refs={register('birthday')}
+              setValue={setValue}
             >
-              <span>{user.birthday}</span>
+              <span>{dayjs(values.birthday).format('DD/MM/YYYY')}</span>
             </BioTag__DateOfBirth>
 
             <div className={styles.linkedAccount}>
@@ -124,7 +132,7 @@ const Profile__Bio = (props) => {
               onChange={setValue}
               refs={register('skill')}
             >
-              <span>{user.skill.join(', ')}</span>
+              <span>{values.skill.join(', ')}</span>
             </BioTag__Skill>
 
             <BioTag__Certificate
