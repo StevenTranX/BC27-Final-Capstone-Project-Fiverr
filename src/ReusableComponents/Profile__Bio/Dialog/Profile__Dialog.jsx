@@ -20,6 +20,7 @@ export default function Profile__Dialog({
   label,
   type,
   setValue,
+  value,
 }) {
   const StyledTextArea = styled(TextareaAutosize)({
     font: '400 16px macan,helvetica neue,Helvetica,Arial,sans-serif',
@@ -31,8 +32,9 @@ export default function Profile__Dialog({
     borderRadius: '3px',
     boxSizing: 'border-box',
   });
-  const { user } = useSelector((state) => state.auth?.current);
-
+  const handleClose = () => {
+    onClose();
+  };
   return (
     <div>
       <Dialog open={open} onClose={onClose} fullWidth>
@@ -44,14 +46,14 @@ export default function Profile__Dialog({
             name={name}
             label={label}
             type={type}
-            onChange={setValue}
-            defaultValue={user?.name}
+            setValue={setValue}
+            value={value}
           />
         </DialogContent>
         <DialogActions>
           <Button
             sx={{ color: '#fff', backgroundColor: '#1dbf73' }}
-            onClick={onClose}
+            onClick={handleClose}
           >
             Close
           </Button>

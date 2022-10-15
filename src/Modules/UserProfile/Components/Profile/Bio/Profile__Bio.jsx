@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Divider } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import BioTag__Certificate from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__Certificate';
@@ -12,6 +12,7 @@ import LinkedAccountsList from './LinkedAccountsList/LinkedAccountsList';
 import styles from './Profile__Bio.module.scss';
 import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
+import { RestartAlt } from '@mui/icons-material';
 const Profile__Bio = (props) => {
   const { user } = useSelector((state) => state.auth?.current);
   const schema = yup.object().shape({
@@ -45,11 +46,10 @@ const Profile__Bio = (props) => {
     resolver: yupResolver(schema),
   });
 
-  const { register, handleSubmit, setValue, watch, getValues } = form;
+  const { register, handleSubmit, setValue, watch, getValues, reset } = form;
   const values = getValues();
   const { isSubmitting } = form.formState;
-  // loading progression
-  console.log(watch('skill'));
+  console.log(watch());
   const handleSubmitChild = async (values) => {
     const { onSubmit } = props;
     try {
@@ -91,6 +91,7 @@ const Profile__Bio = (props) => {
               type="number"
               refs={register('phone')}
               setValue={setValue}
+              value={values.phone}
             >
               <span>{values.phone}</span>
             </BioTag__Phone>
@@ -105,6 +106,7 @@ const Profile__Bio = (props) => {
               type="date"
               refs={register('birthday')}
               setValue={setValue}
+              value={values.birthday}
             >
               <span>{dayjs(values.birthday).format('DD/MM/YYYY')}</span>
             </BioTag__DateOfBirth>
@@ -129,25 +131,27 @@ const Profile__Bio = (props) => {
               label="Skills"
               name="skill"
               type="date"
-              onChange={setValue}
+              setValue={setValue}
               refs={register('skill')}
+              value={values.skill}
             >
               <span>{values.skill.join(', ')}</span>
             </BioTag__Skill>
 
             <BioTag__Certificate
               form={form}
-              leftHeader="Certificate"
-              rightHeader="Edit Certificate"
-              headerTitle="Certificate"
-              headerContent="Select your certificates"
-              label="Certificate"
-              name="certificate"
+              leftHeader="Certification"
+              rightHeader="Edit Certification"
+              headerTitle="Certification"
+              headerContent="Select your Certification"
+              label="Certification"
+              name="certification"
               type=""
-              onChange={setValue}
-              refs={register('certificate')}
+              setValue={setValue}
+              refs={register('certification')}
+              value={values.certification}
             >
-              <span>{user.certification.join(', ')}</span>
+              <span>{values.certification.join(', ')}</span>
             </BioTag__Certificate>
           </form>
         </div>

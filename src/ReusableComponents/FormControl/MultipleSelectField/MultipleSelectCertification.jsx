@@ -1,14 +1,11 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import Select from '@mui/material/Select';
+import { useTheme } from '@mui/material/styles';
+import * as React from 'react';
 import { Controller } from 'react-hook-form';
-import { TextField } from '@mui/material';
-import { useEffect } from 'react';
-import { LabelImportantTwoTone } from '@mui/icons-material';
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -43,7 +40,7 @@ function getStyles(name, personName, theme) {
 }
 
 export default function MultipleSelectCertification(props) {
-  const { form, name, label, disabled, onChange } = props;
+  const { form, name, label, disabled, setValue, value } = props;
   const {
     formState: { errors },
     control,
@@ -51,20 +48,12 @@ export default function MultipleSelectCertification(props) {
   const hasError = errors[name];
   const theme = useTheme();
   const [certification, setCertification] = React.useState([]);
-
+  console.log(certification);
   const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setCertification(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
-    );
-    // onChange('skill', skill);
+    const { value } = event.target;
+
+    setCertification(value);
   };
-  useEffect(() => {
-    onChange('certification', certification);
-  }, [certification]);
 
   return (
     <div>
@@ -74,7 +63,7 @@ export default function MultipleSelectCertification(props) {
         label={label}
         control={control}
         name={name}
-        render={({ field: { onChange, onBlur, name, ref } }) => (
+        render={({ field }) => (
           <FormControl label={label} fullWidth margin="normal">
             <InputLabel id={name}>{label}</InputLabel>
             <Select
@@ -82,11 +71,11 @@ export default function MultipleSelectCertification(props) {
               labelId={label}
               id={name}
               multiple
-              value={certification}
-              defaultValue={[]}
+              value={certification || []}
               onChange={handleChange}
-              input={<OutlinedInput label={label} />}
+              input={<OutlinedInput label="certification" />}
               MenuProps={MenuProps}
+              {...field}
             >
               {names.map((name) => (
                 <MenuItem

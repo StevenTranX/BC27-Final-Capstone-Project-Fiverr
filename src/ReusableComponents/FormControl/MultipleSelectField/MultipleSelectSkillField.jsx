@@ -43,7 +43,7 @@ function getStyles(name, personName, theme) {
 }
 
 export default function MultipleSelectSkillField(props) {
-  const { form, name, label, disabled, onChange } = props;
+  const { form, name, label, disabled, setValue } = props;
   const {
     formState: { errors },
     control,
@@ -53,18 +53,15 @@ export default function MultipleSelectSkillField(props) {
   const [skill, setSkill] = React.useState([]);
 
   const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setSkill(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
-    );
-    onChange('skill', skill);
+    const { value } = event.target;
+    console.log(value);
+    setSkill(value);
+    // setValue(
+    //   'skill',
+    //   // On autofill we get a stringified value.
+    //   typeof value === 'string' ? value.split(',') : value
+    // );
   };
-  useEffect(() => {
-    onChange('skill', skill);
-  }, [skill]);
 
   return (
     <div>
@@ -74,9 +71,9 @@ export default function MultipleSelectSkillField(props) {
         label={label}
         control={control}
         name={name}
-        render={({ field: { onChange, onBlur, name, ref } }) => (
-          <FormControl fullWidth margin="normal">
-            <InputLabel id={label}>{label}</InputLabel>
+        render={({ field }) => (
+          <FormControl label={label} fullWidth margin="normal">
+            <InputLabel id={name}>{label}</InputLabel>
             <Select
               labelId={label}
               id={label}
@@ -85,6 +82,7 @@ export default function MultipleSelectSkillField(props) {
               onChange={handleChange}
               input={<OutlinedInput label="skill" />}
               MenuProps={MenuProps}
+              {...field}
             >
               {names.map((name) => (
                 <MenuItem

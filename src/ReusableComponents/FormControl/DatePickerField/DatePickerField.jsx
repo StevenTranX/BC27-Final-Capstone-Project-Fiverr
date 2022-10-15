@@ -6,17 +6,14 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 const DatePickerField = (props) => {
-  const { form, name, label, disabled, setValue } = props;
+  const { form, name, label, disabled, setValue, value } = props;
   const {
     formState: { errors },
     control,
   } = form;
   const hasError = errors[name];
 
-  const [date, setDate] = React.useState(null);
-  console.log(date);
   const handleChange = (event) => {
-    setDate(event);
     setValue('birthday', event);
   };
   return (
@@ -34,7 +31,7 @@ const DatePickerField = (props) => {
               <DatePicker
                 {...field}
                 label="Date of Birth"
-                value={date}
+                value={value}
                 onChange={(newDate) => {
                   handleChange(newDate);
                 }}

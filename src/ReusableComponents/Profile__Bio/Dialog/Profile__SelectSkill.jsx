@@ -9,7 +9,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/system';
 import { TextareaAutosize } from '@mui/material';
 import MultipleSelectSkillField from '../../FormControl/MultipleSelectField/MultipleSelectSkillField';
-export default function Profile__SelectCertification({
+import MultipleSelectCertification from '../../FormControl/MultipleSelectField/MultipleSelectCertification';
+export default function Profile__SelectSkill({
   open,
   onClose,
   headerTitle,
@@ -19,7 +20,8 @@ export default function Profile__SelectCertification({
   form,
   label,
   type,
-  onChange,
+  setValue,
+  value,
 }) {
   const StyledTextArea = styled(TextareaAutosize)({
     font: '400 16px macan,helvetica neue,Helvetica,Arial,sans-serif',
@@ -37,21 +39,21 @@ export default function Profile__SelectCertification({
         <DialogTitle>{headerTitle}</DialogTitle>
         <DialogContent>
           <DialogContentText>{headerContent}</DialogContentText>
-          <MultipleSelectSkillField
+          <MultipleSelectCertification
             form={form}
             name={name}
             label={label}
             type={type}
-            onChange={onChange}
+            setValue={setValue}
+            value={value}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose}>Cancel</Button>
           <Button
             sx={{ color: '#fff', backgroundColor: '#1dbf73' }}
             onClick={onClose}
           >
-            Update
+            Close
           </Button>
         </DialogActions>
       </Dialog>

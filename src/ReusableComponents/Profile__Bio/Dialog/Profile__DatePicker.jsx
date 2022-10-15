@@ -19,6 +19,7 @@ export default function Profile__Dialog({
   label,
   type,
   setValue,
+  value,
 }) {
   const StyledTextArea = styled(TextareaAutosize)({
     font: '400 16px macan,helvetica neue,Helvetica,Arial,sans-serif',
@@ -42,6 +43,7 @@ export default function Profile__Dialog({
             label={label}
             type={type}
             setValue={setValue}
+            value={value}
           />
         </DialogContent>
         <DialogActions>

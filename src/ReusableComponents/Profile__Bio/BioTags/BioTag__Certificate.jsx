@@ -24,8 +24,9 @@ const BioTag__Certificate = (props) => {
     headerTitle,
     headerContent,
     type,
-    onChange,
+    setValue,
     children,
+    value,
   } = props;
   return (
     <div className={styles.bio}>
@@ -43,8 +44,9 @@ const BioTag__Certificate = (props) => {
             onClose={handleClose}
             headerContent={headerContent}
             headerTitle={headerTitle}
-            type="date"
-            onChange={onChange}
+            type="text"
+            setValue={setValue}
+            value={value}
           />
         </div>
       </header>
