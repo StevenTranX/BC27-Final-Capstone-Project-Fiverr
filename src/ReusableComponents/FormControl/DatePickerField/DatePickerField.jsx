@@ -31,7 +31,7 @@ const DatePickerField = (props) => {
               <DatePicker
                 {...field}
                 label="Date of Birth"
-                value={value}
+                value={value || new Date()}
                 onChange={(newDate) => {
                   handleChange(newDate);
                 }}

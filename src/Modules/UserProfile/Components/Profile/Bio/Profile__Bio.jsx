@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Divider } from '@mui/material';
+import { Button, Divider } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -8,6 +8,7 @@ import BioTag__DateOfBirth from '../../../../../ReusableComponents/Profile__Bio/
 import BioTag__Phone from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__Phone';
 import BioTag__Skill from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__Skill';
 import BioTag__Name from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__Name';
+import BioTags from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTags';
 import LinkedAccountsList from './LinkedAccountsList/LinkedAccountsList';
 import styles from './Profile__Bio.module.scss';
 import { useSelector } from 'react-redux';
@@ -31,6 +32,7 @@ const Profile__Bio = (props) => {
     // certification: yup.array(),
   });
   const defaultValues = {
+    id: user?.id,
     name: user?.name,
     email: user?.email,
     password: user?.password,
@@ -51,6 +53,7 @@ const Profile__Bio = (props) => {
   const { isSubmitting } = form.formState;
   console.log(watch());
   const handleSubmitChild = async (values) => {
+    console.log(values);
     const { onSubmit } = props;
     try {
       if (onSubmit) {
@@ -108,7 +111,9 @@ const Profile__Bio = (props) => {
               setValue={setValue}
               value={values.birthday}
             >
-              <span>{dayjs(values.birthday).format('DD/MM/YYYY')}</span>
+              <span>
+                {dayjs(values.birthday || new Date()).format('DD/MM/YYYY')}
+              </span>
             </BioTag__DateOfBirth>
 
             <div className={styles.linkedAccount}>
@@ -153,6 +158,9 @@ const Profile__Bio = (props) => {
             >
               <span>{values.certification.join(', ')}</span>
             </BioTag__Certificate>
+            <BioTags>
+              <Button type="submit">Save Changes</Button>
+            </BioTags>
           </form>
         </div>
       </div>

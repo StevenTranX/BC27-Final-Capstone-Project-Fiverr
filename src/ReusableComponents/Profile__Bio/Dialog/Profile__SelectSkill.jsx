@@ -39,7 +39,7 @@ export default function Profile__SelectSkill({
         <DialogTitle>{headerTitle}</DialogTitle>
         <DialogContent>
           <DialogContentText>{headerContent}</DialogContentText>
-          <MultipleSelectCertification
+          <MultipleSelectSkillField
             form={form}
             name={name}
             label={label}

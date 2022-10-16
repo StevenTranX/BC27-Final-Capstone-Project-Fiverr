@@ -23,6 +23,7 @@ const BioTags = (props) => {
     headerTitle,
     placeholder,
     form,
+    children,
   } = props;
   return (
     <div className={styles.bio}>
@@ -36,6 +37,7 @@ const BioTags = (props) => {
         </div>
       </header>
       <div className={styles.bio__detail}>
+        {children}
         <span>
           <span>{content}</span> <span>{subContent}</span>
           <span>
