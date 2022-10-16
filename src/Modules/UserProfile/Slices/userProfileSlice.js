@@ -4,10 +4,10 @@ export const updateUser = createAsyncThunk(
   'user/update',
   async (userData, { rejectWithValue, dispatch }) => {
     try {
-      const { userId } = userData;
+      const { id } = userData;
       const { data } = await userAPI.updateUser(userData);
       console.log(userData);
-      dispatch(getUser(userId));
+      dispatch(getUser(id));
     } catch (error) {
       console.log(error);
       rejectWithValue(error);

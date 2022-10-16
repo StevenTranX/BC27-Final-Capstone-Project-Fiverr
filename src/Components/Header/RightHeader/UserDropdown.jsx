@@ -78,7 +78,7 @@ export default function UserDropdown(props) {
         <MenuItem>
           <Avatar /> {user?.email}
         </MenuItem>
-        <Link to="/userProfile">
+        <Link to={`/userProfile/${user?.id}`}>
           <MenuItem
             sx={{
               textDecoration: 'none',

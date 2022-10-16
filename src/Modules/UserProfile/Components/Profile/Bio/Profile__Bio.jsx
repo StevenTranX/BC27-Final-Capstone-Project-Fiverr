@@ -1,21 +1,24 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Divider } from '@mui/material';
+import dayjs from 'dayjs';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
+import BioTags from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTags';
 import BioTag__Certificate from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__Certificate';
 import BioTag__DateOfBirth from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__DateOfBirth';
+import BioTag__Name from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__Name';
 import BioTag__Phone from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__Phone';
 import BioTag__Skill from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__Skill';
-import BioTag__Name from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTag__Name';
-import BioTags from '../../../../../ReusableComponents/Profile__Bio/BioTags/BioTags';
 import LinkedAccountsList from './LinkedAccountsList/LinkedAccountsList';
 import styles from './Profile__Bio.module.scss';
-import { useSelector } from 'react-redux';
-import dayjs from 'dayjs';
-import { RestartAlt } from '@mui/icons-material';
+import { getUser } from '../../../Slices/userProfileSlice';
+import { useParams } from 'react-router-dom';
 const Profile__Bio = (props) => {
-  const { user } = useSelector((state) => state.auth?.current);
+  const { current } = useSelector((state) => state.user);
+  console.log(current);
+  const dispatch = useDispatch();
   const schema = yup.object().shape({
     // name: yup.string().required('Please enter your username'),
     // password: yup.string().required('Please enter password').min(6).max(20),
@@ -31,17 +34,23 @@ const Profile__Bio = (props) => {
     skill: yup.array().of(yup.string()),
     // certification: yup.array(),
   });
+  const { userId } = useParams();
+  console.log(userId);
+  useEffect(() => {
+    dispatch(getUser(userId));
+  }, []);
+
   const defaultValues = {
-    id: user?.id,
-    name: user?.name,
-    email: user?.email,
-    password: user?.password,
-    phone: user?.phone,
-    birthday: user?.birthday,
-    gender: user?.gender,
-    role: user?.role,
-    skill: user?.skill,
-    certification: user?.certification,
+    id: current?.id,
+    name: current?.name,
+    email: current?.email,
+    password: current?.password,
+    phone: current?.phone,
+    birthday: current?.birthday,
+    gender: current?.gender,
+    role: current?.role,
+    skill: current?.skill,
+    certification: current?.certification,
   };
   const form = useForm({
     defaultValues,
@@ -140,7 +149,7 @@ const Profile__Bio = (props) => {
               refs={register('skill')}
               value={values.skill}
             >
-              <span>{values.skill.join(', ')}</span>
+              <span>{values?.skill?.join(', ') || ''}</span>
             </BioTag__Skill>
 
             <BioTag__Certificate
@@ -156,7 +165,7 @@ const Profile__Bio = (props) => {
               refs={register('certification')}
               value={values.certification}
             >
-              <span>{values.certification.join(', ')}</span>
+              <span>{values?.certification?.join(', ') || ''}</span>
             </BioTag__Certificate>
             <BioTags>
               <Button type="submit">Save Changes</Button>
