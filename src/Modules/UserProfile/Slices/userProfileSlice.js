@@ -21,7 +21,7 @@ export const getUser = createAsyncThunk(
       const { data } = await userAPI.getUser(userId);
       localStorage.setItem('user', JSON.stringify(data.content));
       localStorage.setItem('access_token', JSON.stringify(data.content.token));
-      return data;
+      return data.content;
     } catch (error) {
       console.log(error.response.data.content);
     }

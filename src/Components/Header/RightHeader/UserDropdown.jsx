@@ -17,7 +17,7 @@ import { logout } from '../../../TranTrongTin-Authentication/slices/authSlice';
 import { Link } from 'react-router-dom';
 export default function UserDropdown(props) {
   const { open, handleClick, handleClose, anchorEl } = props;
-  const { currentUser } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.auth.current);
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logout());
@@ -76,9 +76,9 @@ export default function UserDropdown(props) {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar /> {currentUser?.email}
+          <Avatar /> {user?.email}
         </MenuItem>
-        <Link to={`/userProfile/${currentUser?.id}`}>
+        <Link to={`/userProfile/${user?.id}`}>
           <MenuItem
             sx={{
               textDecoration: 'none',
