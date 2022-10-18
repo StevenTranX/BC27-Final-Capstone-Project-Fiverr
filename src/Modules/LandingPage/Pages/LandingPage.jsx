@@ -5,7 +5,7 @@ import SliderHeader from '../Components/Slider/SliderHeader/SliderHeader';
 import Services from '../Components/Services/Services';
 import Freelance from '../Components/Freelance/Freelance';
 import MarketPlace from '../Components/MarketPlace/MarketPlace';
-import styles from './LandingPage.module.scss';
+import styles from './landingPage.module.scss';
 const LandingPage = () => {
   return (
     <div className={styles.landingPage}>

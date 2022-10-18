@@ -30,13 +30,13 @@ export const getUser = createAsyncThunk(
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    current: JSON.parse(localStorage.getItem('user')) || {},
+    currentUser: JSON.parse(localStorage.getItem('user')) || {},
     settings: {},
   },
   reducers: {},
   extraReducers: {
     [getUser.fulfilled]: (state, action) => {
-      state.current.user = action.payload;
+      state.currentUser = action.payload;
     },
   },
 });

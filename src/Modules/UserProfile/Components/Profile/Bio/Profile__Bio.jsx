@@ -16,8 +16,8 @@ import styles from './Profile__Bio.module.scss';
 import { getUser } from '../../../Slices/userProfileSlice';
 import { useParams } from 'react-router-dom';
 const Profile__Bio = (props) => {
-  const { current } = useSelector((state) => state.user);
-  console.log(current);
+  const { currentUser } = useSelector((state) => state.user);
+  console.log(currentUser);
   const dispatch = useDispatch();
   const schema = yup.object().shape({
     // name: yup.string().required('Please enter your username'),
@@ -41,16 +41,16 @@ const Profile__Bio = (props) => {
   }, []);
 
   const defaultValues = {
-    id: current?.id,
-    name: current?.name,
-    email: current?.email,
-    password: current?.password,
-    phone: current?.phone,
-    birthday: current?.birthday,
-    gender: current?.gender,
-    role: current?.role,
-    skill: current?.skill,
-    certification: current?.certification,
+    id: currentUser?.id,
+    name: currentUser?.name,
+    email: currentUser?.email,
+    password: currentUser?.password,
+    phone: currentUser?.phone,
+    birthday: currentUser?.birthday,
+    gender: currentUser?.gender,
+    role: currentUser?.role,
+    skill: currentUser?.skill,
+    certification: currentUser?.certification,
   };
   const form = useForm({
     defaultValues,
