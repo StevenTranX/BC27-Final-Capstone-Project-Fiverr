@@ -1,0 +1,22 @@
+.userProfile {
+  &__header {
+  }
+  &__nav {
+  }
+  &__body {
+    background-color: #f7f7f7;
+    padding: 50px 50px;
+
+    &_wrapper {
+      display: flex;
+      //   justify-content: space-between;
+      flex-direction: row;
+      &_mainContent {
+        width: 30%;
+      }
+      &_activeGig {
+        width: 70%;
+      }
+    }
+  }
+}

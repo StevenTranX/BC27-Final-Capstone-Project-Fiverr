@@ -1,0 +1,37 @@
+.activeGig {
+  width: 100%;
+  &__container {
+    padding: 30px;
+    &_header {
+      border: 1px solid #dadbdd;
+      background-color: #fff;
+      h4 {
+        height: 65px;
+        width: 100%;
+        line-height: 65px;
+      }
+    }
+    &_body {
+      background-color: green;
+      .activeGig__container_nonActive {
+        .nonActiveWrapper {
+          .nonActive_row {
+            border: 1px solid #dadbdd;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+            height: 485px;
+            background-color: #fff;
+
+            width: 100%;
+            .nonActive_col {
+            }
+          }
+        }
+      }
+    }
+  }
+}
