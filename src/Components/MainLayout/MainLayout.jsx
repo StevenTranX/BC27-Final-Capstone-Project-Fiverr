@@ -10,6 +10,7 @@ const MainLayout = () => {
       <Container className={styles.headerContainer}>
         <Header />
       </Container>
+
       <LandingPage />
       <Container>
         <Footer />

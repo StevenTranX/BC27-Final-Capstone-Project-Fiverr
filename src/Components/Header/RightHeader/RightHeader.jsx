@@ -8,15 +8,16 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AccountCircleRounded } from '@mui/icons-material';
 import UserDropdown from './UserDropdown';
-const RightHeader = () => {
+import userAPI from '../../../Apis/userAPI';
+const RightHeader = ({ children, becomeSeller }) => {
   const [open, setOpen] = React.useState(false);
   const MODE = {
     LOGIN: 'login',
     REGISTER: 'register',
   };
   const [mode, setMode] = useState(MODE.REGISTER);
-  const { user } = useSelector((state) => state?.auth.current);
-  const isLoggedIn = !!user?.id;
+  const { currentUser } = useSelector((state) => state.auth);
+  const isLoggedIn = !!currentUser?.id;
   const handleOpen = () => {
     setOpen(true);
   };
@@ -43,7 +44,7 @@ const RightHeader = () => {
           justifyContent="space-between"
         >
           <Typography component="p" variant="h6">
-            Become a Seller
+            {becomeSeller}
           </Typography>
           {!isLoggedIn && (
             <>

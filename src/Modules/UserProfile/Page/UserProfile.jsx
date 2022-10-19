@@ -5,7 +5,10 @@ import UserProfileNav from '../Components/NavBar/UserProfileNav';
 import ActiveGig from '../Components/ActiveGig/ActiveGig';
 import styles from './UserProfile.module.scss';
 import { Container } from '@mui/system';
+import Footer from '../../../Components/Footer/Footer';
+import { useSelector } from 'react-redux';
 const UserProfile = () => {
+  const { currentUser } = useSelector((state) => state.auth);
   return (
     <div className={styles.userProfile}>
       <div>
@@ -22,6 +25,7 @@ const UserProfile = () => {
           </div>
         </Container>
       </div>
+      <div></div>
     </div>
   );
 };

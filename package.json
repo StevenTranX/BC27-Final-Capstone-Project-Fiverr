@@ -27,6 +27,7 @@
     "scss": "^0.2.4",
     "styled-components": "^5.3.5",
     "swiper": "^8.4.2",
+    "util": "^0.12.5",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },

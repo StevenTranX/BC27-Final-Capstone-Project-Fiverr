@@ -17,7 +17,6 @@ import { getUser } from '../../../Slices/userProfileSlice';
 import { useParams } from 'react-router-dom';
 const Profile__Bio = (props) => {
   const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser);
   const dispatch = useDispatch();
   const schema = yup.object().shape({
     // name: yup.string().required('Please enter your username'),
@@ -36,9 +35,9 @@ const Profile__Bio = (props) => {
   });
   const { userId } = useParams();
   console.log(userId);
-  useEffect(() => {
-    dispatch(getUser(userId));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getUser(userId));
+  // }, []);
 
   const defaultValues = {
     id: currentUser?.id,

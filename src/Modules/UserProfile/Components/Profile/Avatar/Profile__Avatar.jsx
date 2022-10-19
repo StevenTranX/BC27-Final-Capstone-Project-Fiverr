@@ -6,8 +6,7 @@ import { Avatar, Button, Divider } from '@mui/material';
 import styles from './Profile__Avatar.module.scss';
 import { useSelector } from 'react-redux';
 const Profile__Avatar = () => {
-  const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser.email);
+  const { currentUser } = useSelector((state) => state?.user);
   return (
     <>
       <div className={styles.userAvatar}>
@@ -22,7 +21,7 @@ const Profile__Avatar = () => {
                 <Avatar className={styles.camera__image}>N</Avatar>
               </div>
               <div className={styles.profile__label_name}>
-                <p>{currentUser.email}</p>
+                <p>{currentUser?.email}</p>
               </div>
               <div className={styles.profile__label_edit}>
                 <EditIcon

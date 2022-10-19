@@ -1,23 +1,24 @@
-import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import fiverrLogo from '../../../../Images/UserProfile/vector14.svg';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import SearchIcon from '@mui/icons-material/Search';
 import { Container, Divider } from '@mui/material';
-
+import AppBar from '@mui/material/AppBar';
+import Badge from '@mui/material/Badge';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import InputBase from '@mui/material/InputBase';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { alpha, styled } from '@mui/material/styles';
+import Toolbar from '@mui/material/Toolbar';
+import * as React from 'react';
+import fiverrLogo from '../../../../Images/UserProfile/vector14.svg';
+import styles from './UserProfileHeader.module.scss';
+import RightHeader from '../../../../Components/Header/RightHeader/RightHeader';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -32,6 +33,7 @@ const Search = styled('div')(({ theme }) => ({
     marginLeft: theme.spacing(3),
     width: 'auto',
   },
+  color: '#000',
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -125,7 +127,7 @@ export default function UserProfileHeader() {
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
-            <MailIcon />
+            <EmailOutlinedIcon />
           </Badge>
         </IconButton>
         <p>Messages</p>
@@ -137,7 +139,7 @@ export default function UserProfileHeader() {
           color="inherit"
         >
           <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
+            <NotificationsNoneOutlinedIcon />
           </Badge>
         </IconButton>
         <p>Notifications</p>
@@ -158,22 +160,27 @@ export default function UserProfileHeader() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <Box className={styles.header}>
+      <AppBar className={styles.header__Appbar} position="static">
         <Container>
           <Toolbar>
             <img
               src={fiverrLogo}
               alt="fiverr Logo"
-              styles={{ width: '89px', height: '27px' }}
+              style={{
+                width: '89px',
+                height: '27px',
+                marginLeft: '-24px',
+                display: 'block',
+              }}
             />
 
-            <Search>
+            <Search className={styles.header__Search}>
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
-                placeholder="Search…"
+                placeholder="What service are you looking for today ?"
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search>
@@ -184,8 +191,8 @@ export default function UserProfileHeader() {
                 aria-label="show 4 new mails"
                 color="inherit"
               >
-                <Badge badgeContent={4} color="error">
-                  <MailIcon />
+                <Badge sx={{ color: '#000' }} color="error">
+                  <EmailOutlinedIcon />
                 </Badge>
               </IconButton>
               <IconButton
@@ -193,21 +200,11 @@ export default function UserProfileHeader() {
                 aria-label="show 17 new notifications"
                 color="inherit"
               >
-                <Badge badgeContent={17} color="error">
-                  <NotificationsIcon />
+                <Badge sx={{ color: '#000' }} color="error">
+                  <NotificationsNoneOutlinedIcon />
                 </Badge>
               </IconButton>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+              <RightHeader />
             </Box>
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
               <IconButton

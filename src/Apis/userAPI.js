@@ -1,4 +1,3 @@
-import { useMeridiemMode } from '@mui/x-date-pickers/internals/hooks/date-helpers-hooks';
 import axiosClient from './axiosClient';
 const userAPI = {
   updateUser(data) {
@@ -9,6 +8,10 @@ const userAPI = {
   },
   getUser(userId) {
     const url = `/users/${userId}`;
+    return axiosClient.get(url);
+  },
+  getBookingJobs() {
+    const url = `/thue-cong-viec/lay-danh-sach-da-thue`;
     return axiosClient.get(url);
   },
 };
