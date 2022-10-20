@@ -8,9 +8,11 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import NavMenu from './ChildrenComponents/NavMenu/NavMenu';
 import styles from './NavBar.module.scss';
 const NavBar = () => {
   const { currentJobs } = useSelector((state) => state?.jobList);
+
   return (
     <div className={styles.nav}>
       <Container className={styles.nav__container}>
@@ -18,11 +20,7 @@ const NavBar = () => {
           <MenuList className={styles.nav__list}>
             <nav className={styles.nav__listNav}>
               {currentJobs.map((job) => {
-                return (
-                  <MenuItem key={job.id} className={styles.nav__item}>
-                    {job.tenLoaiCongViec}
-                  </MenuItem>
-                );
+                return <NavMenu job={job} key={job.id} />;
               })}
 
               {/* <MenuItem

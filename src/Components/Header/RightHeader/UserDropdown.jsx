@@ -15,6 +15,7 @@ import { AccountCircleRounded } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../TranTrongTin-Authentication/slices/authSlice';
 import { Link } from 'react-router-dom';
+import { randomBgColor } from '../../../Modules/UserProfile/Components/Profile/Avatar/Profile__Avatar';
 export default function UserDropdown(props) {
   const { open, handleClick, handleClose, anchorEl } = props;
   const { currentUser } = useSelector((state) => state.auth);
@@ -35,7 +36,9 @@ export default function UserDropdown(props) {
             aria-expanded={open ? 'true' : undefined}
           >
             <IconButton>
-              <AccountCircleRounded sx={{ width: '32px', height: '32px' }} />
+              <AccountCircleRounded
+                sx={{ width: '32px', height: '32px', color: '#25A1B0' }}
+              />
             </IconButton>
           </IconButton>
         </Tooltip>
