@@ -1,0 +1,22 @@
+.nav {
+  .nav__container {
+    .nav__list {
+      .nav__listNav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .nav__item {
+          padding-left: 12px;
+          margin-left: -12px;
+        }
+      }
+      .nav__listnav2 {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        .nav__item {
+        }
+      }
+    }
+  }
+}

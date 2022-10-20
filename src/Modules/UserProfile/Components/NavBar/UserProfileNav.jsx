@@ -7,18 +7,28 @@ import {
   Paper,
 } from '@mui/material';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styles from './UserProfileNav.module.scss';
 const UserProfileNav = () => {
+  const { currentJobs } = useSelector((state) => state?.jobList);
   return (
     <div className={styles.userProfileNav}>
       <Container className={styles.userProfileNav__container}>
         <Box>
           <MenuList className={styles.userProfileNav__list}>
             <nav className={styles.userProfileNav__listNav}>
-              <MenuItem
-                className={styles.userProfileNav__item}
-              >{`Graphics & Design`}</MenuItem>
-              <MenuItem
+              {currentJobs.map((job) => {
+                return (
+                  <MenuItem
+                    key={job.id}
+                    className={styles.userProfileNav__item}
+                  >
+                    {job.tenLoaiCongViec}
+                  </MenuItem>
+                );
+              })}
+
+              {/* <MenuItem
                 className={styles.userProfileNav__item}
               >{`Digital Marketing`}</MenuItem>
               <MenuItem
@@ -35,7 +45,7 @@ const UserProfileNav = () => {
               >{`Programming & Tech`}</MenuItem>
               <MenuItem
                 className={styles.userProfileNav__item}
-              >{`Business`}</MenuItem>
+              >{`Business`}</MenuItem> */}
             </nav>
             {/* <nav className={styles.userProfileNav__listNav2}>
               <MenuItem

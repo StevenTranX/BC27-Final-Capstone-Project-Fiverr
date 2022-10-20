@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import jobDetailAPI from '../../../Apis/jobDetailAPI';
+import jobListAPI from '../../../Apis/jobListAPI';
 
 export const getJobGenres = createAsyncThunk(
   'jobDetail/ getJob',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await jobDetailAPI.getJobGenres();
+      const { data } = await jobListAPI.getJobGenres();
       return data.content;
     } catch (error) {
       rejectWithValue(error);
@@ -13,19 +13,19 @@ export const getJobGenres = createAsyncThunk(
   }
 );
 
-const jobDetailSlice = createSlice({
-  name: 'jobDetail',
+const jobListSlice = createSlice({
+  name: 'jobList',
   initialState: {
-    currentJob: [],
+    currentJobs: [],
     settings: {},
   },
   reducers: {},
   extraReducers: {
     [getJobGenres.fulfilled]: (state, action) => {
-      state.currentJob = action.payload;
+      state.currentJobs = action.payload;
     },
   },
 });
-const { actions, reducer } = jobDetailSlice;
+const { actions, reducer } = jobListSlice;
 // export const { logout } = actions;
 export default reducer;

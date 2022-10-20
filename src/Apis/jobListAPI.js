@@ -1,10 +1,10 @@
 import axiosClient from './axiosClient';
 
-const jobDetailAPI = {
+const jobListAPI = {
   getJobGenres() {
     const url = `/cong-viec/lay-menu-loai-cong-viec`;
-    axiosClient.get(url);
+    return axiosClient.get(url);
   },
 };
 
-export default jobDetailAPI;
+export default jobListAPI;
