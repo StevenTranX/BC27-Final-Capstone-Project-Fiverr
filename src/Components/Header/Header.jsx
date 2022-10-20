@@ -7,6 +7,7 @@ const Header = () => {
   return (
     <Box>
       <Stack
+        className={styles.header}
         flexDirection="row"
         justifyContent="space-between"
         alignItems="center"

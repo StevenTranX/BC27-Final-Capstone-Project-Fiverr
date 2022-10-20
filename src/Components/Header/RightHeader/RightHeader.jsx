@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { AccountCircleRounded } from '@mui/icons-material';
 import UserDropdown from './UserDropdown';
 import userAPI from '../../../Apis/userAPI';
-const RightHeader = ({ children, becomeSeller }) => {
+const RightHeader = ({ children, becomeSeller, marginLeft }) => {
   const [open, setOpen] = React.useState(false);
   const MODE = {
     LOGIN: 'login',
@@ -41,7 +41,7 @@ const RightHeader = ({ children, becomeSeller }) => {
           direction="row"
           spacing={2}
           alignItems="center"
-          justifyContent="space-between"
+          justifyContent="flex-end"
         >
           <Typography component="p" variant="h6">
             {becomeSeller}
@@ -83,6 +83,7 @@ const RightHeader = ({ children, becomeSeller }) => {
                   handleOpen();
                   setMode(MODE.REGISTER);
                 }}
+                sx={{ width: '70px', height: '30px' }}
               >
                 Join
               </Button>

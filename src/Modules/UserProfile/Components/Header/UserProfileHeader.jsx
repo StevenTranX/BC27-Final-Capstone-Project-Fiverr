@@ -26,12 +26,12 @@ const Search = styled('div')(({ theme }) => ({
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
-  marginRight: theme.spacing(2),
+  marginRight: theme.spacing(4),
   marginLeft: 0,
-  width: '100%',
+
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
-    width: 'auto',
+    width: '60%',
   },
   color: '#000',
 }));
@@ -185,6 +185,7 @@ export default function UserProfileHeader() {
               />
             </Search>
             <Box sx={{ flexGrow: 1 }} />
+
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <IconButton
                 size="large"
@@ -204,8 +205,8 @@ export default function UserProfileHeader() {
                   <NotificationsNoneOutlinedIcon />
                 </Badge>
               </IconButton>
-              <RightHeader />
             </Box>
+
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
@@ -218,6 +219,7 @@ export default function UserProfileHeader() {
                 <MoreIcon />
               </IconButton>
             </Box>
+            <RightHeader />
           </Toolbar>
         </Container>
       </AppBar>

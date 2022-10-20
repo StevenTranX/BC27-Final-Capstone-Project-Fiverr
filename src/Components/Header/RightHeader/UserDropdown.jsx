@@ -35,7 +35,7 @@ export default function UserDropdown(props) {
             aria-expanded={open ? 'true' : undefined}
           >
             <IconButton>
-              <AccountCircleRounded sx={{ width: 32, height: 32 }} />
+              <AccountCircleRounded sx={{ width: '32px', height: '32px' }} />
             </IconButton>
           </IconButton>
         </Tooltip>
