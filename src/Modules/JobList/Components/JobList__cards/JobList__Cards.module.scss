@@ -1,0 +1,21 @@
+.cards {
+  .wrapper {
+    padding: 30px 0px;
+    .cards__row {
+      .cards__col {
+        .col__header {
+          display: flex;
+          align-items: center;
+          .col__avatar {
+            margin-right: 15px;
+          }
+          .col__name {
+            & > h6 {
+              padding: 0px 0px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

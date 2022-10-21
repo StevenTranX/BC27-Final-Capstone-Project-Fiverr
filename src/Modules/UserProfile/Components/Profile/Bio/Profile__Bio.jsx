@@ -35,9 +35,9 @@ const Profile__Bio = (props) => {
   });
   const { userId } = useParams();
   console.log(userId);
-  // useEffect(() => {
-  //   dispatch(getUser(userId));
-  // }, []);
+  useEffect(() => {
+    dispatch(getUser(userId));
+  }, []);
 
   const defaultValues = {
     id: currentUser?.id,
@@ -79,13 +79,13 @@ const Profile__Bio = (props) => {
           <form onSubmit={handleSubmit(handleSubmitChild)}>
             <BioTag__Name
               form={form}
-              leftHeader="Full Name"
-              rightHeader="Edit Your Full Name"
-              headerTitle="Name"
-              headerContent=" Type to edit your name"
-              label="Full Name"
-              name="name"
-              type="text"
+              leftHeader='Full Name'
+              rightHeader='Edit Your Full Name'
+              headerTitle='Name'
+              headerContent=' Type to edit your name'
+              label='Full Name'
+              name='name'
+              type='text'
               refs={register('name')}
               setValue={setValue}
             >
@@ -93,13 +93,13 @@ const Profile__Bio = (props) => {
             </BioTag__Name>
             <BioTag__Phone
               form={form}
-              leftHeader="Phone"
-              rightHeader="Edit Phone Number"
-              headerTitle="Phone Number"
-              headerContent=" Type to edit your phone number "
-              label="Phone Number"
-              name="phone"
-              type="number"
+              leftHeader='Phone'
+              rightHeader='Edit Phone Number'
+              headerTitle='Phone Number'
+              headerContent=' Type to edit your phone number '
+              label='Phone Number'
+              name='phone'
+              type='number'
               refs={register('phone')}
               setValue={setValue}
               value={values.phone}
@@ -108,13 +108,13 @@ const Profile__Bio = (props) => {
             </BioTag__Phone>
             <BioTag__DateOfBirth
               form={form}
-              leftHeader="Date of Birth"
-              rightHeader="Edit Date of Birth"
-              headerTitle="Date of Birth"
-              headerContent="Select your date of birth"
-              label="Date of Birth"
-              name="birthday"
-              type="date"
+              leftHeader='Date of Birth'
+              rightHeader='Edit Date of Birth'
+              headerTitle='Date of Birth'
+              headerContent='Select your date of birth'
+              label='Date of Birth'
+              name='birthday'
+              type='date'
               refs={register('birthday')}
               setValue={setValue}
               value={values.birthday}
@@ -137,13 +137,13 @@ const Profile__Bio = (props) => {
             </div>
             <BioTag__Skill
               form={form}
-              leftHeader="Skills"
-              rightHeader="Edit Skills"
-              headerTitle="Skills"
-              headerContent="Select your skills"
-              label="Skills"
-              name="skill"
-              type="date"
+              leftHeader='Skills'
+              rightHeader='Edit Skills'
+              headerTitle='Skills'
+              headerContent='Select your skills'
+              label='Skills'
+              name='skill'
+              type='date'
               setValue={setValue}
               refs={register('skill')}
               value={values.skill}
@@ -153,13 +153,13 @@ const Profile__Bio = (props) => {
 
             <BioTag__Certificate
               form={form}
-              leftHeader="Certification"
-              rightHeader="Edit Certification"
-              headerTitle="Certification"
-              headerContent="Select your Certification"
-              label="Certification"
-              name="certification"
-              type=""
+              leftHeader='Certification'
+              rightHeader='Edit Certification'
+              headerTitle='Certification'
+              headerContent='Select your Certification'
+              label='Certification'
+              name='certification'
+              type=''
               setValue={setValue}
               refs={register('certification')}
               value={values.certification}
@@ -167,7 +167,7 @@ const Profile__Bio = (props) => {
               <span>{values?.certification?.join(', ') || ''}</span>
             </BioTag__Certificate>
             <BioTags>
-              <Button type="submit">Save Changes</Button>
+              <Button type='submit'>Save Changes</Button>
             </BioTags>
           </form>
         </div>

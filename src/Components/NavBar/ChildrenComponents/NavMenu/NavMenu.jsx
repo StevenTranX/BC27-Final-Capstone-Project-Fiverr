@@ -24,8 +24,10 @@ const NavMenu = (props) => {
         aria-describedby={id}
         onMouseOver={handleClick}
         className={styles.nav__item}
+        disablePadding
+        sx={{ marginLeft: '-12px' }}
       >
-        <a>{job.tenLoaiCongViec}</a>
+        {job.tenLoaiCongViec}
       </MenuItem>
       <Popover
         id={id}
@@ -44,15 +46,21 @@ const NavMenu = (props) => {
                 return (
                   <Grid item>
                     <StyledBox>{jobGenres.tenNhom}</StyledBox>
-                    <List>
-                      {jobGenres.dsChiTietLoai.map((jobGenre) => {
-                        return (
-                          <nav>
-                            <a> {jobGenre.tenChiTiet}</a>
-                          </nav>
-                        );
-                      })}
-                    </List>
+                    {jobGenres.dsChiTietLoai.map((jobGenre) => {
+                      return (
+                        <ListItem disablePadding>
+                          <StyledLink
+                            onClick={console.log(jobGenre.id)}
+                            underline='hover'
+                          >
+                            <ListItemText
+                              sx={{ fontSize: '16px' }}
+                              primary={jobGenre.tenChiTiet}
+                            ></ListItemText>
+                          </StyledLink>
+                        </ListItem>
+                      );
+                    })}
                   </Grid>
                 );
               })}

@@ -8,10 +8,10 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<MainLayout />} />
-        <Route path="/userProfile/:userId" element={<UserProfile />} />
-        <Route path="/bookingJob" element={<JobList />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path='/' element={<MainLayout />} />
+        <Route path='/userProfile/:userId' element={<UserProfile />} />
+        <Route path='/jobs' element={<JobList />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
       {/* <JobDetail /> */}
     </>
