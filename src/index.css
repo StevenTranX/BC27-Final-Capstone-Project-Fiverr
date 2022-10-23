@@ -18,3 +18,9 @@ code {
 a {
   text-decoration: none;
 }
+.MuiCardHeader-title {
+  font-size: 18px;
+}
+.MuiCardHeader-subheader {
+  font-size: 14px;
+}

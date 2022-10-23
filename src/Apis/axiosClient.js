@@ -15,7 +15,6 @@ axiosClient.interceptors.request.use(
     if (token) {
       config.headers.token = token;
     }
-    console.log(config);
     return config;
   },
   function (error) {

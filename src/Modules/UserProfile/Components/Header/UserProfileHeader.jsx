@@ -5,7 +5,7 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import SearchIcon from '@mui/icons-material/Search';
-import { Container, Divider } from '@mui/material';
+import { Button, Container, Divider } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
@@ -19,6 +19,9 @@ import * as React from 'react';
 import fiverrLogo from '../../../../Images/UserProfile/vector14.svg';
 import styles from './UserProfileHeader.module.scss';
 import RightHeader from '../../../../Components/Header/RightHeader/RightHeader';
+import { useDispatch } from 'react-redux';
+import { getJobsByName } from '../../../JobList/Slices/JobListSlice';
+import { useNavigate } from 'react-router-dom';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -67,6 +70,21 @@ export default function UserProfileHeader() {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const [inputValue, setInputValue] = React.useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await dispatch(getJobsByName(inputValue)).unwrap();
+      setInputValue('');
+      navigate('/jobs');
+      setTimeout(3000);
+    } catch (error) {}
+  };
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -125,8 +143,8 @@ export default function UserProfileHeader() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+        <IconButton size='large' aria-label='show 4 new mails' color='inherit'>
+          <Badge badgeContent={4} color='error'>
             <EmailOutlinedIcon />
           </Badge>
         </IconButton>
@@ -134,11 +152,11 @@ export default function UserProfileHeader() {
       </MenuItem>
       <MenuItem>
         <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
+          size='large'
+          aria-label='show 17 new notifications'
+          color='inherit'
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={17} color='error'>
             <NotificationsNoneOutlinedIcon />
           </Badge>
         </IconButton>
@@ -146,11 +164,11 @@ export default function UserProfileHeader() {
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
+          size='large'
+          aria-label='account of current user'
+          aria-controls='primary-search-account-menu'
+          aria-haspopup='true'
+          color='inherit'
         >
           <AccountCircle />
         </IconButton>
@@ -161,12 +179,12 @@ export default function UserProfileHeader() {
 
   return (
     <Box className={styles.header}>
-      <AppBar className={styles.header__Appbar} position="static">
+      <AppBar className={styles.header__Appbar} position='static'>
         <Container>
           <Toolbar>
             <img
               src={fiverrLogo}
-              alt="fiverr Logo"
+              alt='fiverr Logo'
               style={{
                 width: '89px',
                 height: '27px',
@@ -179,29 +197,33 @@ export default function UserProfileHeader() {
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="What service are you looking for today ?"
-                inputProps={{ 'aria-label': 'search' }}
-              />
+              <form onSubmit={handleSubmit}>
+                <StyledInputBase
+                  placeholder='What service are you looking for today ?'
+                  inputProps={{ 'aria-label': 'search' }}
+                  onChange={handleChange}
+                />
+              </form>
+              <Button type='submit'>Search</Button>
             </Search>
             <Box sx={{ flexGrow: 1 }} />
 
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <IconButton
-                size="large"
-                aria-label="show 4 new mails"
-                color="inherit"
+                size='large'
+                aria-label='show 4 new mails'
+                color='inherit'
               >
-                <Badge sx={{ color: '#000' }} color="error">
+                <Badge sx={{ color: '#000' }} color='error'>
                   <EmailOutlinedIcon />
                 </Badge>
               </IconButton>
               <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
+                size='large'
+                aria-label='show 17 new notifications'
+                color='inherit'
               >
-                <Badge sx={{ color: '#000' }} color="error">
+                <Badge sx={{ color: '#000' }} color='error'>
                   <NotificationsNoneOutlinedIcon />
                 </Badge>
               </IconButton>
@@ -209,12 +231,12 @@ export default function UserProfileHeader() {
 
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
               <IconButton
-                size="large"
-                aria-label="show more"
+                size='large'
+                aria-label='show more'
                 aria-controls={mobileMenuId}
-                aria-haspopup="true"
+                aria-haspopup='true'
                 onClick={handleMobileMenuOpen}
-                color="inherit"
+                color='inherit'
               >
                 <MoreIcon />
               </IconButton>

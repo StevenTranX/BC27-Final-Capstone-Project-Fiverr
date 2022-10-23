@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './JobList__Cards.module.scss';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -8,55 +8,144 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Avatar, CardHeader, Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import img from '../../../../Images/LandingPage/illustration-2x.png';
+import StarIcon from '@mui/icons-material/Star';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import './MuiCardHeader.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getJobs, getJobsByName } from '../../Slices/JobListSlice';
+import { useNavigate } from 'react-router-dom';
 const JobList__Cards = () => {
-  return (
-    <div className={styles.cards}>
-      <Container>
-        <div className={styles.wrapper}>
-          <div className={styles.cards__row}>
-            <div className={styles.cards__col}>
-              <Grid container>
-                <Grid item>
-                  <Card sx={{ maxWidth: 300 }}>
-                    <CardMedia
-                      component='img'
-                      height='140'
-                      image=''
-                      alt='green iguana'
-                    />
-                    <CardContent>
-                      <div className={styles.col__header}>
-                        <div className={styles.col__avatar}>
-                          <Avatar
-                            alt='Remy Sharp'
-                            src='/static/images/avatar/1.jpg'
-                          />
-                        </div>
-                        <div className={styles.col__name}>
-                          <h6>name here</h6>
-                          <h5>Level 1</h5>
+  const { jobsByName } = useSelector((state) => state.jobList);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  if (!jobsByName && jobsByName === []) {
+    navigate('/');
+    return;
+  } else {
+    return (
+      <div className={styles.cards}>
+        <Container>
+          <div className={styles.wrapper}>
+            <div className={styles.cards__row}>
+              <Grid container spacing={3} columnSpacing={3} flexDirection='row'>
+                {jobsByName.map((jobCard) => {
+                  return (
+                    <Grid
+                      item
+                      key={jobCard.id}
+                      maxWidth='290px'
+                      minWidth='250px'
+                      maxHeight={'330px'}
+                      marginBottom={'80px'}
+                    >
+                      <div className={styles.cards__col}>
+                        <div className={styles.cards__col_wrapper}>
+                          <Card sx={{ maxWidth: 300 }}>
+                            <CardMedia
+                              component='img'
+                              height='140'
+                              image={jobCard.congViec.hinhAnh}
+                              alt='green iguana'
+                            />
+                            <CardContent>
+                              <div className={styles.col__header}>
+                                <div className={styles.col__avatar}>
+                                  <Avatar alt='creator' src={jobCard.avatar} />
+                                </div>
+                                <CardHeader
+                                  className={styles.col__name}
+                                  title={jobCard.tenNguoiTao}
+                                  subheader={jobCard.tenChiTietLoai}
+                                  sx={{ fontSize: '14px' }}
+                                >
+                                  Hello
+                                </CardHeader>
+                              </div>
+                              <Typography
+                                variant='body2'
+                                color='text.secondary'
+                                sx={{ minHeight: '40px' }}
+                              >
+                                {jobCard.congViec.tenCongViec}
+                              </Typography>
+                              <div className={styles.col__star}>
+                                <StarIcon
+                                  sx={{
+                                    color: '#ffbe5b',
+                                    marginTop: '10px',
+                                    marginRight: '5px',
+                                    fontSize: '18px',
+                                  }}
+                                />
+                                <Typography
+                                  variant='body1'
+                                  color='text.secondary'
+                                  component='h6'
+                                  sx={{
+                                    color: '#ffbe5b',
+                                    fontWeight: 700,
+                                    marginTop: '13px',
+                                    fontSize: '14px',
+                                    marginRight: '3px',
+                                  }}
+                                >
+                                  {jobCard.congViec.saoCongViec}.0
+                                </Typography>
+                                <Typography
+                                  variant='body1'
+                                  color='text.secondary'
+                                  component='h6'
+                                  sx={{
+                                    marginTop: '13px',
+                                    fontSize: '14px',
+                                  }}
+                                >
+                                  ({jobCard.congViec.danhGia})
+                                </Typography>
+                              </div>
+                            </CardContent>
+                            <CardActions
+                              className={styles.cardActions}
+                              sx={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                              }}
+                            >
+                              <Button
+                                size='small'
+                                sx={{ justifyContent: 'flex-start' }}
+                              >
+                                <FavoriteIcon
+                                  sx={{
+                                    fontSize: '18px',
+                                    margin: '10px 0px',
+                                    color: '#b5b6ba',
+                                  }}
+                                  color='text.secondary'
+                                />
+                              </Button>
+                              <Button size='small' sx={{ color: '#b5b6ba' }}>
+                                Starting at
+                                <span className={styles.price}>
+                                  US$ <span>{jobCard.congViec.giaTien}</span>
+                                </span>
+                              </Button>
+                            </CardActions>
+                          </Card>
                         </div>
                       </div>
-                      <Typography variant='body2' color='text.secondary'>
-                        Lizards are a widespread group of squamate reptiles,
-                        with over 6,000 species, ranging across all continents
-                        except Antarctica
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button size='small'>Share</Button>
-                      <Button size='small'>Learn More</Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
+                    </Grid>
+                  );
+                })}
               </Grid>
             </div>
           </div>
-        </div>
-      </Container>
-    </div>
-  );
+        </Container>
+      </div>
+    );
+  }
 };
 
 export default JobList__Cards;

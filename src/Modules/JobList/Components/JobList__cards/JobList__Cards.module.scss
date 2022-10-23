@@ -2,17 +2,38 @@
   .wrapper {
     padding: 30px 0px;
     .cards__row {
+      width: 100%;
+      box-shadow: none;
+      display: flex;
+      flex-direction: row;
       .cards__col {
-        .col__header {
-          display: flex;
-          align-items: center;
-          .col__avatar {
-            margin-right: 15px;
-          }
-          .col__name {
-            & > h6 {
-              padding: 0px 0px;
+        cursor: pointer;
+        .cards__col_wrapper {
+          .col__header {
+            display: flex;
+            align-items: center;
+            .col__avatar {
             }
+            .col__name {
+              & > h6 {
+                padding: 0px 0px;
+              }
+            }
+          }
+          .col__star {
+            display: flex;
+            align-items: center;
+          }
+          .price {
+            margin-left: 8px;
+            font-size: 18px;
+            color: #404145;
+            text-align: right;
+            font-weight: 400;
+          }
+          .cardActions {
+            border: 1px solid #e4e5e7;
+            box-shadow: none;
           }
         }
       }
