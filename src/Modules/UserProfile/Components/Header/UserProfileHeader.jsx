@@ -64,26 +64,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function UserProfileHeader() {
+export default function UserProfileHeader(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const { setInputValue, handleChange } = props;
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const [inputValue, setInputValue] = React.useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
-  };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+
+  const handleSubmitChild = async (values) => {
+    const { onSubmit } = props;
     try {
-      await dispatch(getJobsByName(inputValue)).unwrap();
-      setInputValue('');
-      navigate('/jobs');
-      setTimeout(3000);
-    } catch (error) {}
+      if (onSubmit) {
+        await onSubmit(values);
+        setInputValue('');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleProfileMenuOpen = (event) => {
@@ -197,7 +196,7 @@ export default function UserProfileHeader() {
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmitChild}>
                 <StyledInputBase
                   placeholder='What service are you looking for today ?'
                   inputProps={{ 'aria-label': 'search' }}

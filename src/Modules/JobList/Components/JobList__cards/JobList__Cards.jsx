@@ -1,26 +1,21 @@
-import React, { useEffect } from 'react';
-import styles from './JobList__Cards.module.scss';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import StarIcon from '@mui/icons-material/Star';
+import { Avatar, CardHeader, Container } from '@mui/material';
+import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { Avatar, CardHeader, Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import StarIcon from '@mui/icons-material/Star';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import Typography from '@mui/material/Typography';
+import React from 'react';
+import styles from './JobList__Cards.module.scss';
 import './MuiCardHeader.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { getJobs, getJobsByName } from '../../Slices/JobListSlice';
-import { useNavigate } from 'react-router-dom';
-const JobList__Cards = () => {
-  const { jobsByName } = useSelector((state) => state.jobList);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+const JobList__Cards = (props) => {
+  const { jobsByName } = props;
 
-  if (!jobsByName && jobsByName === []) {
-    navigate('/');
+  if (!jobsByName) {
+    console.log('no data');
     return;
   } else {
     return (

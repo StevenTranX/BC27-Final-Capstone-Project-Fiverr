@@ -59,8 +59,10 @@ const jobListSlice = createSlice({
     },
     [getJobsByName.fulfilled]: (state, action) => {
       state.jobsByName = action.payload;
+      state.settings.isLoading = false;
     },
     [getJobsByName.rejected]: (state) => {
+      state.settings.isLoading = false;
       state.settings.error = true;
     },
   },

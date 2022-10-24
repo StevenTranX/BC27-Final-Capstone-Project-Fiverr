@@ -9,10 +9,11 @@ import {
 } from '@mui/material';
 import styles from './SliderHeader.module.scss';
 import { styled } from '@mui/material/styles';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getJobsByName } from '../../../../JobList/Slices/JobListSlice';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import Loading from '../../../../../Components/Loading/Loading';
 const StyledButton = styled(Button)({
   boxShadow: 'none',
   backgroundColor: '#1dbf73',
@@ -49,6 +50,7 @@ const StyledOutlinedButton = styled(Button)({
 });
 const SliderHeader = () => {
   const [inputValue, setInputValue] = useState('');
+  const { isLoading, error } = useSelector((state) => state.jobList.settings);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
@@ -70,6 +72,7 @@ const SliderHeader = () => {
   };
   return (
     <Container className={styles.sliderHeader}>
+      {isLoading && <Loading />}
       <Box
         maxWidth={'600px'}
         height={'222px'}
