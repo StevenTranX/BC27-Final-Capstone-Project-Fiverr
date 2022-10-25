@@ -9,10 +9,15 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './JobList__Cards.module.scss';
 import './MuiCardHeader.css';
 const JobList__Cards = (props) => {
   const { jobsByName } = props;
+  const navigate = useNavigate();
+  const goToJobDetail = (jobId) => {
+    navigate(`/jobs/${jobId}`);
+  };
 
   if (!jobsByName) {
     console.log('no data');
@@ -33,6 +38,7 @@ const JobList__Cards = (props) => {
                       minWidth='250px'
                       maxHeight={'330px'}
                       marginBottom={'80px'}
+                      onClick={() => goToJobDetail(jobCard.id)}
                     >
                       <div className={styles.cards__col}>
                         <div className={styles.cards__col_wrapper}>

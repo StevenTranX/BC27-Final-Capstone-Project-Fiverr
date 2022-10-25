@@ -72,73 +72,80 @@ const SliderHeader = () => {
   };
   return (
     <Container className={styles.sliderHeader}>
-      {isLoading && <Loading isLoading={isLoading} />}
-      <Box
-        maxWidth={'600px'}
-        height={'222px'}
-        justifyContent={'center'}
-        display={'flex'}
-        flexDirection={'column'}
-      >
-        <Typography component='h3' variant='h3' sx={{ marginBottom: '18px' }}>
-          Find the perfect <i>freelance</i> services for your business
-        </Typography>
-        <Box fullWidth height={'48px'}>
-          <Grid container>
-            <Grid item lg={10} md={10}>
-              <form onSubmit={handleSubmit}>
-                <StyledInput
-                  className={styles.inputField}
+      {isLoading ? (
+        <Loading isLoading={isLoading} />
+      ) : (
+        <Box
+          maxWidth={'600px'}
+          height={'222px'}
+          justifyContent={'center'}
+          display={'flex'}
+          flexDirection={'column'}
+        >
+          <Typography component='h3' variant='h3' sx={{ marginBottom: '18px' }}>
+            Find the perfect <i>freelance</i> services for your business
+          </Typography>
+          <Box fullWidth height={'48px'}>
+            <Grid container>
+              <Grid item lg={10} md={10}>
+                <form onSubmit={handleSubmit}>
+                  <StyledInput
+                    className={styles.inputField}
+                    fullWidth
+                    sx={{ height: '40px' }}
+                    type='search'
+                    size='small'
+                    placeholder={`Try "building mobile app"`}
+                    onChange={handleInputChange}
+                  ></StyledInput>
+                </form>
+              </Grid>
+              <Grid item lg={2} md={2}>
+                <StyledButton
+                  className={styles.searchButton}
+                  sx={{ height: '100%', backgroundColor: '#1dbf73' }}
                   fullWidth
-                  sx={{ height: '40px' }}
-                  type='search'
-                  size='small'
-                  placeholder={`Try "building mobile app"`}
-                  onChange={handleInputChange}
-                ></StyledInput>
-              </form>
+                  variant='contained'
+                  type='submit'
+                >
+                  Search
+                </StyledButton>
+              </Grid>
             </Grid>
-            <Grid item lg={2} md={2}>
-              <StyledButton
-                className={styles.searchButton}
-                sx={{ height: '100%', backgroundColor: '#1dbf73' }}
-                fullWidth
-                variant='contained'
-                type='submit'
-              >
-                Search
-              </StyledButton>
+          </Box>
+          <Box>
+            <Grid
+              container
+              spacing={2}
+              sx={{ marginTop: '10px', color: '#fff' }}
+            >
+              <Grid item>
+                <Typography> Popular:</Typography>
+              </Grid>
+              <Grid item>
+                <StyledOutlinedButton variant='outlined'>
+                  Website Design
+                </StyledOutlinedButton>
+              </Grid>
+              <Grid item>
+                <StyledOutlinedButton variant='outlined'>
+                  WordPress
+                </StyledOutlinedButton>
+              </Grid>
+              <Grid item>
+                <StyledOutlinedButton variant='outlined'>
+                  Logo Design
+                </StyledOutlinedButton>
+              </Grid>
+              <Grid item>
+                <StyledOutlinedButton variant='outlined'>
+                  Video Editing
+                </StyledOutlinedButton>
+              </Grid>
             </Grid>
-          </Grid>
+          </Box>
         </Box>
-        <Box>
-          <Grid container spacing={2} sx={{ marginTop: '10px', color: '#fff' }}>
-            <Grid item>
-              <Typography> Popular:</Typography>
-            </Grid>
-            <Grid item>
-              <StyledOutlinedButton variant='outlined'>
-                Website Design
-              </StyledOutlinedButton>
-            </Grid>
-            <Grid item>
-              <StyledOutlinedButton variant='outlined'>
-                WordPress
-              </StyledOutlinedButton>
-            </Grid>
-            <Grid item>
-              <StyledOutlinedButton variant='outlined'>
-                Logo Design
-              </StyledOutlinedButton>
-            </Grid>
-            <Grid item>
-              <StyledOutlinedButton variant='outlined'>
-                Video Editing
-              </StyledOutlinedButton>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
+      )}
     </Container>
   );
 };
