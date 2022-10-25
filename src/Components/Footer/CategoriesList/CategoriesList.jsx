@@ -17,7 +17,7 @@ const CategoriesList = () => {
     <>
       <List>
         <ListItem disablePadding>
-          <StyledLink underline="hover">
+          <StyledLink underline='hover'>
             <ListItemText
               sx={{ fontSize: '16px' }}
               primary={`Graphics & Design`}
@@ -25,47 +25,47 @@ const CategoriesList = () => {
           </StyledLink>
         </ListItem>
         <ListItem disablePadding>
-          <StyledLink underline="hover">
+          <StyledLink underline='hover'>
             <ListItemText primary={`Digital Marketing`}></ListItemText>
           </StyledLink>
         </ListItem>
         <ListItem disablePadding>
-          <StyledLink underline="hover">
+          <StyledLink underline='hover'>
             <ListItemText primary={`Writing & Translation`}></ListItemText>
           </StyledLink>
         </ListItem>
         <ListItem disablePadding>
-          <StyledLink underline="hover">
+          <StyledLink underline='hover'>
             <ListItemText primary={`Music & Audio`}></ListItemText>
           </StyledLink>
         </ListItem>
         <ListItem disablePadding>
-          <StyledLink underline="hover">
+          <StyledLink underline='hover'>
             <ListItemText primary={`Programming & Tech`}></ListItemText>
           </StyledLink>
         </ListItem>
         <ListItem disablePadding>
-          <StyledLink underline="hover">
+          <StyledLink underline='hover'>
             <ListItemText primary={`Video & Animation`}></ListItemText>
           </StyledLink>
         </ListItem>
         <ListItem disablePadding>
-          <StyledLink underline="hover">
+          <StyledLink underline='hover'>
             <ListItemText primary={`Data`}></ListItemText>
           </StyledLink>
         </ListItem>
         <ListItem disablePadding>
-          <StyledLink underline="hover">
+          <StyledLink underline='hover'>
             <ListItemText primary={`Business`}></ListItemText>
           </StyledLink>
         </ListItem>
         <ListItem disablePadding>
-          <StyledLink underline="hover">
+          <StyledLink underline='hover'>
             <ListItemText primary={`Lifestyle`}></ListItemText>
           </StyledLink>
         </ListItem>
         <ListItem disablePadding>
-          <StyledLink underline="hover">
+          <StyledLink underline='hover'>
             <ListItemText primary={`Sitemap`}></ListItemText>
           </StyledLink>
         </ListItem>

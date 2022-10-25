@@ -1,39 +1,44 @@
-import React from 'react';
 import { Box, Grid, ListItem, ListItemText, MenuItem } from '@mui/material';
-import styles from './NavMenu.module.scss';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import { StyledBox } from '../../../Footer/Footer';
+import React from 'react';
 import { StyledLink } from '../../../Footer/CategoriesList/CategoriesList';
-import { List } from '@mui/icons-material';
+import { StyledBox } from '../../../Footer/Footer';
+import styles from './NavMenu.module.scss';
+import HoverPopover from 'material-ui-popup-state/HoverPopover';
+import {
+  usePopupState,
+  bindHover,
+  bindPopover,
+} from 'material-ui-popup-state/hooks';
+import { Button } from '@mui/material';
+import { useDispatch } from 'react-redux';
+
 const NavMenu = (props) => {
-  const { job } = props;
-  console.log(job);
+  const { job, handleSelectById } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const dispatch = useDispatch();
+  const handleSelect = (jobId) => {
+    handleSelectById(jobId);
   };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const popupState = usePopupState({
+    variant: 'popover',
+    popupId: 'demoPopover',
+  });
   const id = open ? 'simple-popover' : undefined;
   return (
     <>
       <MenuItem
-        aria-describedby={id}
-        onMouseOver={handleClick}
+        {...bindHover(popupState)}
         className={styles.nav__item}
         disablePadding
         sx={{ marginLeft: '-12px' }}
       >
         {job.tenLoaiCongViec}
       </MenuItem>
-      <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onMouseLeave={handleClose}
+      <HoverPopover
+        {...bindPopover(popupState)}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'left',
@@ -50,7 +55,7 @@ const NavMenu = (props) => {
                       return (
                         <ListItem disablePadding>
                           <StyledLink
-                            onClick={console.log(jobGenre.id)}
+                            onClick={() => handleSelect(jobGenre.id)}
                             underline='hover'
                           >
                             <ListItemText
@@ -67,7 +72,7 @@ const NavMenu = (props) => {
             </Grid>
           </Box>
         </Typography>
-      </Popover>
+      </HoverPopover>
     </>
   );
 };

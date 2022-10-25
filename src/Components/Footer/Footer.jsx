@@ -78,18 +78,18 @@ const Footer = () => {
         <footer className={styles.subFooter}>
           <Grid
             container
-            flexDirection="row"
-            justifyContent="space-between"
-            marginTop="30px"
-            component="div"
+            flexDirection='row'
+            justifyContent='space-between'
+            marginTop='30px'
+            component='div'
           >
             <Grid item>
-              <Grid container spacing={3} flexDirection="row">
-                <Grid item marginBottom="5px" alignItems="center">
-                  <img width="91" height="27" src={logo} />
+              <Grid container spacing={3} flexDirection='row'>
+                <Grid item marginBottom='5px' alignItems='center'>
+                  <img width='91' height='27' src={logo} />
                 </Grid>
-                <Grid item marginTop="8px">
-                  <Typography color="#b5b6ba">
+                <Grid item marginTop='8px'>
+                  <Typography color='#b5b6ba'>
                     © Fiverr International Ltd. 2022
                   </Typography>
                 </Grid>
@@ -97,17 +97,16 @@ const Footer = () => {
             </Grid>
             <Grid
               item
-              flexDirection="row"
+              flexDirection='row'
               sx={{ display: 'flex' }}
-              justifyContent="space-between"
-              spacing={3}
+              justifyContent='space-between'
             >
               <Grid
                 container
-                flexDirection="row"
+                flexDirection='row'
                 spacing={3}
-                justifyContent="space-between"
-                flexWrap="nowrap"
+                justifyContent='space-between'
+                flexWrap='nowrap'
                 marginRight={5}
               >
                 <Grid item>
@@ -139,15 +138,14 @@ const Footer = () => {
               {/* <Grid item> */}
               <Grid
                 container
-                fullWidth
                 sx={{ display: 'flex' }}
-                flexDirection="row"
-                alignItems="center"
-                justifyContent="space-around"
+                flexDirection='row'
+                alignItems='center'
+                justifyContent='space-around'
                 spacing={2}
               >
                 <Grid item>
-                  <Typography color="#74767e" alignItems="center">
+                  <Typography color='#74767e' alignItems='center'>
                     <LanguageIcon
                       sx={{
                         color: '#74767e',
@@ -159,7 +157,7 @@ const Footer = () => {
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography color="#74767e">US$ USD</Typography>
+                  <Typography color='#74767e'>US$ USD</Typography>
                 </Grid>
                 <Grid item>
                   <img src={custom} />

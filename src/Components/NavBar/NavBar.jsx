@@ -10,20 +10,26 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import NavMenu from './ChildrenComponents/NavMenu/NavMenu';
 import styles from './NavBar.module.scss';
-const NavBar = () => {
+const NavBar = ({ handleSelect }) => {
   const { currentJobs } = useSelector((state) => state?.jobList);
+  if (currentJobs) {
+    return (
+      <div className={styles.nav}>
+        <Container className={styles.nav__container}>
+          <Box>
+            <MenuList className={styles.nav__list}>
+              <nav className={styles.nav__listNav}>
+                {currentJobs.map((job) => {
+                  return (
+                    <NavMenu
+                      handleSelectById={handleSelect}
+                      job={job}
+                      key={job.id}
+                    />
+                  );
+                })}
 
-  return (
-    <div className={styles.nav}>
-      <Container className={styles.nav__container}>
-        <Box>
-          <MenuList className={styles.nav__list}>
-            <nav className={styles.nav__listNav}>
-              {currentJobs.map((job) => {
-                return <NavMenu job={job} key={job.id} />;
-              })}
-
-              {/* <MenuItem
+                {/* <MenuItem
                   className={styles.userProfileNav__item}
                 >{`Digital Marketing`}</MenuItem>
                 <MenuItem
@@ -41,8 +47,8 @@ const NavBar = () => {
                 <MenuItem
                   className={styles.userProfileNav__item}
                 >{`Business`}</MenuItem> */}
-            </nav>
-            {/* <nav className={styles.userProfileNav__listNav2}>
+              </nav>
+              {/* <nav className={styles.userProfileNav__listNav2}>
                 <MenuItem
                   className={styles.userProfileNav__item2}
                 >{`Lifestyle`}</MenuItem>
@@ -50,12 +56,13 @@ const NavBar = () => {
                   className={styles.userProfileNav__item2}
                 >{`Trending`}</MenuItem>
               </nav> */}
-          </MenuList>
-        </Box>
-      </Container>
-      <Divider />
-    </div>
-  );
+            </MenuList>
+          </Box>
+        </Container>
+        <Divider />
+      </div>
+    );
+  }
 };
 
 export default NavBar;

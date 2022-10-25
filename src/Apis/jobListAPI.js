@@ -14,6 +14,10 @@ const jobListAPI = {
     const url = `/cong-viec/lay-danh-sach-cong-viec-theo-ten/${jobName}`;
     return axiosClient.get(url);
   },
+  getJobById(jobId) {
+    const url = `/cong-viec/lay-cong-viec-theo-chi-tiet-loai/${jobId}`;
+    return axiosClient.get(url);
+  },
 };
 
 export default jobListAPI;

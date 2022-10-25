@@ -1,6 +1,6 @@
 import React from 'react';
 import LoadingScreen from 'react-loading-screen';
-const Loading = ({ children, isLoading }) => {
+const Loading = ({ isLoading }) => {
   return (
     <div>
       <LoadingScreen
@@ -10,9 +10,8 @@ const Loading = ({ children, isLoading }) => {
         textColor=''
         logoSrc=''
         text=''
-      >
-        {children}
-      </LoadingScreen>
+        children={''}
+      />
     </div>
   );
 };

@@ -107,10 +107,12 @@ const JobList__Cards = (props) => {
                                 justifyContent: 'space-between',
                                 alignItems: 'center',
                               }}
+                              component='span'
                             >
                               <Button
                                 size='small'
                                 sx={{ justifyContent: 'flex-start' }}
+                                component='span'
                               >
                                 <FavoriteIcon
                                   sx={{
@@ -121,7 +123,11 @@ const JobList__Cards = (props) => {
                                   color='text.secondary'
                                 />
                               </Button>
-                              <Button size='small' sx={{ color: '#b5b6ba' }}>
+                              <Button
+                                size='small'
+                                sx={{ color: '#b5b6ba' }}
+                                component='span'
+                              >
                                 Starting at
                                 <span className={styles.price}>
                                   US$ <span>{jobCard.congViec.giaTien}</span>

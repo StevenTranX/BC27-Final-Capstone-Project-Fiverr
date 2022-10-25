@@ -70,8 +70,6 @@ export default function UserProfileHeader(props) {
   const { setInputValue, handleChange } = props;
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleSubmitChild = async (values) => {
     const { onSubmit } = props;
@@ -198,12 +196,19 @@ export default function UserProfileHeader(props) {
               </SearchIconWrapper>
               <form onSubmit={handleSubmitChild}>
                 <StyledInputBase
-                  placeholder='What service are you looking for today ?'
-                  inputProps={{ 'aria-label': 'search' }}
+                  placeholder='Search.....'
+                  inputProps={{
+                    sx: {
+                      '&::placeholder': {
+                        color: '#74767e',
+                        width: '100%',
+                      },
+                    },
+                  }}
                   onChange={handleChange}
+                  fullWidth
                 />
               </form>
-              <Button type='submit'>Search</Button>
             </Search>
             <Box sx={{ flexGrow: 1 }} />
 

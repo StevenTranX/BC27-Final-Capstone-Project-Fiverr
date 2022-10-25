@@ -6,7 +6,11 @@ import NavBar from '../../../Components/NavBar/NavBar';
 import UserProfileHeader from '../../UserProfile/Components/Header/UserProfileHeader';
 import JobList__Cards from '../Components/JobList__cards/JobList__Cards';
 import styles from './JobList.module.scss';
-import { getJobsByName, getJobGenres } from '../Slices/JobListSlice';
+import {
+  getJobsByName,
+  getJobGenres,
+  getJobsById,
+} from '../Slices/JobListSlice';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../../../Components/Loading/Loading';
 import noData from '../../../Images/Loading/49e58d5922019b8ec4642a2e2b9291c2.png';
@@ -21,7 +25,6 @@ const JobList = () => {
   const navigate = useNavigate();
   const handleChange = (event) => {
     setInputValue(event.target.value);
-    console.log(event.target.value);
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,13 +37,20 @@ const JobList = () => {
       console.log(error);
     }
   };
+
+  const handleSelectJobId = async (jobId) => {
+    try {
+      await dispatch(getJobsById(jobId)).unwrap();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   // useEffect(() => {
   //   dispatch(getJobsByName(inputValue));
   // }, [handleSubmit]);
   useEffect(() => {
     dispatch(getJobGenres());
   }, []);
-  console.log(currentJobs);
   return (
     <div className={styles.jobList}>
       <div className={styles.jobList__container}>
@@ -48,23 +58,24 @@ const JobList = () => {
           <UserProfileHeader
             onSubmit={handleSubmit}
             handleChange={handleChange}
+            setInputValue={setInputValue}
           />
         </div>
         <div className={styles.jobList__navBar}>
-          <NavBar />
+          <NavBar handleSelect={handleSelectJobId} />
         </div>
-        <div
-          className={styles.jobList__cards}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100%',
-            width: '100%',
-          }}
-        >
+        <div className={styles.jobList__cards}>
           {jobsByName.length === 0 && (
-            <div>
+            <div
+              style={{
+                textAlign: 'center',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                height: '100%',
+              }}
+            >
               <img
                 alt='no data found'
                 src={noData}

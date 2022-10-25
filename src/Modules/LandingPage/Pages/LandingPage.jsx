@@ -11,7 +11,7 @@ const LandingPage = () => {
     <div className={styles.landingPage}>
       <div className={styles.slider}>
         <Slider />
-        <div maxWidth="xl" className={styles.sliderHeaderContainer}>
+        <div className={styles.sliderHeaderContainer}>
           <SliderHeader />
         </div>
       </div>

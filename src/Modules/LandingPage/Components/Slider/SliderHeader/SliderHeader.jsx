@@ -72,7 +72,7 @@ const SliderHeader = () => {
   };
   return (
     <Container className={styles.sliderHeader}>
-      {isLoading && <Loading />}
+      {isLoading && <Loading isLoading={isLoading} />}
       <Box
         maxWidth={'600px'}
         height={'222px'}
