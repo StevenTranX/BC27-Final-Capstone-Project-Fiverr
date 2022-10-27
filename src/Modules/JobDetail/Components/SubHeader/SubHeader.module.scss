@@ -1,0 +1,14 @@
+.mainContent__row {
+  .mainContent__col {
+    & > h5 {
+      font-weight: 700;
+    }
+    margin-right: 10px;
+    .mainContent__avatar {
+      margin-right: 10px;
+    }
+    .mainContent__item {
+      padding-right: 10px;
+    }
+  }
+}

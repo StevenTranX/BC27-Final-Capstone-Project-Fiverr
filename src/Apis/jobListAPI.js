@@ -18,6 +18,10 @@ const jobListAPI = {
     const url = `/cong-viec/lay-cong-viec-theo-chi-tiet-loai/${jobId}`;
     return axiosClient.get(url);
   },
+  getJobDetailById(jobId) {
+    const url = `https://fiverrnew.cybersoft.edu.vn/api/cong-viec/lay-cong-viec-chi-tiet/${jobId}`;
+    return axiosClient.get(url);
+  },
 };
 
 export default jobListAPI;

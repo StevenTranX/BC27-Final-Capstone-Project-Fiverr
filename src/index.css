@@ -34,3 +34,7 @@ a {
 .MuiCardHeader-subheader {
   font-size: 14px;
 }
+.MuiSlider-thumb {
+  width: 0 !important;
+  height: 0 !important;
+}

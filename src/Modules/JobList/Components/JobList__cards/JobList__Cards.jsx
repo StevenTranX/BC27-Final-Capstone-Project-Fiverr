@@ -9,16 +9,26 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getJobDetailById } from '../../Slices/JobListSlice';
 import styles from './JobList__Cards.module.scss';
 import './MuiCardHeader.css';
 const JobList__Cards = (props) => {
   const { jobsByName } = props;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const goToJobDetail = (jobId) => {
     navigate(`/jobs/${jobId}`);
   };
-
+  const handleSelectCard = async (jobId) => {
+    try {
+      await dispatch(getJobDetailById(jobId));
+      goToJobDetail(jobId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   if (!jobsByName) {
     console.log('no data');
     return;
@@ -38,7 +48,7 @@ const JobList__Cards = (props) => {
                       minWidth='250px'
                       maxHeight={'330px'}
                       marginBottom={'80px'}
-                      onClick={() => goToJobDetail(jobCard.id)}
+                      onClick={() => handleSelectCard(jobCard.id)}
                     >
                       <div className={styles.cards__col}>
                         <div className={styles.cards__col_wrapper}>
