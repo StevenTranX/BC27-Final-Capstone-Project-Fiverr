@@ -20,6 +20,7 @@ import SellerDescription from '../Components/SellerDescription/SellerDescription
 import SubHeader from '../Components/SubHeader/SubHeader';
 import SellerReview from '../Components/SellerReview/SellerReview';
 import SellerComment from '../Components/SellerComment/SellerComment';
+import Payment from '../Components/Payment/Payment';
 const JobDetail = () => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = React.useState('');
@@ -35,10 +36,6 @@ const JobDetail = () => {
     dispatch(getJobDetailById(param.jobId));
   }, []);
   const { jobDetailById } = useSelector((state) => state.jobList) || [];
-  useEffect(() => {
-    dispatch(getJobCommentById(param.jobId));
-  }, []);
-  const { jobCommentById } = useSelector((state) => state.jobList) || [];
 
   const handleSelectJobId = async (jobId) => {
     try {
@@ -131,11 +128,16 @@ const JobDetail = () => {
                         </div>
                         <Divider />
                         <div>
-                          <SellerComment jobComment={jobCommentById} />
+                          <SellerComment />
                         </div>
                       </Stack>
-                      <Stack border={'1px solid grey'} width={'40%'}>
-                        Payment Here
+                      <Stack
+                        className={styles.payment}
+                        border={'1px solid grey'}
+                        width={'40%'}
+                        height={'470px'}
+                      >
+                        <Payment jobDetail={jobDetail} />
                       </Stack>
                     </Box>
                   );

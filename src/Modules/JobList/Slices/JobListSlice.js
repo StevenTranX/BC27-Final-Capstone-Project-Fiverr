@@ -75,7 +75,7 @@ const jobListSlice = createSlice({
     jobsByName: [],
     jobById: {},
     jobDetailById: [],
-    jobCommentById: [],
+    jobCommentsById: [],
     settings: {
       isLoading: false,
       error: false,
@@ -124,7 +124,7 @@ const jobListSlice = createSlice({
       state.settings.error = true;
     },
     [getJobCommentById.fulfilled]: (state, action) => {
-      state.jobCommentById = action.payload;
+      state.jobCommentsById = action.payload;
       state.settings.isLoading = false;
     },
   },
