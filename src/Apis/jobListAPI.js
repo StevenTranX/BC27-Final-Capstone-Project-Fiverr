@@ -22,6 +22,10 @@ const jobListAPI = {
     const url = `https://fiverrnew.cybersoft.edu.vn/api/cong-viec/lay-cong-viec-chi-tiet/${jobId}`;
     return axiosClient.get(url);
   },
+  getJobCommentById(jobId) {
+    const url = `/binh-luan/lay-binh-luan-theo-cong-viec/${jobId}`;
+    return axiosClient.get(url);
+  },
 };
 
 export default jobListAPI;

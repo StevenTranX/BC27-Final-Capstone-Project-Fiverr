@@ -1,5 +1,13 @@
 import React from 'react';
-import { Box, Stack, Grid, Avatar, Button, Divider } from '@mui/material';
+import {
+  Box,
+  Stack,
+  Grid,
+  Avatar,
+  Button,
+  Divider,
+  Rating,
+} from '@mui/material';
 import styles from './SellerDescription.module.scss';
 import StarIcon from '@mui/icons-material/Star';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -8,7 +16,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-const SellerDescription = () => {
+const SellerDescription = ({ jobDetail }) => {
   return (
     <>
       <div className={styles.sellerDescription}>
@@ -29,44 +37,35 @@ const SellerDescription = () => {
               height: '111px',
             }}
           >
-            <Avatar />
+            <Avatar
+              sx={{ width: '100px', height: '100px' }}
+              src={jobDetail.avatar}
+            />
           </Stack>
           <Stack className={styles.seller__shortDesc}>
             <Stack className={styles.seller__title}>
               <Grid container flexDirection={'column'} spacing={0.6}>
                 <Grid item sx={{ fontWeight: 'bold', fontSize: '18px' }}>
                   {' '}
-                  name here
+                  {jobDetail.tenNguoiTao}
                 </Grid>
                 <Grid item sx={{ fontSize: '19px' }} marginBottom='10px'>
                   {' '}
-                  job name
+                  Level 2 Seller
                 </Grid>
                 <Grid container alignItems='center' color={'#ffb33e'}>
                   {' '}
                   <Grid item>
                     {' '}
-                    <StarIcon />{' '}
+                    <Rating
+                      name='read-only'
+                      value={jobDetail.congViec.saoCongViec}
+                      readOnly
+                    />
                   </Grid>
                   <Grid item>
                     {' '}
-                    <StarIcon />{' '}
-                  </Grid>
-                  <Grid item>
-                    {' '}
-                    <StarIcon />{' '}
-                  </Grid>
-                  <Grid item>
-                    {' '}
-                    <StarIcon />{' '}
-                  </Grid>
-                  <Grid item>
-                    {' '}
-                    <StarIcon />{' '}
-                  </Grid>
-                  <Grid item>
-                    {' '}
-                    <span> ( number ) </span>
+                    <span> ( {jobDetail.congViec.danhGia} ) </span>
                   </Grid>
                 </Grid>
               </Grid>

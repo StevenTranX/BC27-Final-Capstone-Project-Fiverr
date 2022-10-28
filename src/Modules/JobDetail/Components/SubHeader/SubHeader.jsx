@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Stack, Grid, Avatar } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import styles from './SubHeader.module.scss';
-const SubHeader = () => {
+import Rating from '@mui/material/Rating';
+const SubHeader = ({ jobDetail }) => {
   return (
     <Box display={'flex'} className={styles.mainContent__row}>
       <Stack
@@ -14,8 +15,8 @@ const SubHeader = () => {
         }}
         className={styles.mainContent__col}
       >
-        <Avatar className={styles.mainContent__avatar}></Avatar>
-        <h4 className={styles.mainContent__item}>Name Here</h4>
+        <Avatar src={jobDetail.avatar} className={styles.mainContent__avatar} />
+        <h4 className={styles.mainContent__item}>{jobDetail.tenNguoiTao}</h4>
         <span className={styles.mainContent__item}>Level 2 Seller </span>
         <span className={styles.mainContent__item}>|</span>
       </Stack>
@@ -29,30 +30,14 @@ const SubHeader = () => {
       >
         <Grid container spacing={1} alignItems='center'>
           <Grid item color='#ffb33e'>
-            {' '}
-            <StarIcon />
+            <Rating
+              name='read-only'
+              value={jobDetail.congViec.saoCongViec}
+              readOnly
+            />
           </Grid>
-          <Grid color='#ffb33e' item>
-            {' '}
-            <StarIcon />
-          </Grid>
-          <Grid color='#ffb33e' item>
-            {' '}
-            <StarIcon />
-          </Grid>
-          <Grid item color='#ffb33e'>
-            {' '}
-            <StarIcon />
-          </Grid>
-          <Grid item color='#ffb33e'>
-            {' '}
-            <StarIcon />
-          </Grid>
-          <Grid item color='#ffb33e'>
-            {' '}
-            5{' '}
-          </Grid>
-          <Grid item> ( 174 )</Grid>
+          <Grid item>{jobDetail.congViec.saoCongViec}</Grid>
+          <Grid item>({jobDetail.congViec.danhGia})</Grid>
         </Grid>
       </Stack>
       <Stack

@@ -23,7 +23,7 @@ const JobList__Cards = (props) => {
   };
   const handleSelectCard = async (jobId) => {
     try {
-      await dispatch(getJobDetailById(jobId));
+      await dispatch(getJobDetailById(jobId)).unwrap();
       goToJobDetail(jobId);
     } catch (error) {
       console.log(error);

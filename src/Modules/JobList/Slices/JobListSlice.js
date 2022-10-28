@@ -57,6 +57,17 @@ export const getJobDetailById = createAsyncThunk(
     }
   }
 );
+export const getJobCommentById = createAsyncThunk(
+  'jobList/getJobCommentById',
+  async (jobId, { rejectWithValue }) => {
+    try {
+      const { data } = await jobListAPI.getJobCommentById(jobId);
+      return data.content;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
 const jobListSlice = createSlice({
   name: 'jobList',
   initialState: {
@@ -64,6 +75,7 @@ const jobListSlice = createSlice({
     jobsByName: [],
     jobById: {},
     jobDetailById: [],
+    jobCommentById: [],
     settings: {
       isLoading: false,
       error: false,
@@ -110,6 +122,10 @@ const jobListSlice = createSlice({
     [getJobDetailById.rejected]: (state) => {
       state.settings.isLoading = false;
       state.settings.error = true;
+    },
+    [getJobCommentById.fulfilled]: (state, action) => {
+      state.jobCommentById = action.payload;
+      state.settings.isLoading = false;
     },
   },
 });

@@ -3,8 +3,8 @@ import React from 'react';
 import StarIcon from '@mui/icons-material/Star';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
-const SellerReview = () => {
-  const [value, setValue] = React.useState(5);
+const SellerReview = ({ jobDetail }) => {
+  const [value, setValue] = React.useState(jobDetail?.congViec?.saoCongViec);
   return (
     <div>
       <Box
@@ -26,7 +26,7 @@ const SellerReview = () => {
                 sx={{ fontSize: '20px', color: '#404145', fontWeight: 700 }}
               >
                 {' '}
-                <span>174 Reviews</span>
+                <span>{jobDetail.congViec.danhGia} Reviews</span>
               </Grid>
               <Grid item display={'flex'} alignItems={'center'}>
                 <Rating name='read-only' value={value} readOnly />
@@ -55,7 +55,7 @@ const SellerReview = () => {
                     disableSwap={true}
                   />
                 </Grid>
-                <Grid item> ( 174 )</Grid>
+                <Grid item> ( 10 )</Grid>
               </Grid>
             </Stack>
             <Stack>
@@ -143,7 +143,6 @@ const SellerReview = () => {
                     disableSwap={true}
                   />
                 </Grid>
-                <Grid item> ( 0 )</Grid>
               </Grid>
             </Stack>
           </Stack>
