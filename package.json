@@ -19,6 +19,7 @@
     "material-ui-popup-state": "^4.1.0",
     "notistack": "^2.0.5",
     "react": "^18.2.0",
+    "react-app-rewired": "^2.2.1",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.36.0",
     "react-loading-screen": "^0.0.17",
@@ -34,9 +35,9 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
