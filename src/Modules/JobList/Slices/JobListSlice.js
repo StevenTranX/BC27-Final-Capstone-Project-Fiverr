@@ -68,6 +68,7 @@ export const getJobCommentById = createAsyncThunk(
     }
   }
 );
+
 const jobListSlice = createSlice({
   name: 'jobList',
   initialState: {
@@ -80,6 +81,7 @@ const jobListSlice = createSlice({
       isLoading: false,
       error: false,
     },
+    bookingJob: [],
     jobCards: [],
   },
   reducers: {},

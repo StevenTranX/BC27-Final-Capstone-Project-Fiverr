@@ -65,7 +65,7 @@ const JobList = () => {
           <NavBar handleSelect={handleSelectJobId} />
         </div>
         <div className={styles.jobList__cards}>
-          {jobsByName.length === 0 && (
+          {jobsByName?.length === 0 && (
             <div
               style={{
                 textAlign: 'center',
@@ -98,9 +98,6 @@ const JobList = () => {
       </div>
     </div>
   );
-  // } else {
-  //   <div>Sorry there is nothing to show</div>;
-  // }
 };
 
 export default JobList;

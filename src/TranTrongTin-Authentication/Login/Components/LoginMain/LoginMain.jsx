@@ -17,11 +17,17 @@ export default function LoginMain(props) {
       await dispatch(loginUser(values))
         .unwrap()
         .then(() => {
-          enqueueSnackbar('Login Successfully', { variant: 'success' });
+          enqueueSnackbar('Login Successfully', {
+            variant: 'success',
+            autoHideDuration: 1500,
+          });
         });
     } catch (error) {
       console.log(error);
-      enqueueSnackbar(error.message, { variant: 'error' });
+      enqueueSnackbar(error.message, {
+        variant: 'error',
+        autoHideDuration: 1500,
+      });
     }
   };
   return (

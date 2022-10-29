@@ -11,18 +11,41 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from '@mui/system';
 import AvTimerIcon from '@mui/icons-material/AvTimer';
 import LoopIcon from '@mui/icons-material/Loop';
 import DoneIcon from '@mui/icons-material/Done';
 import styles from './Payment.module.scss';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import dayjs from 'dayjs';
+import { bookJob } from '../../../UserProfile/Slices/userProfileSlice';
+import { useSnackbar } from 'notistack';
 const Payment = ({ jobDetail }) => {
   const dispatch = useDispatch();
-  const handleClickPayment = async () => {
-    await dispatch().unwrap();
+
+  const { currentUser } = useSelector((state) => state.user);
+  const [values, setValues] = useState({
+    maCongViec: jobDetail.congViec.id,
+    maNguoiThue: currentUser.id,
+    ngayThue: dayjs(new Date()).format('DD/MM/YYYY'),
+    hoanThanh: false,
+  });
+  const { userBookingJobs } = useSelector((state) => state.user);
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClickPayment = async (values) => {
+    try {
+      setTimeout(await dispatch(bookJob(values)).unwrap(), 2000);
+
+      enqueueSnackbar(userBookingJobs.message, {
+        autoHideDuration: 1500,
+        variant: 'success',
+      });
+    } catch (error) {
+      enqueueSnackbar(error.message);
+    }
+    console.log(values);
   };
   if (jobDetail) {
     const shortDescription = jobDetail?.congViec.moTaNgan;
@@ -133,7 +156,9 @@ const Payment = ({ jobDetail }) => {
               variant='contained'
               sx={{ backgroundColor: '#1dbf73', width: '100%', height: '40px' }}
               className={styles.paymentButton}
-              onClick={handleClickPayment}
+              onClick={() => {
+                handleClickPayment(values);
+              }}
             >
               Continue (${jobDetail.congViec.giaTien}.00)
               <span className={styles.paymentArrow}>

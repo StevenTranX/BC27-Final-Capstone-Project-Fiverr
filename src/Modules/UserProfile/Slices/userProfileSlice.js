@@ -41,12 +41,23 @@ export const getBookingJobs = createAsyncThunk(
     }
   }
 );
+export const bookJob = createAsyncThunk(
+  'user/bookJob',
+  async (info, { rejectWithValue }) => {
+    try {
+      const { data } = await userAPI.bookJob(info);
+      return data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
 const userSlice = createSlice({
   name: 'user',
   initialState: {
     currentUser: JSON.parse(localStorage.getItem('user')) || {},
     settings: {},
-    userBookingJobs: null,
+    userBookingJobs: [],
   },
   reducers: {},
   extraReducers: {
@@ -55,6 +66,17 @@ const userSlice = createSlice({
     },
     [getBookingJobs.fulfilled]: (state, action) => {
       state.userBookingJobs = action.payload;
+    },
+    [bookJob.pending]: (state, action) => {
+      state.settings.isLoading = true;
+    },
+    [bookJob.fulfilled]: (state, action) => {
+      state.settings.isLoading = false;
+      state.currentUser.bookingJob.push(action.payload.content);
+      state.userBookingJobs = action.payload;
+    },
+    [bookJob.rejected]: (state, action) => {
+      state.settings.error = true;
     },
   },
 });
