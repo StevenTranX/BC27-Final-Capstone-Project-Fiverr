@@ -14,24 +14,27 @@ import { getJobsByName } from '../../../../JobList/Slices/JobListSlice';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import Loading from '../../../../../Components/Loading/Loading';
+import SearchIcon from '@mui/icons-material/Search';
 const StyledButton = styled(Button)({
   boxShadow: 'none',
   backgroundColor: '#1dbf73',
   textTransform: 'none',
   '&:hover': {
-    opacity: 0.9,
+    opacity: 0.8,
   },
   borderStartStartRadius: '0px',
   borderBottomLeftRadius: '0px',
+  fontSize: '16px',
 });
 const StyledInput = styled(TextField)({
   '&:hover': {
-    opacity: 0.9,
     border: 'none',
+    borderRadius: 'none',
   },
+
   borderTopRightRadius: '0px',
   borderBottomRightRadius: '0px',
-  border: 0,
+  border: 'none',
   backgroundColor: '#fff',
   cursor: 'pointer',
 });
@@ -40,6 +43,9 @@ const StyledOutlinedButton = styled(Button)({
   textTransform: 'none',
   '&:hover': {
     opacity: 0.9,
+    borderColor: '#fff',
+    backgroundColor: '#fff',
+    color: '#404145',
   },
   borderRadius: '50px',
   border: '1px #fff solid',
@@ -82,20 +88,39 @@ const SliderHeader = () => {
           display={'flex'}
           flexDirection={'column'}
         >
-          <Typography component='h3' variant='h3' sx={{ marginBottom: '18px' }}>
+          <Typography
+            component='h3'
+            variant='h3'
+            sx={{ marginBottom: '18px', color: '#fff' }}
+          >
             Find the perfect <i>freelance</i> services for your business
           </Typography>
-          <Box fullWidth height={'48px'}>
+          <Box fullWidth height={'60px'}>
             <Grid container>
-              <Grid item lg={10} md={10}>
+              <Grid
+                item
+                lg={10}
+                md={10}
+                sx={{
+                  borderTopLeftRadius: '6px',
+                  borderBottomLeftRadius: '6px',
+                  borderTopRightRadius: '0px',
+                  borderBottomRightRadius: '0px',
+                  height: '100%',
+                }}
+              >
                 <form onSubmit={handleSubmit}>
                   <StyledInput
                     className={styles.inputField}
-                    fullWidth
-                    sx={{ height: '40px' }}
+                    sx={{
+                      border: 'none',
+                      height: '52px',
+                      borderTopRightRadius: '0px',
+                      borderBottomRightRadius: '0px',
+                    }}
                     type='search'
                     size='small'
-                    placeholder={`Try "building mobile app"`}
+                    placeholder={`Try "design"`}
                     onChange={handleInputChange}
                   ></StyledInput>
                 </form>
@@ -103,10 +128,17 @@ const SliderHeader = () => {
               <Grid item lg={2} md={2}>
                 <StyledButton
                   className={styles.searchButton}
-                  sx={{ height: '100%', backgroundColor: '#1dbf73' }}
+                  sx={{
+                    height: '100%',
+                    backgroundColor: '#1dbf73',
+                    '&:hover': {
+                      backgroundColor: '#1dbf73',
+                    },
+                  }}
                   fullWidth
                   variant='contained'
                   type='submit'
+                  onClick={() => handleSubmit()}
                 >
                   Search
                 </StyledButton>

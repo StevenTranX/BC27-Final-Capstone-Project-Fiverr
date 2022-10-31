@@ -1,4 +1,12 @@
-import { Box, Stack, Grid, Avatar, Typography, Button } from '@mui/material';
+import {
+  Box,
+  Stack,
+  Grid,
+  Avatar,
+  Typography,
+  Button,
+  Divider,
+} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import StarIcon from '@mui/icons-material/Star';
 import Rating from '@mui/material/Rating';
@@ -25,7 +33,12 @@ const SellerComment = () => {
         <Box marginTop={'30px'}>
           {jobCommentsById.map((jobComment, i) => {
             return (
-              <Stack key={i} display='flex' flexDirection={'row'}>
+              <Stack
+                key={i}
+                display='flex'
+                flexDirection={'row'}
+                sx={{ marginBottom: '20px' }}
+              >
                 <Stack marginRight='15px'>
                   <Avatar src={jobComment.avatar} />
                 </Stack>
@@ -54,7 +67,7 @@ const SellerComment = () => {
                       </Grid>
                     </Grid>
                   </Grid>
-                  <Typography marginTop={'15px'}>
+                  <Typography marginTop={'15px'} sx={{ color: '#404145' }}>
                     {jobComment.noiDung}
                   </Typography>
                   <Stack marginTop={'15px'}>
@@ -88,6 +101,7 @@ const SellerComment = () => {
               </Stack>
             );
           })}
+          <Divider sx={{ margin: '10px 0px', width: '100%' }}></Divider>
 
           <Stack>
             <Box component='form' noValidate autoComplete='off'>

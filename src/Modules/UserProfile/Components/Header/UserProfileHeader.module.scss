@@ -1,9 +1,11 @@
 .header {
-  background-color: #fff !important;
+  width: 100%;
   .header__Appbar {
+    width: 100%;
     background-color: #fff !important;
     box-shadow: none;
     padding: 8px 0px;
+
     .header__Search {
       border: 1px solid #000;
     }

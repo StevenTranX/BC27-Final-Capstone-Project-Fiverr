@@ -7,6 +7,7 @@ import styles from './UserProfile.module.scss';
 import { Container } from '@mui/system';
 import Footer from '../../../Components/Footer/Footer';
 import { useSelector } from 'react-redux';
+import ScrollToTop from 'react-scroll-to-top';
 const UserProfile = () => {
   const { currentUser } = useSelector((state) => state.auth);
   return (
@@ -25,7 +26,9 @@ const UserProfile = () => {
           </div>
         </Container>
       </div>
-      <div></div>
+      <div>
+        <ScrollToTop smooth width={'30px'} height={'30px'} color={'#1dbf73'} />
+      </div>
     </div>
   );
 };

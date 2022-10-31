@@ -12,7 +12,7 @@ const Loading = ({ isLoading }) => {
         logoSrc={fiverrLogo}
         text=''
         children={''}
-        style={{ width: '100%' }}
+        style={{ width: '100vh' }}
       />
     </div>
   );

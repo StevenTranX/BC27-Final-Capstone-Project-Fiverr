@@ -9,7 +9,8 @@ import { useSelector } from 'react-redux';
 import { AccountCircleRounded } from '@mui/icons-material';
 import UserDropdown from './UserDropdown';
 import userAPI from '../../../Apis/userAPI';
-const RightHeader = ({ children, becomeSeller, marginLeft }) => {
+import styles from './RightHeader.module.scss';
+const RightHeader = ({ children, becomeSeller, color }) => {
   const [open, setOpen] = React.useState(false);
   const MODE = {
     LOGIN: 'login',
@@ -38,12 +39,17 @@ const RightHeader = ({ children, becomeSeller, marginLeft }) => {
     <>
       <Box>
         <Stack
-          direction="row"
+          direction='row'
           spacing={2}
-          alignItems="center"
-          justifyContent="flex-end"
+          alignItems='center'
+          justifyContent='flex-end'
         >
-          <Typography component="p" variant="h6">
+          <Typography
+            sx={{ cursor: 'pointer' }}
+            component='p'
+            variant='h6'
+            className={!color && styles.nav__light}
+          >
             {becomeSeller}
           </Typography>
           {!isLoggedIn && (
@@ -53,16 +59,30 @@ const RightHeader = ({ children, becomeSeller, marginLeft }) => {
                   handleOpen();
                   setMode(MODE.LOGIN);
                 }}
+                sx={{
+                  borderColor: '#fff',
+                  color: '#fff',
+                }}
+                className={color && styles.nav__dark}
               >
                 Sign In
               </Button>
               <Button
                 disabled={false}
-                variant="outlined"
+                variant='outlined'
                 onClick={() => {
                   handleOpen();
                   setMode(MODE.REGISTER);
                 }}
+                sx={{
+                  '&:hover': {
+                    backgroundColor: '#1dbf73',
+                    borderColor: '#1dbf73',
+                  },
+                  color: '#fff',
+                  borderColor: '#fff',
+                }}
+                className={color && styles.nav__dark}
               >
                 Join
               </Button>
@@ -78,12 +98,15 @@ const RightHeader = ({ children, becomeSeller, marginLeft }) => {
               />
               <Button
                 disabled={true}
-                variant="outlined"
+                variant='outlined'
                 onClick={() => {
                   handleOpen();
                   setMode(MODE.REGISTER);
                 }}
-                sx={{ width: '70px', height: '30px' }}
+                sx={{
+                  width: '70px',
+                  height: '30px',
+                }}
               >
                 Join
               </Button>
@@ -93,12 +116,12 @@ const RightHeader = ({ children, becomeSeller, marginLeft }) => {
           {mode === MODE.LOGIN && (
             <Dialog open={open} onClose={handleClose}>
               <LoginMain sx={{ color: '#000' }} />
-              <Box textAlign="center" justifyContent="center">
+              <Box textAlign='center' justifyContent='center'>
                 <Button
                   onClick={() => {
                     setMode(MODE.REGISTER);
                   }}
-                  color="secondary"
+                  color='secondary'
                   sx={{ fontSize: '13px' }}
                 >
                   Don't have an account ? Register here
@@ -110,12 +133,12 @@ const RightHeader = ({ children, becomeSeller, marginLeft }) => {
           {mode === MODE.REGISTER && (
             <Dialog open={open} onClose={handleClose}>
               <RegisterMain sx={{ color: '#000' }} />
-              <Box textAlign="center" justifyContent="center">
+              <Box textAlign='center' justifyContent='center'>
                 <Button
                   onClick={() => {
                     setMode(MODE.LOGIN);
                   }}
-                  color="secondary"
+                  color='secondary'
                   sx={{ fontSize: '13px' }}
                 >
                   Already have an account ? Login here

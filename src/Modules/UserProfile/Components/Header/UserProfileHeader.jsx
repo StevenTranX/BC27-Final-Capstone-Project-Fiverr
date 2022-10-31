@@ -67,7 +67,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function UserProfileHeader(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const { setInputValue, handleChange } = props;
+  const { setInputValue, handleChange, color, onSubmit } = props;
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -173,10 +173,14 @@ export default function UserProfileHeader(props) {
       </MenuItem>
     </Menu>
   );
-
+  const navigate = useNavigate();
   return (
-    <Box className={styles.header}>
-      <AppBar className={styles.header__Appbar} position='static'>
+    <Box className={styles.header} sx={{ width: '100%' }}>
+      <AppBar
+        className={styles.header__Appbar}
+        position='static'
+        sx={{ width: '100%' }}
+      >
         <Container>
           <Toolbar>
             <img
@@ -187,7 +191,9 @@ export default function UserProfileHeader(props) {
                 height: '27px',
                 marginLeft: '-24px',
                 display: 'block',
+                cursor: 'pointer',
               }}
+              onClick={() => navigate('/')}
             />
 
             <Search className={styles.header__Search}>
@@ -245,7 +251,7 @@ export default function UserProfileHeader(props) {
                 <MoreIcon />
               </IconButton>
             </Box>
-            <RightHeader />
+            <RightHeader color={color} />
           </Toolbar>
         </Container>
       </AppBar>

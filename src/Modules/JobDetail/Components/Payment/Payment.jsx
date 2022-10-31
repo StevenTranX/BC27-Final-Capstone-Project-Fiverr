@@ -22,7 +22,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import { bookJob } from '../../../UserProfile/Slices/userProfileSlice';
 import { useSnackbar } from 'notistack';
-const Payment = ({ jobDetail }) => {
+const Payment = ({ jobDetail, isLoggedIn }) => {
   const dispatch = useDispatch();
 
   const { currentUser } = useSelector((state) => state.user);
@@ -35,17 +35,22 @@ const Payment = ({ jobDetail }) => {
   const { userBookingJobs } = useSelector((state) => state.user);
   const { enqueueSnackbar } = useSnackbar();
   const handleClickPayment = async (values) => {
-    try {
-      setTimeout(await dispatch(bookJob(values)).unwrap(), 2000);
+    if (isLoggedIn) {
+      try {
+        setTimeout(await dispatch(bookJob(values)).unwrap(), 2000);
 
-      enqueueSnackbar(userBookingJobs.message, {
-        autoHideDuration: 1500,
-        variant: 'success',
+        enqueueSnackbar(userBookingJobs.message, {
+          autoHideDuration: 1500,
+          variant: 'success',
+        });
+      } catch (error) {
+        enqueueSnackbar(error.message);
+      }
+    } else {
+      enqueueSnackbar('Please Log in before checking out', {
+        variant: 'warning',
       });
-    } catch (error) {
-      enqueueSnackbar(error.message);
     }
-    console.log(values);
   };
   if (jobDetail) {
     const shortDescription = jobDetail?.congViec.moTaNgan;

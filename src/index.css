@@ -38,3 +38,14 @@ a {
   width: 0 !important;
   height: 0 !important;
 }
+.MuiInputBase-root {
+  height: 100%;
+}
+.MuiOutlinedInput-root {
+  height: 100%;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.MuiOutlinedInput-root::placeholder {
+  margin-left: 15px;
+}

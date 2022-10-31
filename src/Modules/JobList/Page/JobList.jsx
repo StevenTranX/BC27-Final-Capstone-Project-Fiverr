@@ -14,7 +14,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import Loading from '../../../Components/Loading/Loading';
 import noData from '../../../Images/Loading/49e58d5922019b8ec4642a2e2b9291c2.png';
-
+import ScrollToTop from 'react-scroll-to-top';
 const JobList = () => {
   const dispatch = useDispatch();
   const { jobsByName } = useSelector((state) => state.jobList);
@@ -56,6 +56,7 @@ const JobList = () => {
       <div className={styles.jobList__container}>
         <div className={styles.jobList__header}>
           <UserProfileHeader
+            color={true}
             onSubmit={handleSubmit}
             handleChange={handleChange}
             setInputValue={setInputValue}
@@ -90,6 +91,7 @@ const JobList = () => {
           )}
         </div>
         <Divider />
+        <ScrollToTop smooth width={'30px'} height={'30px'} color={'#1dbf73'} />
         <div className={styles.jobList__footer}>
           <Container>
             <Footer />

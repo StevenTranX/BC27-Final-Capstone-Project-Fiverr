@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useSelector } from 'react-redux';
 const axiosClient = axios.create({
   baseURL: 'https://fiverrnew.cybersoft.edu.vn/api',
   headers: {
