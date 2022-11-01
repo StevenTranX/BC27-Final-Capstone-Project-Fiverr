@@ -1,14 +1,14 @@
+import { Container } from '@mui/material';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getJobsByName } from '../../Modules/JobList/Slices/JobListSlice';
+import LandingPage from '../../Modules/LandingPage/Pages/LandingPage';
+import UserProfileHeader from '../../Modules/UserProfile/Components/Header/UserProfileHeader';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
-import { Container } from '@mui/material';
-import LandingPage from '../../Modules/LandingPage/Pages/LandingPage';
-import styles from './MainLayout.module.scss';
-import UserProfileHeader from '../../Modules/UserProfile/Components/Header/UserProfileHeader';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getJobsByName } from '../../Modules/JobList/Slices/JobListSlice';
 import Loading from '../Loading/Loading';
+import styles from './MainLayout.module.scss';
 const MainLayout = () => {
   const [color, setColor] = useState(false);
   const handleChangeColor = () => {

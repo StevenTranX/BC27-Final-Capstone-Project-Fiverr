@@ -19,45 +19,42 @@
       padding-left: 30px;
       margin-left: -20px;
       margin-top: 30px;
-      & > .marketPlace__gridItem {
-        padding: 10px 40px;
+        .marketPlace__gridItem {
+        padding: 10px 30px;
         padding-bottom: 50px;
+        .marketPlace__item {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+    
+          & > a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+    
+            color: #222325;
+            text-align: center;
+            position: relative;
+          }
+          & > a::after {
+            content: '';
+            position: absolute;
+            top: 36px;
+            right: 50%;
+            z-index: 2;
+            transform: translateX(50%);
+            padding: 0 0 8px;
+            width: 48px;
+            height: 10px;
+            border-bottom: 2px solid #c5c6c9;
+          }
+        }
       }
-      & > .marketPlace__gridItem2 {
-        padding: 10px 40px;
-        padding-bottom: 50px;
-        margin-top: -20px;
-      }
+     
     }
 
-    .marketPlace__item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-
-      & > a {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: column;
-
-        color: #222325;
-        text-align: center;
-        position: relative;
-      }
-      & > a::after {
-        content: '';
-        position: absolute;
-        top: 36px;
-        right: 50%;
-        z-index: 2;
-        transform: translateX(50%);
-        padding: 0 0 8px;
-        width: 48px;
-        height: 10px;
-        border-bottom: 2px solid #c5c6c9;
-      }
-    }
+ 
   }
 }
