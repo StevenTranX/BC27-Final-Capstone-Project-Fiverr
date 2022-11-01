@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Divider } from '@mui/material';
+import { Box, Button, Divider } from '@mui/material';
 import dayjs from 'dayjs';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -168,7 +168,22 @@ const Profile__Bio = (props) => {
                 <span>{values?.certification?.join(', ') || ''}</span>
               </BioTag__Certificate>
               <BioTags>
-                <Button type='submit'>Save Changes</Button>
+                <Box>
+                  <Button
+                    type='submit'
+                    sx={{
+                      backgroundColor: '#1dbf73',
+                      height: '45px',
+
+                      '&:hover': {
+                        backgroundColor: '#1dbf73',
+                      },
+                    }}
+                    variant='contained'
+                  >
+                    Save Changes
+                  </Button>
+                </Box>
               </BioTags>
             </form>
           </div>

@@ -9,6 +9,8 @@ import CardLayout from '../../../../ReusableComponents/Profile_CardLayOut/CardLa
 import ShareActivity from './ShareActivity/ShareActivity';
 import { updateUser } from '../../Slices/userProfileSlice';
 import { useSnackbar } from 'notistack';
+import ScrollToTop from 'react-scroll-to-top';
+import Footer from '../../../../Components/Footer/Footer';
 const Profile = () => {
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();

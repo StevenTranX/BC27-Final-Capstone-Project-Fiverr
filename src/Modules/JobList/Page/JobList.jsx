@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import Loading from '../../../Components/Loading/Loading';
 import noData from '../../../Images/Loading/49e58d5922019b8ec4642a2e2b9291c2.png';
 import ScrollToTop from 'react-scroll-to-top';
+import CardListSkeleton from '../Components/CardListSkeleton/CardListSkeleton';
 const JobList = () => {
   const dispatch = useDispatch();
   const { jobsByName } = useSelector((state) => state.jobList);
@@ -85,7 +86,7 @@ const JobList = () => {
             </div>
           )}
           {isLoading ? (
-            <Loading isLoading={isLoading} />
+            <CardListSkeleton />
           ) : (
             <JobList__Cards jobsByName={jobsByName} />
           )}
