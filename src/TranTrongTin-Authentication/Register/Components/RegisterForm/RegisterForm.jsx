@@ -21,7 +21,7 @@ const RegisterForm = (props) => {
       .string()
       .oneOf([yup.ref('password'), null])
       .required('Please Retype your Password'),
-    email: yup.string().email().required('Please enter your email').min(10),
+    email: yup.string().email().required('Please enter your email'),
     phone: yup.string().required('Phone number is required').min(10).max(10),
     birthday: yup.date().required('Please enter your date of birth'),
     gender: yup.bool().required('Please select your gender'),
