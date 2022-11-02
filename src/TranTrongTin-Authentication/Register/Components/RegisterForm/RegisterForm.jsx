@@ -16,18 +16,13 @@ import SelectField from '../../../../ReusableComponents/FormControl/SelectField'
 const RegisterForm = (props) => {
   const schema = yup.object().shape({
     name: yup.string().required('Please enter your username'),
-    password: yup.string().required('Please enter password').min(6).max(20),
+    password: yup.string().required('Please enter password').min(6),
     retypePassword: yup
       .string()
       .oneOf([yup.ref('password'), null])
       .required('Please Retype your Password'),
-    email: yup
-      .string()
-      .email()
-      .required('Please enter your email')
-      .min(10)
-      .max(10),
-    phone: yup.string().required('Phone number is required'),
+    email: yup.string().email().required('Please enter your email').min(10),
+    phone: yup.string().required('Phone number is required').min(10).max(10),
     birthday: yup.date().required('Please enter your date of birth'),
     gender: yup.bool().required('Please select your gender'),
     role: yup.string().required('Please enter your role'),
