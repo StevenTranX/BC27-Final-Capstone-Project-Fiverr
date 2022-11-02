@@ -40,8 +40,10 @@ const authSlice = createSlice({
   reducers: {
     logout(state) {
       state.currentUser = {};
+      state.userBookingJobs = [];
       localStorage.removeItem('user');
       localStorage.removeItem('access_token');
+      window.location.reload();
     },
   },
   extraReducers: {

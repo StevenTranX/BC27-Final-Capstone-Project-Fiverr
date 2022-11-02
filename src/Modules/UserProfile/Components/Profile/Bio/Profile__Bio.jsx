@@ -19,22 +19,13 @@ const Profile__Bio = (props) => {
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const schema = yup.object().shape({
-    // name: yup.string().required('Please enter your username'),
-    // password: yup.string().required('Please enter password').min(6).max(20),
-    // retypePassword: yup
-    //   .string()
-    //   .oneOf([yup.ref('password'), null])
-    //   .required('Please Retype your Password'),
-    // email: yup.string().email().required('Please enter your email'),
-    // phone: yup.string().required('Phone number is required'),
-    // // birthday: yup.date().required('Please enter your date of birth'),
-    // gender: yup.bool().required('Please select your gender'),
-    // role: yup.string().required('Please enter your role'),
     skill: yup.array().of(yup.string()),
-    // certification: yup.array(),
   });
   const { userId } = useParams();
   console.log(userId);
+  useEffect(() => {
+    dispatch(getUser(userId));
+  }, [userId]);
   useEffect(() => {
     dispatch(getUser(userId));
   }, []);

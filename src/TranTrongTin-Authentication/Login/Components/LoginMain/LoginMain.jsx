@@ -10,7 +10,7 @@ import { loginUser } from '../../../slices/authSlice';
 export default function LoginMain(props) {
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
-
+  const { onClose } = props;
   const handleSubmit = async (values) => {
     console.log(values);
     try {
@@ -21,6 +21,9 @@ export default function LoginMain(props) {
             variant: 'success',
             autoHideDuration: 1500,
           });
+          setTimeout(() => {
+            onClose();
+          }, 1000);
         });
     } catch (error) {
       console.log(error);

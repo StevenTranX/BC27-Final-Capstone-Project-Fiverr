@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import jobListAPI from '../../../Apis/jobListAPI';
-
+import { getBookingJobs } from '../../UserProfile/Slices/userProfileSlice';
 export const getJobGenres = createAsyncThunk(
   'jobList/getJobGenre',
   async (_, { rejectWithValue }) => {
@@ -57,6 +57,7 @@ export const getJobDetailById = createAsyncThunk(
     }
   }
 );
+
 export const getJobCommentById = createAsyncThunk(
   'jobList/getJobCommentById',
   async (jobId, { rejectWithValue }) => {
@@ -80,6 +81,7 @@ const jobListSlice = createSlice({
     settings: {
       isLoading: false,
       error: false,
+      message: '',
     },
     bookingJob: [],
     jobCards: [],

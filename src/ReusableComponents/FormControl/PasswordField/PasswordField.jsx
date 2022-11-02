@@ -8,7 +8,7 @@ import InputLabel from '@mui/material/InputLabel';
 import React, { useState } from 'react';
 import { Controller } from 'react-hook-form';
 
-const PasswordField = React.forwardRef((props, ref) => {
+const PasswordField = React.forwardRef((props) => {
   const { form, name, label, disabled } = props;
   const {
     formState: { errors },
@@ -31,16 +31,16 @@ const PasswordField = React.forwardRef((props, ref) => {
         fieldState: { isTouched, isDirty, error },
         formState,
       }) => (
-        <FormControl fullWidth margin="normal" variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">{label}</InputLabel>
+        <FormControl fullWidth margin='normal' variant='outlined'>
+          <InputLabel htmlFor='outlined-adornment-password'>{label}</InputLabel>
           <OutlinedInput
             label={label}
             {...field}
             type={showPassword ? 'text' : 'password'}
             endAdornment={
-              <InputAdornment position="end">
+              <InputAdornment position='end'>
                 <IconButton
-                  aria-label="toggle password visibility"
+                  aria-label='toggle password visibility'
                   onClick={toggleShowPassword}
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}

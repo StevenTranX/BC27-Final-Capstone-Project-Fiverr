@@ -18,5 +18,9 @@ const userAPI = {
     const url = `/thue-cong-viec`;
     return axiosClient.post(url, info);
   },
+  deleteBookingJob(jobId) {
+    const url = `/thue-cong-viec/${jobId}`;
+    return axiosClient.delete(url);
+  },
 };
 export default userAPI;

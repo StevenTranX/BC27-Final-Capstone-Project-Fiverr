@@ -20,6 +20,9 @@ export default function RegisterMain(props) {
         .unwrap()
         .then(() => {
           enqueueSnackbar('Register Successfully', { variant: 'success' });
+          setTimeout(() => {
+            onClose();
+          }, 1000);
         });
     } catch (error) {
       console.log(error);

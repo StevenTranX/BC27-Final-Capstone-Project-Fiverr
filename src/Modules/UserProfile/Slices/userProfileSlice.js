@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { NULL } from 'sass';
 import userAPI from '../../../Apis/userAPI';
 export const updateUser = createAsyncThunk(
   'user/update',
@@ -41,6 +40,18 @@ export const getBookingJobs = createAsyncThunk(
     }
   }
 );
+export const deleteBookingJob = createAsyncThunk(
+  'jobList/deleteBookingJob',
+  async (jobId, { rejectWithValue, dispatch }) => {
+    try {
+      const { data } = await userAPI.deleteBookingJob(jobId);
+      dispatch(getBookingJobs());
+      return data.message;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
 export const bookJob = createAsyncThunk(
   'user/bookJob',
   async (info, { rejectWithValue }) => {
@@ -56,7 +67,11 @@ const userSlice = createSlice({
   name: 'user',
   initialState: {
     currentUser: JSON.parse(localStorage.getItem('user')) || {},
-    settings: {},
+    settings: {
+      isLoading: false,
+      error: false,
+      message: '',
+    },
     userBookingJobs: [],
   },
   reducers: {},
@@ -66,17 +81,33 @@ const userSlice = createSlice({
     },
     [getBookingJobs.fulfilled]: (state, action) => {
       state.userBookingJobs = action.payload;
+      state.settings.isLoading = false;
+    },
+    [getBookingJobs.pending]: (state, action) => {
+      state.settings.isLoading = true;
+    },
+    [getBookingJobs.rejected]: (state, action) => {
+      state.settings.error = true;
     },
     [bookJob.pending]: (state, action) => {
       state.settings.isLoading = true;
     },
     [bookJob.fulfilled]: (state, action) => {
       state.settings.isLoading = false;
-      state.currentUser.bookingJob.push(action.payload.content);
-      state.userBookingJobs = action.payload;
+      state.userBookingJobs.push(action.payload);
     },
     [bookJob.rejected]: (state, action) => {
       state.settings.error = true;
+    },
+    [deleteBookingJob.fulfilled]: (state, action) => {
+      state.settings.message = action.payload;
+      state.settings.isLoading = false;
+    },
+    [deleteBookingJob.pending]: (state, action) => {
+      state.settings.isLoading = true;
+    },
+    [deleteBookingJob.rejected]: (state, action) => {
+      state.settings.isLoading = false;
     },
   },
 });

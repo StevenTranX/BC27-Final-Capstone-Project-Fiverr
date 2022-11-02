@@ -22,24 +22,34 @@ import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import { bookJob } from '../../../UserProfile/Slices/userProfileSlice';
 import { useSnackbar } from 'notistack';
-const Payment = ({ jobDetail, isLoggedIn }) => {
+import ConfirmDialog from './ConfirmDialog';
+import { isDOMComponent } from 'react-dom/test-utils';
+const Payment = ({ jobDetail }) => {
   const dispatch = useDispatch();
+  const [open, setOpen] = React.useState(false);
 
-  const { currentUser } = useSelector((state) => state.user);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const { id } = JSON.parse(localStorage.getItem('user')) || '';
   const [values, setValues] = useState({
     maCongViec: jobDetail.congViec.id,
-    maNguoiThue: currentUser.id,
+    maNguoiThue: id,
     ngayThue: dayjs(new Date()).format('DD/MM/YYYY'),
     hoanThanh: false,
   });
   const { userBookingJobs } = useSelector((state) => state.user);
   const { enqueueSnackbar } = useSnackbar();
-  const handleClickPayment = async (values) => {
-    if (isLoggedIn) {
+  const handleClickPayment = async () => {
+    if (id) {
       try {
         setTimeout(await dispatch(bookJob(values)).unwrap(), 2000);
 
-        enqueueSnackbar(userBookingJobs.message, {
+        enqueueSnackbar('Job booked sucessfully', {
           autoHideDuration: 1500,
           variant: 'success',
         });
@@ -49,6 +59,7 @@ const Payment = ({ jobDetail, isLoggedIn }) => {
     } else {
       enqueueSnackbar('Please Log in before checking out', {
         variant: 'warning',
+        autoHideDuration: 1500,
       });
     }
   };
@@ -162,7 +173,7 @@ const Payment = ({ jobDetail, isLoggedIn }) => {
               sx={{ backgroundColor: '#1dbf73', width: '100%', height: '40px' }}
               className={styles.paymentButton}
               onClick={() => {
-                handleClickPayment(values);
+                handleClickOpen();
               }}
             >
               Continue (${jobDetail.congViec.giaTien}.00)
@@ -170,6 +181,12 @@ const Payment = ({ jobDetail, isLoggedIn }) => {
                 <ArrowForwardIcon sx={{ fontSize: '16px' }} />
               </span>
             </Button>
+            <ConfirmDialog
+              open={open}
+              onClose={handleClose}
+              data={jobDetail}
+              handleClickPayment={handleClickPayment}
+            />
           </Stack>
           <Stack>
             <Button

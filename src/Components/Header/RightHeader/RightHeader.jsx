@@ -115,7 +115,7 @@ const RightHeader = ({ children, becomeSeller, color }) => {
 
           {mode === MODE.LOGIN && (
             <Dialog open={open} onClose={handleClose}>
-              <LoginMain sx={{ color: '#000' }} />
+              <LoginMain sx={{ color: '#000' }} onClose={handleClose} />
               <Box textAlign='center' justifyContent='center'>
                 <Button
                   onClick={() => {
@@ -132,7 +132,7 @@ const RightHeader = ({ children, becomeSeller, color }) => {
 
           {mode === MODE.REGISTER && (
             <Dialog open={open} onClose={handleClose}>
-              <RegisterMain sx={{ color: '#000' }} />
+              <RegisterMain sx={{ color: '#000' }} onClose={handleClose} />
               <Box textAlign='center' justifyContent='center'>
                 <Button
                   onClick={() => {
