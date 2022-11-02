@@ -21,11 +21,12 @@ const ActiveGig = () => {
   const navigate = useNavigate();
   const handleViewDetail = async (jobId) => {
     await dispatch(getJobDetailById(jobId)).unwrap();
+    navigate(`/jobs/${jobId}`);
   };
   const handleDeleteJob = async (jobId) => {
     try {
       await dispatch(deleteBookingJob(jobId)).unwrap();
-      enqueueSnackbar(message, { variant: 'success' });
+      enqueueSnackbar('Job Deleted Sucessfully', { variant: 'success' });
     } catch (error) {
       enqueueSnackbar(error, { variant: 'error' });
     }
@@ -40,7 +41,7 @@ const ActiveGig = () => {
   return (
     <section className={styles.activeGig}>
       {isLoading ? (
-        <Loading />
+        <Loading isLoading />
       ) : (
         <div className={styles.activeGig__container}>
           <div className={styles.activeGig__container_header}>
@@ -90,7 +91,11 @@ const ActiveGig = () => {
                 >
                   <Box display='flex'>
                     <Stack width='30%'>
-                      <img src={bookingJob.congViec.hinhAnh} alt='img'></img>
+                      <img
+                        src={bookingJob.congViec.hinhAnh}
+                        alt='img'
+                        srcSet=''
+                      />
                     </Stack>
                     <Stack widht='70%' paddingLeft='30px'>
                       <Typography variant='h5' sx={{ marginBottom: '10px' }}>
