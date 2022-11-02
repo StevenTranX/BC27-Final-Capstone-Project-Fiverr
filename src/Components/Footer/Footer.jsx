@@ -30,7 +30,7 @@ const Footer = () => {
       <div className={styles.landingFooter}>
         <footer className={styles.footer}>
           <Box>
-            <Grid container spacing={10}>
+            <Grid container spacing={1} justifyContent = {'space-between'}>
               <Grid item>
                 <StyledBox>Categories</StyledBox>
                 <Box>

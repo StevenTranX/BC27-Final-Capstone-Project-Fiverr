@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
 import {
-  Box,
-  TextField,
-  Typography,
-  Grid,
-  Button,
-  Container,
+  Box, Button,
+  Container, Grid, TextField,
+  Typography
 } from '@mui/material';
-import styles from './SliderHeader.module.scss';
 import { styled } from '@mui/material/styles';
-import { useDispatch, useSelector } from 'react-redux';
-import { getJobsByName } from '../../../../JobList/Slices/JobListSlice';
-import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Loading from '../../../../../Components/Loading/Loading';
-import SearchIcon from '@mui/icons-material/Search';
+import { getJobsByName } from '../../../../JobList/Slices/JobListSlice';
+import styles from './SliderHeader.module.scss';
 const StyledButton = styled(Button)({
   boxShadow: 'none',
   backgroundColor: '#1dbf73',
