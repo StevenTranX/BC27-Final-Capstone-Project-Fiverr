@@ -19,7 +19,16 @@ const Profile__Bio = (props) => {
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const schema = yup.object().shape({
-    skill: yup.array().of(yup.string()),
+    name: yup.string().required('Please enter your username'),
+    password: yup.string().required('Please enter password').min(6),
+    email: yup.string().email(),
+    phone: yup.string().min(10).max(10),
+    birthday: yup.date(),
+    skill: yup
+      .array()
+      .of(yup.string())
+      .required('Please select at least 1 skill'),
+    certification: yup.array().required('Please select certification'),
   });
   const { userId } = useParams();
   console.log(userId);

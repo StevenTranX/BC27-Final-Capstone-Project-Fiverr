@@ -38,6 +38,7 @@ const ActiveGig = () => {
   useEffect(() => {
     dispatch(getBookingJobs());
   }, []);
+
   return (
     <section className={styles.activeGig}>
       {isLoading ? (

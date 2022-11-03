@@ -94,7 +94,6 @@ const userSlice = createSlice({
     },
     [bookJob.fulfilled]: (state, action) => {
       state.settings.isLoading = false;
-      state.userBookingJobs.push(action.payload);
     },
     [bookJob.rejected]: (state, action) => {
       state.settings.error = true;
