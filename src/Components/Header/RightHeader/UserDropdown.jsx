@@ -59,6 +59,7 @@ export default function UserDropdown(props) {
         anchorEl={anchorEl}
         id='account-menu'
         open={open}
+        onClose={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
