@@ -16,6 +16,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../TranTrongTin-Authentication/slices/authSlice';
 import { Link } from 'react-router-dom';
 import { randomBgColor } from '../../../Modules/UserProfile/Components/Profile/Avatar/Profile__Avatar';
+import ConfirmLogout from './ConfirmLogout';
+import { Button } from '@mui/material';
+import HoverPopover from 'material-ui-popup-state/HoverPopover';
 export default function UserDropdown(props) {
   const { open, handleClick, handleClose, anchorEl } = props;
   const { currentUser } = useSelector((state) => state.auth);
@@ -23,16 +26,25 @@ export default function UserDropdown(props) {
   const handleLogout = () => {
     dispatch(logout());
   };
+  const [openDialog, setOpenDialog] = React.useState(false);
+
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Tooltip title="Account settings">
+        <Tooltip title='Account settings'>
           <IconButton
             onClick={handleClick}
-            size="small"
+            size='small'
             sx={{ ml: 2 }}
             aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
+            aria-haspopup='true'
             aria-expanded={open ? 'true' : undefined}
           >
             <IconButton>
@@ -45,10 +57,8 @@ export default function UserDropdown(props) {
       </Box>
       <Menu
         anchorEl={anchorEl}
-        id="account-menu"
+        id='account-menu'
         open={open}
-        onClose={handleClose}
-        onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -95,16 +105,35 @@ export default function UserDropdown(props) {
 
         <MenuItem>
           <ListItemIcon>
-            <Settings fontSize="small" />
+            <Settings fontSize='small' />
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleLogout}>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
+        <MenuItem>
+          <Button
+            sx={{
+              color: '#000',
+              fontWeight: '400',
+              padding: '0px',
+              textTransform: 'capitalize',
+              fontSize: '16px',
+            }}
+            onClick={() => {
+              handleOpenDialog();
+            }}
+          >
+            <ListItemIcon>
+              <Logout fontSize='small' />
+            </ListItemIcon>
+            Logout
+          </Button>
         </MenuItem>
+        <ConfirmLogout
+          open={openDialog}
+          onClose={handleCloseDialog}
+          handleLogout={handleLogout}
+          handleClose={handleClose}
+        />
       </Menu>
     </React.Fragment>
   );
