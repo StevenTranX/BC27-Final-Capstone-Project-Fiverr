@@ -1,13 +1,10 @@
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import React from 'react';
-import { useState } from 'react';
-import RegisterForm from '../RegisterForm/RegisterForm';
-import { useDispatch } from 'react-redux';
-import { useSnackbar } from 'notistack';
-import { registerUser } from '../../../slices/authSlice';
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import { useSnackbar } from "notistack";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../../slices/authSlice";
+import RegisterForm from "../RegisterForm/RegisterForm";
 export default function RegisterMain(props) {
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -19,14 +16,14 @@ export default function RegisterMain(props) {
       await dispatch(registerUser(values))
         .unwrap()
         .then(() => {
-          enqueueSnackbar('Register Successfully', { variant: 'success' });
+          enqueueSnackbar("Register Successfully", { variant: "success" });
           setTimeout(() => {
             onClose();
           }, 1000);
         });
     } catch (error) {
       console.log(error);
-      enqueueSnackbar(error.message, { variant: 'error' });
+      enqueueSnackbar(error.message, { variant: "error" });
     }
   };
   return (

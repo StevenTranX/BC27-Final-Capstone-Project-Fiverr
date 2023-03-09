@@ -1,8 +1,8 @@
-import { Divider } from '@mui/material';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Profile__Dialog from '../Dialog/Profile__Dialog';
-import styles from './BioTags.module.scss';
+import { Divider } from "@mui/material";
+import React from "react";
+import { Link } from "react-router-dom";
+import Profile__Dialog from "../Dialog/Profile__Dialog";
+import styles from "./BioTags.module.scss";
 const BioTag__Name = (props) => {
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
@@ -15,7 +15,6 @@ const BioTag__Name = (props) => {
   const {
     leftHeader,
     rightHeader,
-    content,
     subContent,
     linkedContent,
     form,

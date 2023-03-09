@@ -1,12 +1,10 @@
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import React from 'react';
-import LoginForm from '../LoginForm/LoginForm';
-import { useDispatch } from 'react-redux';
-import { useSnackbar } from 'notistack';
-import { loginUser } from '../../../slices/authSlice';
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import { useSnackbar } from "notistack";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../../slices/authSlice";
+import LoginForm from "../LoginForm/LoginForm";
 export default function LoginMain(props) {
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -17,8 +15,8 @@ export default function LoginMain(props) {
       await dispatch(loginUser(values))
         .unwrap()
         .then(() => {
-          enqueueSnackbar('Login Successfully', {
-            variant: 'success',
+          enqueueSnackbar("Login Successfully", {
+            variant: "success",
             autoHideDuration: 1500,
           });
           setTimeout(() => {
@@ -28,7 +26,7 @@ export default function LoginMain(props) {
     } catch (error) {
       console.log(error);
       enqueueSnackbar(error.message, {
-        variant: 'error',
+        variant: "error",
         autoHideDuration: 1500,
       });
     }

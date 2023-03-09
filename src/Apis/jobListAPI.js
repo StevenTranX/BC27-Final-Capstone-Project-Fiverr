@@ -1,5 +1,4 @@
-import axios from 'axios';
-import axiosClient from './axiosClient';
+import axiosClient from "./axiosClient";
 
 const jobListAPI = {
   getJobGenres() {
@@ -19,7 +18,7 @@ const jobListAPI = {
     return axiosClient.get(url);
   },
   getJobDetailById(jobId) {
-    const url = `https://fiverrnew.cybersoft.edu.vn/api/cong-viec/lay-cong-viec-chi-tiet/${jobId}`;
+    const url = `/cong-viec/lay-cong-viec-chi-tiet/${jobId}`;
     return axiosClient.get(url);
   },
   getJobCommentById(jobId) {

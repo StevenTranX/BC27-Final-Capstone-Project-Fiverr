@@ -1,13 +1,11 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { Controller } from 'react-hook-form';
-import { TextField } from '@mui/material';
-import { useEffect } from 'react';
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Select from "@mui/material/Select";
+import { useTheme } from "@mui/material/styles";
+import * as React from "react";
+import { Controller } from "react-hook-form";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -20,17 +18,17 @@ const MenuProps = {
 };
 
 const names = [
-  'HTML',
-  'CSS',
-  'Javascript',
-  'Python',
-  'ReactJS',
-  'Angular',
-  'PHP',
-  'Java',
-  'NodeJs',
-  'NextJs',
-  'Other...',
+  "HTML",
+  "CSS",
+  "Javascript",
+  "Python",
+  "ReactJS",
+  "Angular",
+  "PHP",
+  "Java",
+  "NodeJs",
+  "NextJs",
+  "Other...",
 ];
 
 function getStyles(name, personName, theme) {

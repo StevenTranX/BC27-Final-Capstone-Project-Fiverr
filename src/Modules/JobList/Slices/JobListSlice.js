@@ -1,8 +1,9 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import jobListAPI from '../../../Apis/jobListAPI';
-import { getBookingJobs } from '../../UserProfile/Slices/userProfileSlice';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import jobListAPI from "../../../Apis/jobListAPI";
+import { useSnackbar } from "notistack";
+
 export const getJobGenres = createAsyncThunk(
-  'jobList/getJobGenre',
+  "jobList/getJobGenre",
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await jobListAPI.getJobGenres();
@@ -14,7 +15,7 @@ export const getJobGenres = createAsyncThunk(
 );
 
 export const getJobs = createAsyncThunk(
-  'jobList/getJobs',
+  "jobList/getJobs",
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await jobListAPI.getJobs();
@@ -25,18 +26,20 @@ export const getJobs = createAsyncThunk(
   }
 );
 export const getJobsByName = createAsyncThunk(
-  'jobList/getJobsByName',
+  "jobList/getJobsByName",
   async (name, { rejectWithValue }) => {
     try {
       const { data } = await jobListAPI.getJobsByName(name);
+      console.log(data);
       return data.content;
     } catch (error) {
-      rejectWithValue(error);
+      console.log(error);
+      rejectWithValue(error.message);
     }
   }
 );
 export const getJobsById = createAsyncThunk(
-  'jobList/getJobsById',
+  "jobList/getJobsById",
   async (jobId, { rejectWithValue }) => {
     try {
       const { data } = await jobListAPI.getJobById(jobId);
@@ -47,7 +50,7 @@ export const getJobsById = createAsyncThunk(
   }
 );
 export const getJobDetailById = createAsyncThunk(
-  'jobList/getJobDetailById',
+  "jobList/getJobDetailById",
   async (jobId, { rejectWithValue }) => {
     try {
       const { data } = await jobListAPI.getJobDetailById(jobId);
@@ -59,7 +62,7 @@ export const getJobDetailById = createAsyncThunk(
 );
 
 export const getJobCommentById = createAsyncThunk(
-  'jobList/getJobCommentById',
+  "jobList/getJobCommentById",
   async (jobId, { rejectWithValue }) => {
     try {
       const { data } = await jobListAPI.getJobCommentById(jobId);
@@ -71,7 +74,7 @@ export const getJobCommentById = createAsyncThunk(
 );
 
 const jobListSlice = createSlice({
-  name: 'jobList',
+  name: "jobList",
   initialState: {
     currentJobs: [],
     jobsByName: [],
@@ -81,7 +84,7 @@ const jobListSlice = createSlice({
     settings: {
       isLoading: false,
       error: false,
-      message: '',
+      message: "",
     },
     bookingJob: [],
     jobCards: [],
@@ -98,6 +101,7 @@ const jobListSlice = createSlice({
       state.settings.isLoading = true;
     },
     [getJobsByName.fulfilled]: (state, action) => {
+      console.log(action.payload);
       state.jobsByName = action.payload;
       state.settings.isLoading = false;
     },

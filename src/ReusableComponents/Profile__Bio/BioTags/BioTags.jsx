@@ -1,9 +1,8 @@
-import React from 'react';
-import { Divider, Button } from '@mui/material';
-import styles from './BioTags.module.scss';
-import { Link } from 'react-router-dom';
-import Profile__Dialog from '../Dialog/Profile__Dialog';
-import InputField from '../../FormControl/InputField/InputField';
+import { Divider } from "@mui/material";
+import React from "react";
+import { Link } from "react-router-dom";
+import InputField from "../../FormControl/InputField/InputField";
+import styles from "./BioTags.module.scss";
 const BioTags = (props) => {
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
