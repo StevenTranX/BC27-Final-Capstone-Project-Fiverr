@@ -3,12 +3,16 @@ import { Container } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getJobsByName } from "../../Modules/JobList/Slices/JobListSlice";
+import {
+  getJobsById,
+  getJobsByName,
+} from "../../Modules/JobList/Slices/JobListSlice";
 import LandingPage from "../../Modules/LandingPage/Pages/LandingPage";
 import UserProfileHeader from "../../Modules/UserProfile/Components/Header/UserProfileHeader";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Loading from "../Loading/Loading";
+import NavBar from "../NavBar/NavBar";
 import styles from "./MainLayout.module.scss";
 const MainLayout = () => {
   const [color, setColor] = useState(false);
@@ -37,6 +41,15 @@ const MainLayout = () => {
       console.log(error);
     }
   };
+
+  const handleSelectJobId = async (jobId) => {
+    try {
+      await dispatch(getJobsById(jobId)).unwrap();
+      navigate("/jobs");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   window.addEventListener("scroll", handleChangeColor);
   {
     if (isLoading) {
@@ -51,9 +64,11 @@ const MainLayout = () => {
                 setInputValue={setInputValue}
                 handleChange={handleChange}
                 onSubmit={handleSubmit}
-              />
+              >
+                <NavBar handleSelect={handleSelectJobId} />
+              </UserProfileHeader>
             ) : (
-              <Header color={color} />
+              <Header color={color}></Header>
             )}
           </div>
           <LandingPage />
