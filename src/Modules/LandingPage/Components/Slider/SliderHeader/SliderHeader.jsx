@@ -54,6 +54,25 @@ const StyledOutlinedButton = styled(Button)({
   color: "#fff",
   cursor: "pointer",
 });
+
+const suggestiveButtons = [
+  {
+    id: 1,
+    title: "Website Design",
+  },
+  {
+    id: 2,
+    title: "Marketing",
+  },
+  {
+    id: 3,
+    title: "Logo Design",
+  },
+  {
+    id: 4,
+    title: "Video Editing",
+  },
+];
 const SliderHeader = () => {
   const { isLoading, error } = useSelector((state) => state.jobList.settings);
   const dispatch = useDispatch();
@@ -158,50 +177,19 @@ const SliderHeader = () => {
               <Grid item>
                 <Typography> Popular:</Typography>
               </Grid>
-              <Grid item>
-                <StyledOutlinedButton
-                  onClick={handleSubmit(async () => {
-                    await dispatch(getJobsByName("website")).unwrap();
-                    navigate("/jobs");
-                  })}
-                  variant="outlined"
-                >
-                  Website Design
-                </StyledOutlinedButton>
-              </Grid>
-              <Grid item>
-                <StyledOutlinedButton
-                  onClick={handleSubmit(async () => {
-                    await dispatch(getJobsByName("marketing")).unwrap();
-                    navigate("/jobs");
-                  })}
-                  variant="outlined"
-                >
-                  Marketing
-                </StyledOutlinedButton>
-              </Grid>
-              <Grid item>
-                <StyledOutlinedButton
-                  onClick={handleSubmit(async () => {
-                    await dispatch(getJobsByName("logo")).unwrap();
-                    navigate("/jobs");
-                  })}
-                  variant="outlined"
-                >
-                  Logo Design
-                </StyledOutlinedButton>
-              </Grid>
-              <Grid item>
-                <StyledOutlinedButton
-                  onClick={handleSubmit(async () => {
-                    await dispatch(getJobsByName("video")).unwrap();
-                    navigate("/jobs");
-                  })}
-                  variant="outlined"
-                >
-                  Video Editing
-                </StyledOutlinedButton>
-              </Grid>
+              {suggestiveButtons.map((button) => (
+                <Grid item key={button.id}>
+                  <StyledOutlinedButton
+                    onClick={handleSubmit(async () => {
+                      await dispatch(getJobsByName(button.title)).unwrap();
+                      navigate("/jobs");
+                    })}
+                    variant="outlined"
+                  >
+                    {button.title}
+                  </StyledOutlinedButton>
+                </Grid>
+              ))}
             </Grid>
           </Box>
         </Box>

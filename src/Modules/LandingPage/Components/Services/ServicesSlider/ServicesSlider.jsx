@@ -71,7 +71,7 @@ export default function ServicesSlider() {
   return (
     <>
       <Swiper
-        className={styles.mySwiper}
+        className={`${styles.mySwiper} overflow-visible`}
         slidesPerView={5}
         spaceBetween={30}
         freeMode={true}
@@ -81,6 +81,7 @@ export default function ServicesSlider() {
         modules={[FreeMode, Pagination, Scrollbar, Navigation]}
         slidesPerGroup={5}
         speed={500}
+        loop={true}
       >
         {categories &&
           categories.map((item) => (
@@ -88,17 +89,18 @@ export default function ServicesSlider() {
               style={{
                 cursor: "pointer",
               }}
-              className="cursor-pointer"
               onClick={async () => {
                 await dispatch(getJobsByName(item.title)).unwrap();
                 navigate("/jobs");
               }}
               key={item.id}
             >
-              <div className={`${styles.slideWrapper} cursor-pointer`}>
-                <div className={styles.slideHeader}>
-                  <h6>{item.slogan}</h6>
-                  <h3>{item.title}</h3>
+              <div className="w-full max-w-[293px] h-[345px] relative">
+                <div className="absolute top-3 text-left left-[20px]  ">
+                  <h6 className="text-white font-medium text-sm ">
+                    {item.slogan}
+                  </h6>
+                  <h3 className="text-white text-lg ">{item.title}</h3>
                 </div>
                 <img src={item.imgUrl} alt={item.title} />
               </div>

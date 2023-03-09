@@ -1,7 +1,7 @@
-import React from 'react';
-import { Container } from '@mui/material';
-import styles from './Services.module.scss';
-import ServicesSlider from './ServicesSlider/ServicesSlider';
+import React from "react";
+import { Container } from "@mui/material";
+import styles from "./Services.module.scss";
+import ServicesSlider from "./ServicesSlider/ServicesSlider";
 
 const Services = () => {
   return (
@@ -11,7 +11,7 @@ const Services = () => {
           <h2>Popular professional services</h2>
         </header>
       </div>
-      <div className={styles.servicesSlider}>
+      <div className={`${styles.servicesSlider} mt-5`}>
         <ServicesSlider />
       </div>
     </Container>
