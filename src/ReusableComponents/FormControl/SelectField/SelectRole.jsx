@@ -5,17 +5,17 @@ import Select from "@mui/material/Select";
 import React from "react";
 import { Controller } from "react-hook-form";
 
-const SelectField = (props) => {
+const SelectRole = (props) => {
   const { form, name, label, disabled, control } = props;
   const {
     formState: { errors },
   } = form;
   const hasError = errors[name];
 
-  const [age, setAge] = React.useState("");
+  const [role, setRole] = React.useState("ADMIN");
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setRole(event.target.value);
   };
   return (
     <>
@@ -31,13 +31,13 @@ const SelectField = (props) => {
             <Select
               labelId={name}
               id={name}
-              value={age}
+              value={role}
               label={label}
               onChange={handleChange}
               {...field}
             >
-              <MenuItem value={true}>Male</MenuItem>
-              <MenuItem value={false}>Female</MenuItem>
+              <MenuItem value="ADMIN">Admin</MenuItem>
+              <MenuItem value="USER">User</MenuItem>
             </Select>
           </FormControl>
         )}
@@ -46,4 +46,4 @@ const SelectField = (props) => {
   );
 };
 
-export default SelectField;
+export default SelectRole;

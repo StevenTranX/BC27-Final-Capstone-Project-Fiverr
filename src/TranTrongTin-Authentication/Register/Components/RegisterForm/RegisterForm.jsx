@@ -13,6 +13,7 @@ import MultipleSelectCertification from "../../../../ReusableComponents/FormCont
 import MultipleSelectSkillField from "../../../../ReusableComponents/FormControl/MultipleSelectField/MultipleSelectSkillField";
 import PasswordField from "../../../../ReusableComponents/FormControl/PasswordField";
 import SelectField from "../../../../ReusableComponents/FormControl/SelectField";
+import SelectRole from "../../../../ReusableComponents/FormControl/SelectField/SelectRole";
 const RegisterForm = () => {
   const schema = yup.object().shape({
     name: yup.string().required("Please enter your username"),
@@ -85,12 +86,12 @@ const RegisterForm = () => {
           form={form}
           control={control}
         />
-        {/* <Grid container spacing={2}>
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <PasswordField
               name="password"
               label="Password"
-              refs={register("password")}
+              control={control}
               form={form}
             />
           </Grid>
@@ -99,25 +100,21 @@ const RegisterForm = () => {
               name="retypePassword"
               label="Retype Password"
               form={form}
+              control={control}
               value={retypePassword}
               onChange={(event) => setRetypePassword(event.target.value)}
             />
           </Grid>
         </Grid>
-        <InputField
-          name="email"
-          label="Email"
-          refs={register("email")}
-          form={form}
-        /> */}
-        {/* <Grid container spacing={2}>
+        <InputField name="email" label="Email" control={control} form={form} />
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <DatePickerField
               name="birthday"
               label="Birthday"
-              refs={register("birthday")}
               form={form}
               setValue={setValue}
+              control={control}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -125,8 +122,8 @@ const RegisterForm = () => {
               type="number"
               name="phone"
               label="Phone Number"
-              refs={register("phone")}
               form={form}
+              control={control}
             />
           </Grid>
         </Grid>
@@ -135,16 +132,18 @@ const RegisterForm = () => {
             <SelectField
               name="gender"
               label="Gender"
-              refs={register("gender")}
               form={form}
+              control={control}
+              select1={"Male"}
+              select2={"Female"}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <InputField
+            <SelectRole
               name="role"
               label="Role"
-              refs={register("role")}
               form={form}
+              control={control}
             />
           </Grid>
         </Grid>
@@ -153,8 +152,8 @@ const RegisterForm = () => {
             <MultipleSelectSkillField
               name="skill"
               label="Skill"
-              inputRef={register("skill")}
               form={form}
+              control={control}
               onChange={setValue}
             />
           </Grid>
@@ -164,10 +163,11 @@ const RegisterForm = () => {
               label="Certification"
               refs={register("certification")}
               form={form}
+              control={control}
               onChange={setValue}
             />
           </Grid>
-        </Grid> */}
+        </Grid>
         <Button
           sx={{
             backgroundColor: "purple",
