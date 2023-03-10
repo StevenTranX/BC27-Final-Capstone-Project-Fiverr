@@ -1,20 +1,18 @@
-import React from 'react';
-import { Box, IconButton, Stack, Typography } from '@mui/material';
-import LoginMain from '../../../TranTrongTin-Authentication/Login/Components/LoginMain/LoginMain';
-import RegisterMain from '../../../TranTrongTin-Authentication/Register/Components/RegisterMain';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { AccountCircleRounded } from '@mui/icons-material';
-import UserDropdown from './UserDropdown';
-import userAPI from '../../../Apis/userAPI';
-import styles from './RightHeader.module.scss';
+import { Box, Stack, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import LoginMain from "../../../TranTrongTin-Authentication/Login/Components/LoginMain/LoginMain";
+import RegisterMain from "../../../TranTrongTin-Authentication/Register/Components/RegisterMain";
+import styles from "./RightHeader.module.scss";
+import UserDropdown from "./UserDropdown";
+
 const RightHeader = ({ children, becomeSeller, color }) => {
   const [open, setOpen] = React.useState(false);
   const MODE = {
-    LOGIN: 'login',
-    REGISTER: 'register',
+    LOGIN: "login",
+    REGISTER: "register",
   };
   const [mode, setMode] = useState(MODE.REGISTER);
   const { currentUser } = useSelector((state) => state.auth);
@@ -39,15 +37,15 @@ const RightHeader = ({ children, becomeSeller, color }) => {
     <>
       <Box>
         <Stack
-          direction='row'
+          direction="row"
           spacing={2}
-          alignItems='center'
-          justifyContent='flex-end'
+          alignItems="center"
+          justifyContent="flex-end"
         >
           <Typography
-            sx={{ cursor: 'pointer' }}
-            component='p'
-            variant='h6'
+            sx={{ cursor: "pointer" }}
+            component="p"
+            variant="h6"
             className={!color && styles.nav__light}
           >
             {becomeSeller}
@@ -55,34 +53,41 @@ const RightHeader = ({ children, becomeSeller, color }) => {
           {!isLoggedIn && (
             <>
               <Button
+                style={{ textTransform: "none" }}
                 onClick={() => {
                   handleOpen();
                   setMode(MODE.LOGIN);
                 }}
                 sx={{
-                  borderColor: '#fff',
-                  color: '#fff',
+                  borderColor: "#fff",
+                  color: "#fff",
+                  "&:hover": {
+                    color: "#1dbf73",
+                  },
+                  fontSize: "16px",
                 }}
-                className={color && styles.nav__dark}
+                className={color && styles.signin__button}
               >
                 Sign In
               </Button>
               <Button
+                style={{ textTransform: "none" }}
                 disabled={false}
-                variant='outlined'
+                variant="outlined"
                 onClick={() => {
                   handleOpen();
                   setMode(MODE.REGISTER);
                 }}
                 sx={{
-                  '&:hover': {
-                    backgroundColor: '#1dbf73',
-                    borderColor: '#1dbf73',
+                  "&:hover": {
+                    backgroundColor: "#1dbf73",
+                    borderColor: "#1dbf73",
                   },
-                  color: '#fff',
-                  borderColor: '#fff',
+                  color: "#fff",
+                  borderColor: "#fff",
+                  fontSize: "16px",
                 }}
-                className={color && styles.nav__dark}
+                className={color && styles.join__button}
               >
                 Join
               </Button>
@@ -98,14 +103,14 @@ const RightHeader = ({ children, becomeSeller, color }) => {
               />
               <Button
                 disabled={true}
-                variant='outlined'
+                variant="outlined"
                 onClick={() => {
                   handleOpen();
                   setMode(MODE.REGISTER);
                 }}
                 sx={{
-                  width: '70px',
-                  height: '30px',
+                  width: "70px",
+                  height: "30px",
                 }}
               >
                 Join
@@ -115,14 +120,15 @@ const RightHeader = ({ children, becomeSeller, color }) => {
 
           {mode === MODE.LOGIN && (
             <Dialog open={open} onClose={handleClose}>
-              <LoginMain sx={{ color: '#000' }} onClose={handleClose} />
-              <Box textAlign='center' justifyContent='center'>
+              <LoginMain sx={{ color: "#000" }} onClose={handleClose} />
+              <Box textAlign="center" justifyContent="center">
                 <Button
                   onClick={() => {
                     setMode(MODE.REGISTER);
                   }}
-                  color='secondary'
-                  sx={{ fontSize: '13px' }}
+                  color="secondary"
+                  sx={{ fontSize: "13px" }}
+                  className="hover:text-underline"
                 >
                   Don't have an account ? Register here
                 </Button>
@@ -132,14 +138,15 @@ const RightHeader = ({ children, becomeSeller, color }) => {
 
           {mode === MODE.REGISTER && (
             <Dialog open={open} onClose={handleClose}>
-              <RegisterMain sx={{ color: '#000' }} onClose={handleClose} />
-              <Box textAlign='center' justifyContent='center'>
+              <RegisterMain sx={{ color: "#000" }} onClose={handleClose} />
+              <Box textAlign="center" justifyContent="center">
                 <Button
+                  className="hover:text-underline"
                   onClick={() => {
                     setMode(MODE.LOGIN);
                   }}
-                  color='secondary'
-                  sx={{ fontSize: '13px' }}
+                  color="secondary"
+                  sx={{ fontSize: "13px" }}
                 >
                   Already have an account ? Login here
                 </Button>

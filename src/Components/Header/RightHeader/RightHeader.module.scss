@@ -2,7 +2,17 @@
   color: #fff;
   border-color: #fff;
 }
-.nav__dark {
-  color: #000 !important;
-  border-color: #000 !important;
+.join__button {
+  color: #1dbf73 !important;
+  border-color: #1dbf73 !important;
+  &:hover {
+    color: #fff !important;
+  }
+}
+
+.signin__button {
+  color: #74767e !important;
+  &:hover {
+    color: #1dbf73 !important;
+  }
 }
