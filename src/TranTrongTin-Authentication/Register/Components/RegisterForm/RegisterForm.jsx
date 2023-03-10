@@ -1,6 +1,6 @@
-import { LinearProgress, Typography } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
+import { LinearProgress, Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
@@ -13,7 +13,7 @@ import MultipleSelectCertification from "../../../../ReusableComponents/FormCont
 import MultipleSelectSkillField from "../../../../ReusableComponents/FormControl/MultipleSelectField/MultipleSelectSkillField";
 import PasswordField from "../../../../ReusableComponents/FormControl/PasswordField";
 import SelectField from "../../../../ReusableComponents/FormControl/SelectField";
-const RegisterForm = (props) => {
+const RegisterForm = () => {
   const schema = yup.object().shape({
     name: yup.string().required("Please enter your username"),
     password: yup.string().required("Please enter password").min(6),
@@ -45,24 +45,26 @@ const RegisterForm = (props) => {
       skill: [],
       certification: [],
     },
-    resolver: yupResolver(schema),
+    // resolver: yupResolver(schema),
   });
 
   const [retypePassword, setRetypePassword] = useState();
-  const { register, handleSubmit, setValue } = form;
+  const { register, handleSubmit, setValue, control } = form;
   const { isSubmitting } = form.formState;
-  const handleSubmitChild = async (values) => {
-    const { onSubmit } = props;
-    try {
-      if (onSubmit) {
-        await onSubmit(values);
-        form.reset();
-        setRetypePassword("");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const onSubmit = handleSubmit(async (values) => {
+    // const { onSubmit } = props;
+    // try {
+    //   if (onSubmit) {
+    //     await onSubmit(values);
+    //     form.reset();
+    //     setRetypePassword("");
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    console.log(values);
+  });
+
   return (
     <div>
       <Avatar sx={{ backgroundColor: "purple", margin: "0 auto" }}>
@@ -76,14 +78,14 @@ const RegisterForm = (props) => {
         Create an account
       </Typography>
       {isSubmitting && <LinearProgress color="secondary" />}
-      <form onSubmit={handleSubmit(handleSubmitChild)}>
+      <form onSubmit={onSubmit}>
         <InputField
           name="name"
           label="Username"
-          refs={register("name")}
           form={form}
+          control={control}
         />
-        <Grid container spacing={2}>
+        {/* <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <PasswordField
               name="password"
@@ -107,8 +109,8 @@ const RegisterForm = (props) => {
           label="Email"
           refs={register("email")}
           form={form}
-        />
-        <Grid container spacing={2}>
+        /> */}
+        {/* <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <DatePickerField
               name="birthday"
@@ -165,7 +167,7 @@ const RegisterForm = (props) => {
               onChange={setValue}
             />
           </Grid>
-        </Grid>
+        </Grid> */}
         <Button
           sx={{
             backgroundColor: "purple",

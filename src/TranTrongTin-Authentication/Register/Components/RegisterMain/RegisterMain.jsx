@@ -10,26 +10,10 @@ export default function RegisterMain(props) {
   const { enqueueSnackbar } = useSnackbar();
   const { onClose } = props;
 
-  const handleSubmit = async (values) => {
-    console.log(values);
-    try {
-      await dispatch(registerUser(values))
-        .unwrap()
-        .then(() => {
-          enqueueSnackbar("Register Successfully", { variant: "success" });
-          setTimeout(() => {
-            onClose();
-          }, 1000);
-        });
-    } catch (error) {
-      console.log(error);
-      enqueueSnackbar(error.message, { variant: "error" });
-    }
-  };
   return (
     <div>
       <DialogContent>
-        <RegisterForm closeDiaglog={onClose} onSubmit={handleSubmit} />
+        <RegisterForm closeDiaglog={onClose} />
       </DialogContent>
       <DialogActions>
         {/* <Button onClick={handleClose}>Cancel</Button>

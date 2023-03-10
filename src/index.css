@@ -45,11 +45,18 @@ a {
 .MuiInputBase-root {
   height: 100%;
 }
-.MuiOutlinedInput-root {
+.MuiInput .MuiOutlinedInput-root {
   height: 100%;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
 .MuiOutlinedInput-root::placeholder {
   margin-left: 15px;
+}
+
+.MuiOutlinedInput-root:before {
+  border-bottom: none;
+}
+.MuiOutlinedInput-root {
+  border-bottom: none !important;
 }
