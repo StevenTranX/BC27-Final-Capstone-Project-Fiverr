@@ -1,5 +1,4 @@
 import { Box, Grid, ListItem, ListItemText, MenuItem } from "@mui/material";
-import Typography from "@mui/material/Typography";
 import {
   bindHover,
   bindPopover,
@@ -8,6 +7,7 @@ import {
 import HoverPopover from "material-ui-popup-state/HoverPopover";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { StyledLink } from "../../../Footer/CategoriesList/CategoriesList";
 import { StyledBox } from "../../../Footer/Footer";
 import styles from "./NavMenu.module.scss";
@@ -42,12 +42,16 @@ const NavMenu = (props) => {
         }}
       >
         <Box sx={{ p: 2 }}>
+          add
           <Grid container spacing={10}>
             {job.dsNhomChiTietLoai.map((jobGenres) => {
-              return (
+              const emptyJobGenres = job.dsNhomChiTietLoai.length === 0;
+              return !emptyJobGenres ? (
                 <Grid item key={jobGenres.id}>
                   <StyledBox>{jobGenres.tenNhom}</StyledBox>
                   {jobGenres.dsChiTietLoai.map((jobGenre) => {
+                    const emptyJob = !jobGenre;
+                    console.log(emptyJob);
                     return (
                       <ListItem key={jobGenre.id} disablePadding>
                         <StyledLink
@@ -63,6 +67,8 @@ const NavMenu = (props) => {
                     );
                   })}
                 </Grid>
+              ) : (
+                <Link to="/">No Data Found</Link>
               );
             })}
           </Grid>
