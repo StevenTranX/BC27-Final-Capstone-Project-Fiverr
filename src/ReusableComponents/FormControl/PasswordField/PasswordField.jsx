@@ -1,14 +1,14 @@
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { FormHelperText, OutlinedInput } from '@mui/material';
-import FormControl from '@mui/material/FormControl';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import InputLabel from '@mui/material/InputLabel';
-import React, { useState } from 'react';
-import { Controller } from 'react-hook-form';
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { FormHelperText, OutlinedInput } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import InputLabel from "@mui/material/InputLabel";
+import React, { useState } from "react";
+import { Controller } from "react-hook-form";
 
-const PasswordField = React.forwardRef((props) => {
+const PasswordField = (props) => {
   const { form, name, label, disabled } = props;
   const {
     formState: { errors },
@@ -26,21 +26,17 @@ const PasswordField = React.forwardRef((props) => {
       control={control}
       name={name}
       label={label}
-      render={({
-        field,
-        fieldState: { isTouched, isDirty, error },
-        formState,
-      }) => (
-        <FormControl fullWidth margin='normal' variant='outlined'>
-          <InputLabel htmlFor='outlined-adornment-password'>{label}</InputLabel>
+      render={({ field }) => (
+        <FormControl fullWidth margin="normal" variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">{label}</InputLabel>
           <OutlinedInput
             label={label}
+            type={showPassword ? "text" : "password"}
             {...field}
-            type={showPassword ? 'text' : 'password'}
             endAdornment={
-              <InputAdornment position='end'>
+              <InputAdornment position="end">
                 <IconButton
-                  aria-label='toggle password visibility'
+                  aria-label="toggle password visibility"
                   onClick={toggleShowPassword}
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -49,7 +45,7 @@ const PasswordField = React.forwardRef((props) => {
             }
           />
           <FormHelperText
-            sx={{ margin: 0, marginTop: '12px', fontWeight: '14px' }}
+            sx={{ margin: 0, marginTop: "12px", fontWeight: "14px" }}
             error={!!hasError}
           >
             {errors[name]?.message}
@@ -58,5 +54,5 @@ const PasswordField = React.forwardRef((props) => {
       )}
     />
   );
-});
+};
 export default PasswordField;

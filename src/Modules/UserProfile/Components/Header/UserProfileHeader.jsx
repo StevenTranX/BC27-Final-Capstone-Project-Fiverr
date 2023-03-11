@@ -1,11 +1,9 @@
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import MoreIcon from "@mui/icons-material/MoreVert";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+import MoreIcon from "@mui/icons-material/MoreVert";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import { Button, Container, Divider } from "@mui/material";
+import { Container, Divider } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
@@ -16,12 +14,11 @@ import MenuItem from "@mui/material/MenuItem";
 import { alpha, styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
+import RightHeader from "../../../../Components/Header/RightHeader/RightHeader";
 import fiverrLogo from "../../../../Images/UserProfile/vector14.svg";
 import styles from "./UserProfileHeader.module.scss";
-import RightHeader from "../../../../Components/Header/RightHeader/RightHeader";
-import { useDispatch } from "react-redux";
-import { getJobsByName } from "../../../JobList/Slices/JobListSlice";
-import { useNavigate } from "react-router-dom";
+
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,

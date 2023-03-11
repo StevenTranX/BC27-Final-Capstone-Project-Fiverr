@@ -1,21 +1,20 @@
-import { Container, Divider, Typography } from "@mui/material";
+import { Container, Divider } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import ScrollToTop from "react-scroll-to-top";
 import Footer from "../../../Components/Footer/Footer";
 import NavBar from "../../../Components/NavBar/NavBar";
+import noData from "../../../Images/Loading/49e58d5922019b8ec4642a2e2b9291c2.png";
 import UserProfileHeader from "../../UserProfile/Components/Header/UserProfileHeader";
-import JobList__Cards from "../Components/JobList__cards/JobList__Cards";
-import styles from "./JobList.module.scss";
+import CardListSkeleton from "../Components/CardListSkeleton/CardListSkeleton";
+import JobListCards from "../Components/JobList__cards/JobList_Cards";
 import {
-  getJobsByName,
   getJobGenres,
   getJobsById,
+  getJobsByName,
 } from "../Slices/JobListSlice";
-import { useNavigate } from "react-router-dom";
-import Loading from "../../../Components/Loading/Loading";
-import noData from "../../../Images/Loading/49e58d5922019b8ec4642a2e2b9291c2.png";
-import ScrollToTop from "react-scroll-to-top";
-import CardListSkeleton from "../Components/CardListSkeleton/CardListSkeleton";
+import styles from "./JobList.module.scss";
 const JobList = () => {
   const dispatch = useDispatch();
   const { jobsByName } = useSelector((state) => state.jobList);
@@ -65,7 +64,7 @@ const JobList = () => {
         <div className={styles.jobList__navBar}>
           <NavBar handleSelect={handleSelectJobId} />
         </div>
-        <div className={styles.jobList__cards}>
+        <div className={"mb-10"}>
           {jobsByName?.length === 0 && (
             <div
               style={{
@@ -87,7 +86,7 @@ const JobList = () => {
           {isLoading ? (
             <CardListSkeleton />
           ) : (
-            <JobList__Cards jobsByName={jobsByName} />
+            <JobListCards jobsByName={jobsByName} />
           )}
         </div>
         <Divider />

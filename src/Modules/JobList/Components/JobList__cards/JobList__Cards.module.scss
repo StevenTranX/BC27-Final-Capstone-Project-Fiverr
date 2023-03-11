@@ -12,8 +12,7 @@
           .col__header {
             display: flex;
             align-items: center;
-            .col__avatar {
-            }
+            margin: -10px 0px;
             .col__name {
               & > h6 {
                 padding: 0px 0px;
@@ -26,10 +25,10 @@
           }
           .price {
             margin-left: 8px;
-            font-size: 18px;
+            font-size: 16px;
             color: #404145;
             text-align: right;
-            font-weight: 400;
+            font-weight: 700;
           }
           .cardActions {
             border: 1px solid #e4e5e7;

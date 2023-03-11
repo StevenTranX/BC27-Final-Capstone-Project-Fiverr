@@ -18,10 +18,6 @@ const BioTags = (props) => {
     content,
     subContent,
     linkedContent,
-    headerContent,
-    headerTitle,
-    placeholder,
-    form,
     children,
   } = props;
   return (

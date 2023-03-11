@@ -79,7 +79,7 @@ const SliderHeader = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  const { register, handleSubmit, control } = useForm({
+  const { handleSubmit, control } = useForm({
     defaultValues: {
       searchContent: "",
     },
@@ -114,7 +114,7 @@ const SliderHeader = () => {
           >
             Find the perfect <i>freelance</i> services for your business
           </Typography>
-          <Box fullWidth height={"60px"}>
+          <Box height={"60px"}>
             <form onSubmit={onSubmitSearch}>
               <Grid container>
                 <Grid
@@ -133,13 +133,9 @@ const SliderHeader = () => {
                   <Controller
                     control={control}
                     name="searchContent"
-                    disableUnderline
                     render={({ field }) => (
                       <StyledInput
                         variant="standard"
-                        inputProps={{
-                          disableUnderline: true,
-                        }}
                         className={styles.inputField}
                         sx={{
                           border: "none",

@@ -8,7 +8,7 @@ import RegisterMain from "../../../TranTrongTin-Authentication/Register/Componen
 import styles from "./RightHeader.module.scss";
 import UserDropdown from "./UserDropdown";
 
-const RightHeader = ({ children, becomeSeller, color }) => {
+const RightHeader = ({ becomeSeller, color }) => {
   const [open, setOpen] = React.useState(false);
   const MODE = {
     LOGIN: "login",
@@ -44,9 +44,7 @@ const RightHeader = ({ children, becomeSeller, color }) => {
         >
           <Typography
             sx={{ cursor: "pointer" }}
-            component="p"
-            variant="h6"
-            className={!color && styles.nav__light}
+            className={`${!color && styles.nav__light} text-3xl font-semibold `}
           >
             {becomeSeller}
           </Typography>

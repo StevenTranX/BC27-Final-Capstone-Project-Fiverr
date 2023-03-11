@@ -1,18 +1,16 @@
 import { Box, Grid, ListItem, ListItemText, MenuItem } from "@mui/material";
-import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
+import {
+  bindHover,
+  bindPopover,
+  usePopupState,
+} from "material-ui-popup-state/hooks";
+import HoverPopover from "material-ui-popup-state/HoverPopover";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { StyledLink } from "../../../Footer/CategoriesList/CategoriesList";
 import { StyledBox } from "../../../Footer/Footer";
 import styles from "./NavMenu.module.scss";
-import HoverPopover from "material-ui-popup-state/HoverPopover";
-import {
-  usePopupState,
-  bindHover,
-  bindPopover,
-} from "material-ui-popup-state/hooks";
-import { Button } from "@mui/material";
-import { useDispatch } from "react-redux";
 
 const NavMenu = (props) => {
   const { job, handleSelectById } = props;
@@ -32,7 +30,6 @@ const NavMenu = (props) => {
       <MenuItem
         {...bindHover(popupState)}
         className={styles.nav__item}
-        disablePadding
         sx={{ marginLeft: "-12px" }}
       >
         {job.tenLoaiCongViec}
@@ -44,34 +41,32 @@ const NavMenu = (props) => {
           horizontal: "left",
         }}
       >
-        <Typography sx={{ p: 2 }}>
-          <Box>
-            <Grid container spacing={10}>
-              {job.dsNhomChiTietLoai.map((jobGenres) => {
-                return (
-                  <Grid item>
-                    <StyledBox>{jobGenres.tenNhom}</StyledBox>
-                    {jobGenres.dsChiTietLoai.map((jobGenre) => {
-                      return (
-                        <ListItem disablePadding>
-                          <StyledLink
-                            onClick={() => handleSelect(jobGenre.id)}
-                            underline="hover"
-                          >
-                            <ListItemText
-                              sx={{ fontSize: "16px" }}
-                              primary={jobGenre.tenChiTiet}
-                            ></ListItemText>
-                          </StyledLink>
-                        </ListItem>
-                      );
-                    })}
-                  </Grid>
-                );
-              })}
-            </Grid>
-          </Box>
-        </Typography>
+        <Box sx={{ p: 2 }}>
+          <Grid container spacing={10}>
+            {job.dsNhomChiTietLoai.map((jobGenres) => {
+              return (
+                <Grid item key={jobGenres.id}>
+                  <StyledBox>{jobGenres.tenNhom}</StyledBox>
+                  {jobGenres.dsChiTietLoai.map((jobGenre) => {
+                    return (
+                      <ListItem key={jobGenre.id} disablePadding>
+                        <StyledLink
+                          onClick={() => handleSelect(jobGenre.id)}
+                          underline="hover"
+                        >
+                          <ListItemText
+                            sx={{ fontSize: "16px" }}
+                            primary={jobGenre.tenChiTiet}
+                          ></ListItemText>
+                        </StyledLink>
+                      </ListItem>
+                    );
+                  })}
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Box>
       </HoverPopover>
     </>
   );

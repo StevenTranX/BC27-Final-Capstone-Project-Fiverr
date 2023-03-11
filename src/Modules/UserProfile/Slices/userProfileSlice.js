@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import userAPI from '../../../Apis/userAPI';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import userAPI from "../../../Apis/userAPI";
 export const updateUser = createAsyncThunk(
-  'user/update',
+  "user/update",
   async (userData, { rejectWithValue, dispatch }) => {
     try {
       const { id } = userData;
@@ -15,12 +15,11 @@ export const updateUser = createAsyncThunk(
   }
 );
 export const getUser = createAsyncThunk(
-  'user/get',
+  "user/get",
   async (userId, { rejectWithValue }) => {
     try {
       const { data } = await userAPI.getUser(userId);
-      console.log('test data returned', data);
-      localStorage.setItem('user', JSON.stringify(data.content));
+      localStorage.setItem("user", JSON.stringify(data.content));
       return data.content;
     } catch (error) {
       console.log(error.response.data.content);
@@ -28,9 +27,9 @@ export const getUser = createAsyncThunk(
   }
 );
 export const getBookingJobs = createAsyncThunk(
-  'user/bookingJobs',
+  "user/bookingJobs",
   async (_, { rejectWithValue }) => {
-    const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem("access_token");
     try {
       const { data } = await userAPI.getBookingJobs();
       return data.content;
@@ -41,7 +40,7 @@ export const getBookingJobs = createAsyncThunk(
   }
 );
 export const deleteBookingJob = createAsyncThunk(
-  'jobList/deleteBookingJob',
+  "jobList/deleteBookingJob",
   async (jobId, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await userAPI.deleteBookingJob(jobId);
@@ -53,7 +52,7 @@ export const deleteBookingJob = createAsyncThunk(
   }
 );
 export const bookJob = createAsyncThunk(
-  'user/bookJob',
+  "user/bookJob",
   async (info, { rejectWithValue }) => {
     try {
       const { data } = await userAPI.bookJob(info);
@@ -64,13 +63,13 @@ export const bookJob = createAsyncThunk(
   }
 );
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState: {
-    currentUser: JSON.parse(localStorage.getItem('user')) || {},
+    currentUser: JSON.parse(localStorage.getItem("user")) || {},
     settings: {
       isLoading: false,
       error: false,
-      message: '',
+      message: "",
     },
     userBookingJobs: [],
   },
