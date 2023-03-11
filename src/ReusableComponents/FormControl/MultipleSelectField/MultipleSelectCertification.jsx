@@ -1,11 +1,11 @@
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import Select from '@mui/material/Select';
-import { useTheme } from '@mui/material/styles';
-import * as React from 'react';
-import { Controller } from 'react-hook-form';
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Select from "@mui/material/Select";
+import { useTheme } from "@mui/material/styles";
+import * as React from "react";
+import { Controller } from "react-hook-form";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -18,16 +18,16 @@ const MenuProps = {
 };
 
 const names = [
-  'Cybersoft Education',
-  'FPT University',
-  'Utah Valley',
-  'IWA Certification',
-  'Certified Software Development Professional - IEEE',
-  'Web Technologies',
-  '	Microsoft Certified Solutions Developer (MCSD)',
-  'Microsoft Certified Application Developer (MCAD)',
-  '	Javascript Development Certified Professional',
-  'Other...',
+  "Cybersoft Education",
+  "FPT University",
+  "Utah Valley",
+  "IWA Certification",
+  "Certified Software Development Professional - IEEE",
+  "Web Technologies",
+  "	Microsoft Certified Solutions Developer (MCSD)",
+  "Microsoft Certified Application Developer (MCAD)",
+  "	Javascript Development Certified Professional",
+  "Other...",
 ];
 
 function getStyles(name, personName, theme) {
@@ -40,7 +40,7 @@ function getStyles(name, personName, theme) {
 }
 
 export default function MultipleSelectCertification(props) {
-  const { form, name, label, disabled, setValue, value } = props;
+  const { form, name, label, disabled } = props;
   const {
     formState: { errors },
     control,
@@ -48,7 +48,6 @@ export default function MultipleSelectCertification(props) {
   const hasError = errors[name];
   const theme = useTheme();
   const [certification, setCertification] = React.useState([]);
-  console.log(certification);
   const handleChange = (event) => {
     const { value } = event.target;
 

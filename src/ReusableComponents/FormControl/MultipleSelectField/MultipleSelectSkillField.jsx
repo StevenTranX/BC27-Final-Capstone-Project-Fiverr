@@ -52,13 +52,7 @@ export default function MultipleSelectSkillField(props) {
 
   const handleChange = (event) => {
     const { value } = event.target;
-    console.log(value);
-    setSkill(value);
-    // setValue(
-    //   'skill',
-    //   // On autofill we get a stringified value.
-    //   typeof value === 'string' ? value.split(',') : value
-    // );
+    setSkill((prev) => [...prev, value]);
   };
 
   return (

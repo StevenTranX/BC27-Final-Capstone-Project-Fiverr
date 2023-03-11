@@ -4,8 +4,10 @@ import { LinearProgress, Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
+import { useSnackbar } from "notistack";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import * as yup from "yup";
 import DatePickerField from "../../../../ReusableComponents/FormControl/DatePickerField";
 import InputField from "../../../../ReusableComponents/FormControl/InputField";
@@ -14,13 +16,18 @@ import MultipleSelectSkillField from "../../../../ReusableComponents/FormControl
 import PasswordField from "../../../../ReusableComponents/FormControl/PasswordField";
 import SelectField from "../../../../ReusableComponents/FormControl/SelectField";
 import SelectRole from "../../../../ReusableComponents/FormControl/SelectField/SelectRole";
+import { registerUser } from "../../../slices/authSlice";
+import omit from "lodash/omit";
+
 const RegisterForm = () => {
+  const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const schema = yup.object().shape({
     name: yup.string().required("Please enter your username"),
     password: yup.string().required("Please enter password").min(6),
     retypePassword: yup
       .string()
-      .oneOf([yup.ref("password"), null])
+      .oneOf([yup.ref("password"), `Password doesn't match, please try again`])
       .required("Please Retype your Password"),
     email: yup.string().email().required("Please enter your email"),
     phone: yup.string().required("Phone number is required").min(10).max(10),
@@ -39,6 +46,7 @@ const RegisterForm = () => {
       name: "",
       email: "",
       password: "",
+      retypePassword: "",
       phone: "",
       birthday: "",
       gender: true,
@@ -50,20 +58,17 @@ const RegisterForm = () => {
   });
 
   const [retypePassword, setRetypePassword] = useState();
-  const { register, handleSubmit, setValue, control } = form;
+  const { register, handleSubmit, setValue, control, reset } = form;
   const { isSubmitting } = form.formState;
   const onSubmit = handleSubmit(async (values) => {
-    // const { onSubmit } = props;
-    // try {
-    //   if (onSubmit) {
-    //     await onSubmit(values);
-    //     form.reset();
-    //     setRetypePassword("");
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    console.log(values);
+    const newValues = omit(values, "retypePassword");
+    try {
+      await dispatch(registerUser(newValues)).unwrap();
+      reset();
+      enqueueSnackbar("Register Successfully", { variant: "success" });
+    } catch (error) {
+      enqueueSnackbar(error.message, { variant: "error" });
+    }
   });
 
   return (
