@@ -1,12 +1,12 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import authAPI from '../../Apis/authApi';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import authAPI from "../../Apis/authApi";
 export const registerUser = createAsyncThunk(
-  'auth/register',
+  "auth/register",
   async (signupData, { rejectWithValue }) => {
     try {
       const { data } = await authAPI.register(signupData);
       // localStorage.setItem('accessToken');
-      localStorage.setItem('user', JSON.stringify(data.content));
+      localStorage.setItem("user", JSON.stringify(data.content));
       console.log(data);
       return data.content;
     } catch (error) {
@@ -16,13 +16,13 @@ export const registerUser = createAsyncThunk(
   }
 );
 export const loginUser = createAsyncThunk(
-  'auth/register',
+  "auth/register",
   async (loginData, { rejectWithValue }) => {
     try {
       const { data } = await authAPI.login(loginData);
 
-      localStorage.setItem('user', JSON.stringify(data.content.user));
-      localStorage.setItem('access_token', JSON.stringify(data.content.token));
+      localStorage.setItem("user", JSON.stringify(data.content.user));
+      localStorage.setItem("access_token", JSON.stringify(data.content.token));
       console.log(data);
       return data.content.user;
     } catch (error) {
@@ -32,18 +32,24 @@ export const loginUser = createAsyncThunk(
   }
 );
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: {
-    currentUser: JSON.parse(localStorage.getItem('user')) || {},
-    settings: {},
+    currentUser: JSON.parse(localStorage.getItem("user")) || {},
+    isOpenModal: false,
   },
   reducers: {
     logout(state) {
       state.currentUser = {};
       state.userBookingJobs = [];
-      localStorage.removeItem('user');
-      localStorage.removeItem('access_token');
+      localStorage.removeItem("user");
+      localStorage.removeItem("access_token");
       window.location.reload();
+    },
+    closeModal(state) {
+      state.isOpenModal = false;
+    },
+    openModal(state) {
+      state.isOpenModal = true;
     },
   },
   extraReducers: {
@@ -56,5 +62,5 @@ const authSlice = createSlice({
   },
 });
 const { actions, reducer } = authSlice;
-export const { logout } = actions;
+export const { logout, closeModal, openModal } = actions;
 export default reducer;

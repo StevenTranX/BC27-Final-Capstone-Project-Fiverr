@@ -1,17 +1,17 @@
-import { CleaningServices } from '@mui/icons-material';
-import { Box, Grid, ListItem, ListItemText, MenuItem } from '@mui/material';
+import { CleaningServices } from "@mui/icons-material";
+import { Box, Grid, ListItem, ListItemText, MenuItem } from "@mui/material";
 import {
   bindHover,
   bindPopover,
   usePopupState,
-} from 'material-ui-popup-state/hooks';
-import HoverPopover from 'material-ui-popup-state/HoverPopover';
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { StyledLink } from '../../../Footer/CategoriesList/CategoriesList';
-import { StyledBox } from '../../../Footer/Footer';
-import styles from './NavMenu.module.scss';
+} from "material-ui-popup-state/hooks";
+import HoverPopover from "material-ui-popup-state/HoverPopover";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { StyledLink } from "../../../Footer/CategoriesList/CategoriesList";
+import { StyledBox } from "../../../Footer/Footer";
+import styles from "./NavMenu.module.scss";
 
 const NavMenu = (props) => {
   const { job, handleSelectById } = props;
@@ -22,15 +22,15 @@ const NavMenu = (props) => {
     handleSelectById(jobId);
   };
   const popupState = usePopupState({
-    variant: 'popover',
-    popupId: 'demoPopover',
+    variant: "popover",
+    popupId: "demoPopover",
   });
   return (
     <>
       <MenuItem
         {...bindHover(popupState)}
         className={styles.nav__item}
-        sx={{ marginLeft: '-12px' }}
+        sx={{ marginLeft: "-12px" }}
       >
         {job.tenLoaiCongViec}
       </MenuItem>
@@ -38,8 +38,8 @@ const NavMenu = (props) => {
         <HoverPopover
           {...bindPopover(popupState)}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
+            vertical: "bottom",
+            horizontal: "left",
           }}
         >
           <Box sx={{ p: 2 }}>
@@ -53,10 +53,10 @@ const NavMenu = (props) => {
                         <ListItem key={jobGenre.id} disablePadding>
                           <StyledLink
                             onClick={() => handleSelect(jobGenre.id)}
-                            underline='hover'
+                            underline="hover"
                           >
                             <ListItemText
-                              sx={{ fontSize: '16px' }}
+                              sx={{ fontSize: "16px" }}
                               primary={jobGenre.tenChiTiet}
                             ></ListItemText>
                           </StyledLink>
@@ -66,11 +66,11 @@ const NavMenu = (props) => {
                   </Grid>
                 ))
               ) : (
-                <ListItem className='flex items-center justify-center ml-[80px] mt-[30px]'>
+                <ListItem className="flex items-center justify-center ml-[80px] mt-[30px]">
                   <img
-                    className='object-cover w-[200px]'
-                    src='https://t4.ftcdn.net/jpg/04/72/65/73/360_F_472657366_6kV9ztFQ3OkIuBCkjjL8qPmqnuagktXU.jpg'
-                    alt='noData'
+                    className="object-cover w-[200px]"
+                    src="https://t4.ftcdn.net/jpg/04/72/65/73/360_F_472657366_6kV9ztFQ3OkIuBCkjjL8qPmqnuagktXU.jpg"
+                    alt="noData"
                   />
                 </ListItem>
               )}

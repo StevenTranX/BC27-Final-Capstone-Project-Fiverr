@@ -9,11 +9,8 @@ import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 
 const PasswordField = (props) => {
-  const { form, name, label, disabled } = props;
-  const {
-    formState: { errors },
-    control,
-  } = form;
+  const { name, label, disabled, control, form } = props;
+  const { formState: errors } = form;
   const hasError = errors[name];
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => {

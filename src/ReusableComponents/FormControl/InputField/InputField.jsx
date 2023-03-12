@@ -1,22 +1,11 @@
-import { TextField } from '@mui/material';
-import React, { useEffect } from 'react';
-import { Controller } from 'react-hook-form';
-import { FormHelperText } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { TextField } from "@mui/material";
+import { Controller } from "react-hook-form";
+import { FormHelperText } from "@mui/material";
 
 const InputField = (props) => {
-  const {
-    form,
-    name,
-    label,
-    type,
-    defaultValue,
-    setValue,
-    value,
-    control,
-    errors,
-  } = props;
-
+  const { form, name, label, type, defaultValue, setValue, value, control } =
+    props;
+  const { formState: errors } = form;
   const hasError = errors[name];
 
   return (
@@ -32,14 +21,14 @@ const InputField = (props) => {
           <TextField
             type={type}
             fullWidth
-            margin='normal'
+            margin="normal"
             label={label}
             value={value}
             {...field}
           />
         )}
       />
-      <FormHelperText sx={{ fontWeight: '14px' }} error={!!hasError}>
+      <FormHelperText sx={{ fontWeight: "14px" }} error={errors[name]}>
         {errors[name]?.message}
       </FormHelperText>
     </>

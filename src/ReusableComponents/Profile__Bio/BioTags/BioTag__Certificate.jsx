@@ -15,7 +15,6 @@ const BioTag__Certificate = (props) => {
   const {
     leftHeader,
     rightHeader,
-    content,
     subContent,
     linkedContent,
     form,
@@ -23,7 +22,6 @@ const BioTag__Certificate = (props) => {
     name,
     headerTitle,
     headerContent,
-    type,
     setValue,
     children,
     value,
