@@ -5,14 +5,16 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Avatar, Button, Divider } from "@mui/material";
 import styles from "./Profile__Avatar.module.scss";
 import { useSelector } from "react-redux";
-export const randomBgColor = () => {
-  let x = Math.floor(Math.random() * 256);
-  let y = Math.floor(Math.random() * 256);
-  let z = Math.floor(Math.random() * 256);
-  return "rgb(" + x + "," + y + "," + z + ")";
-};
-const Profile__Avatar = () => {
+import { useMemo } from "react";
+
+const ProfileAvatar = () => {
   const { currentUser } = useSelector((state) => state?.user);
+  const randomBgColor = useMemo(() => {
+    let x = Math.floor(Math.random() * 256);
+    let y = Math.floor(Math.random() * 256);
+    let z = Math.floor(Math.random() * 256);
+    return "rgb(" + x + "," + y + "," + z + ")";
+  }, []);
   return (
     <>
       <div className={styles.userAvatar}>
@@ -26,7 +28,7 @@ const Profile__Avatar = () => {
               <div className={styles.camera__icon}>
                 <Avatar
                   className={styles.camera__image}
-                  sx={{ fontSize: "40px", backgroundColor: randomBgColor() }}
+                  sx={{ fontSize: "40px", backgroundColor: randomBgColor }}
                 >
                   {Array.from(`${currentUser.name}`)[0].toUpperCase()}
                 </Avatar>
@@ -92,4 +94,4 @@ const Profile__Avatar = () => {
   );
 };
 
-export default Profile__Avatar;
+export default ProfileAvatar;

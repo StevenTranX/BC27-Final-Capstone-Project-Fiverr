@@ -84,35 +84,38 @@ export default function UserDropdown(props) {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem>
-          <Avatar /> {currentUser?.email}
-        </MenuItem>
+        <Link to={`/userProfile/${currentUser?.id}`}>
+          <MenuItem sx={{ fontSize: "14px" }}>
+            <Avatar /> {currentUser?.email}
+          </MenuItem>
+        </Link>
         <Link to={`/userProfile/${currentUser?.id}`}>
           <MenuItem
             sx={{
               textDecoration: "none",
               color: "black",
+              fontSize: "14px",
             }}
           >
-            <Avatar /> Profile
+            <Avatar sx={{ fontSize: "12px" }} /> Profile
           </MenuItem>
         </Link>
         <Divider />
 
-        <MenuItem>
+        <MenuItem sx={{ fontSize: "14px" }}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem>
+        <MenuItem sx={{ fontSize: "14px" }}>
           <Button
             sx={{
               color: "#000",
               fontWeight: "400",
               padding: "0px",
               textTransform: "capitalize",
-              fontSize: "16px",
+              fontSize: "14px",
             }}
             onClick={() => {
               handleOpenDialog();

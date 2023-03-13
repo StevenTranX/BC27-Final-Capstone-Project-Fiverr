@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -7,11 +7,11 @@ import "swiper/css/navigation";
 
 import "./styles.css";
 
-import { FreeMode, Pagination, Scrollbar, Navigation } from "swiper";
-import styles from "./ServicesSlider.module.scss";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { FreeMode, Navigation, Pagination, Scrollbar } from "swiper";
 import { getJobsByName } from "../../../../JobList/Slices/JobListSlice";
+import styles from "./ServicesSlider.module.scss";
 
 const categories = [
   {
@@ -69,7 +69,7 @@ export default function ServicesSlider() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
-    <>
+    <div className="w-full overflow-hidden">
       <Swiper
         className={`${styles.mySwiper} overflow-visible`}
         slidesPerView={5}
@@ -107,6 +107,6 @@ export default function ServicesSlider() {
             </SwiperSlide>
           ))}
       </Swiper>
-    </>
+    </div>
   );
 }

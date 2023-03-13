@@ -19,7 +19,6 @@ export const MODE = {
 
 const RightHeader = ({ becomeSeller, color }) => {
   const { isOpenModal } = useSelector((state) => state.auth);
-  console.log(isOpenModal);
   const dispatch = useDispatch();
 
   const [mode, setMode] = useState(MODE.LOGIN);

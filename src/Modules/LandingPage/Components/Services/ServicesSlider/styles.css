@@ -57,6 +57,5 @@
 }
 
 .swiper-button-disabled {
-  pointer-events: none !important;
   cursor: not-allowed;
 }

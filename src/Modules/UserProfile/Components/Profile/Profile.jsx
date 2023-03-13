@@ -1,39 +1,24 @@
-import { Container } from '@mui/material';
-import React from 'react';
-import styles from './Profile.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import Profile__Avatar from './Avatar/Profile__Avatar';
-import EarnBadges from './EarnBadges/EarnBadges';
-import Profile__Bio from './Bio/Profile__Bio';
-import CardLayout from '../../../../ReusableComponents/Profile_CardLayOut/CardLayout';
-import ShareActivity from './ShareActivity/ShareActivity';
-import { updateUser } from '../../Slices/userProfileSlice';
-import { useSnackbar } from 'notistack';
-import ScrollToTop from 'react-scroll-to-top';
-import Footer from '../../../../Components/Footer/Footer';
+import { Container } from "@mui/material";
+import { useSnackbar } from "notistack";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../Slices/userProfileSlice";
+import ProfileAvatar from "./Avatar/ProfileAvatar";
+import ProfileBio from "./Bio/ProfileBio";
+import EarnBadges from "./EarnBadges/EarnBadges";
+import styles from "./Profile.module.scss";
+import ShareActivity from "./ShareActivity/ShareActivity";
 const Profile = () => {
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
-  const handleSubmit = async (values) => {
-    console.log(values);
-    try {
-      await dispatch(updateUser(values))
-        .unwrap()
-        .then(() => {
-          enqueueSnackbar('User Updated', { variant: 'success' });
-        });
-    } catch (error) {
-      console.log(error);
-      enqueueSnackbar(error.message, { variant: 'error' });
-    }
-  };
+
   return (
     <div className={styles.MainContent}>
       <Container>
         <div className={styles.MainContentWrapper}>
-          <Profile__Avatar />
+          <ProfileAvatar />
           <EarnBadges />
-          <Profile__Bio onSubmit={handleSubmit} />
+          <ProfileBio />
           <ShareActivity />
         </div>
       </Container>

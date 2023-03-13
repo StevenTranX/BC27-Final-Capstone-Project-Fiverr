@@ -1,24 +1,22 @@
-import React, { useEffect } from 'react';
-import UserProfileHeader from '../Components/Header/UserProfileHeader';
-import Profile from '../Components/Profile/Profile';
-import UserProfileNav from '../Components/NavBar/UserProfileNav';
-import ActiveGig from '../Components/ActiveGig/ActiveGig';
-import styles from './UserProfile.module.scss';
-import { Container } from '@mui/system';
-import Footer from '../../../Components/Footer/Footer';
-import { useDispatch, useSelector } from 'react-redux';
-import ScrollToTop from 'react-scroll-to-top';
-import NavBar from '../../../Components/NavBar/NavBar';
-import { getJobGenres, getJobsById } from '../../JobList/Slices/JobListSlice';
-import { useNavigate } from 'react-router-dom';
+import { Container } from "@mui/system";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import ScrollToTop from "react-scroll-to-top";
+import Footer from "../../../Components/Footer/Footer";
+import NavBar from "../../../Components/NavBar/NavBar";
+import { getJobGenres, getJobsById } from "../../JobList/Slices/JobListSlice";
+import ActiveGig from "../Components/ActiveGig/ActiveGig";
+import UserProfileHeader from "../Components/Header/UserProfileHeader";
+import Profile from "../Components/Profile/Profile";
+import styles from "./UserProfile.module.scss";
 const UserProfile = () => {
-  const { currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSelectJobId = async (jobId) => {
     try {
       await dispatch(getJobsById(jobId)).unwrap();
-      navigate('/jobs');
+      navigate("/jobs");
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +44,7 @@ const UserProfile = () => {
         </Container>
       </div>
       <div>
-        <ScrollToTop smooth width={'30px'} height={'30px'} color={'#1dbf73'} />
+        <ScrollToTop smooth width={"30px"} height={"30px"} color={"#1dbf73"} />
       </div>
       <Container>
         <Footer />
