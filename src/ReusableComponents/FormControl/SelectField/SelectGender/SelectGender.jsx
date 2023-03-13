@@ -5,7 +5,7 @@ import Select from "@mui/material/Select";
 import React from "react";
 import { Controller } from "react-hook-form";
 
-const SelectField = (props) => {
+const SelectGender = (props) => {
   const { form, name, label, disabled, control } = props;
   const {
     formState: { errors },
@@ -46,4 +46,4 @@ const SelectField = (props) => {
   );
 };
 
-export default SelectField;
+export default SelectGender;

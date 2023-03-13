@@ -14,10 +14,10 @@ import InputField from "../../../../ReusableComponents/FormControl/InputField";
 import MultipleSelectCertification from "../../../../ReusableComponents/FormControl/MultipleSelectField/MultipleSelectCertification";
 import MultipleSelectSkillField from "../../../../ReusableComponents/FormControl/MultipleSelectField/MultipleSelectSkillField";
 import PasswordField from "../../../../ReusableComponents/FormControl/PasswordField";
-import SelectField from "../../../../ReusableComponents/FormControl/SelectField";
-import SelectRole from "../../../../ReusableComponents/FormControl/SelectField/SelectRole";
 import { registerUser } from "../../../slices/authSlice";
 import omit from "lodash/omit";
+import SelectGender from "../../../../ReusableComponents/FormControl/SelectField/SelectGender";
+import SelectRole from "../../../../ReusableComponents/FormControl/SelectField/SelectRole";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -134,7 +134,7 @@ const RegisterForm = () => {
         </Grid>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
-            <SelectField
+            <SelectGender
               name="gender"
               label="Gender"
               form={form}

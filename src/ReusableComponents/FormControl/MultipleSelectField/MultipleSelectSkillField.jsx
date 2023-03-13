@@ -41,19 +41,13 @@ function getStyles(name, personName, theme) {
 }
 
 export default function MultipleSelectSkillField(props) {
-  const { form, name, label, disabled, setValue } = props;
+  const { form, name, label, disabled, onChange, value } = props;
   const {
     formState: { errors },
     control,
   } = form;
   const hasError = errors[name];
   const theme = useTheme();
-  const [skill, setSkill] = React.useState([]);
-
-  const handleChange = (event) => {
-    const { value } = event.target;
-    setSkill((prev) => [...prev, value]);
-  };
 
   return (
     <div>
@@ -70,8 +64,8 @@ export default function MultipleSelectSkillField(props) {
               labelId={label}
               id={label}
               multiple
-              value={skill}
-              onChange={handleChange}
+              value={value}
+              onChange={onChange}
               input={<OutlinedInput label="skill" />}
               MenuProps={MenuProps}
               {...field}
@@ -80,7 +74,7 @@ export default function MultipleSelectSkillField(props) {
                 <MenuItem
                   key={name}
                   value={name}
-                  style={getStyles(name, skill, theme)}
+                  style={getStyles(name, value, theme)}
                 >
                   {name}
                 </MenuItem>

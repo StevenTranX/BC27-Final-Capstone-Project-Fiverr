@@ -40,7 +40,7 @@ function getStyles(name, personName, theme) {
 }
 
 export default function MultipleSelectCertification(props) {
-  const { form, name, label, disabled } = props;
+  const { form, name, label, disabled, value } = props;
   const {
     formState: { errors },
     control,
@@ -70,7 +70,7 @@ export default function MultipleSelectCertification(props) {
               labelId={label}
               id={name}
               multiple
-              value={certification || []}
+              value={value || []}
               onChange={handleChange}
               input={<OutlinedInput label="certification" />}
               MenuProps={MenuProps}
@@ -80,7 +80,7 @@ export default function MultipleSelectCertification(props) {
                 <MenuItem
                   key={name}
                   value={name}
-                  style={getStyles(name, certification, theme)}
+                  style={getStyles(name, value, theme)}
                 >
                   {name}
                 </MenuItem>

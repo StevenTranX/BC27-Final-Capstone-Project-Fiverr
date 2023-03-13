@@ -2,20 +2,16 @@ import { FormControl, TextField } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import React, { useState } from "react";
+import React from "react";
 import { Controller } from "react-hook-form";
 const DatePickerField = (props) => {
-  const { form, name, label, disabled, setValue, value } = props;
+  const { form, name, label, disabled, value, onChange } = props;
   const {
     formState: { errors },
     control,
   } = form;
   const hasError = errors[name];
-  const [date, setDate] = useState(new Date());
-  const handleChange = (event) => {
-    setDate(event);
-    setValue("birthday", event);
-  };
+
   return (
     <>
       <Controller
@@ -31,9 +27,9 @@ const DatePickerField = (props) => {
               <DatePicker
                 {...field}
                 label="Date of Birth"
-                value={date || new Date()}
+                value={value}
                 onChange={(newDate) => {
-                  handleChange(newDate);
+                  onChange(newDate);
                 }}
                 renderInput={(params) => <TextField {...params} />}
                 inputFormat="DD/MM/YYYY"

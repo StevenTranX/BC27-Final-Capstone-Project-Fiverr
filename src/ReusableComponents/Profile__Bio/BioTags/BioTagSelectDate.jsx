@@ -1,30 +1,38 @@
 import { Button, Divider, Link } from "@mui/material";
 import React, { useState } from "react";
+import DatePickerField from "../../FormControl/DatePickerField/DatePickerField";
 import styles from "./BioTags.module.scss";
-const BioTags = (props) => {
+import dayjs from "dayjs";
+const BioTagSelectDate = (props) => {
   const {
     leftHeader = "",
     rightHeader = "",
     name,
     errors,
-    register,
     type,
-    rules,
     classNameInput = "p-3 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm",
     classNameError = "mt-1 text-red-600 min-h-[1rem] text-sm",
-    getValues,
     onSubmit,
+    control,
+    form,
   } = props;
-  const [showInput, setShowInput] = useState(true);
+  const [showInput, setShowInput] = useState(false);
+  const [values, setValues] = React.useState(new Date(1990, 0, 1));
+
+  const handleChange = (date) => {
+    setValues(date);
+  };
   const handleCloseInput = () => {
     setShowInput(false);
   };
   const handleOpenInput = () => {
     setShowInput(true);
   };
-  const registerResult = register && name ? register(name, rules) : {};
+  const handleUpdate = async () => {
+    await onSubmit();
+    handleCloseInput();
+  };
   const errorMessage = errors ? errors[name]?.message : "";
-  const formValues = getValues && name ? getValues(name) : "";
   return (
     <div className={styles.bio}>
       <header className={styles.bio__header}>
@@ -39,25 +47,33 @@ const BioTags = (props) => {
           )}
         </div>
       </header>
-      {showInput ? (
-        <input
+      {showInput && (
+        <DatePickerField
+          name={name}
+          control={control}
           type={type}
+          form={form}
           className={`${classNameInput} mt-3`}
-          {...registerResult}
+          value={values}
+          onChange={handleChange}
         />
-      ) : (
-        <div className="mt-3">{formValues}</div>
+      )}
+
+      {!showInput && errors && (
+        <div className="mt-3">{dayjs(values).format("DD/MM/YYYY")}</div>
       )}
 
       {errorMessage && (
         <div className={`${classNameError} my-1`}>{errorMessage}</div>
       )}
-      <Divider
-        sx={{
-          marginBottom: "15px",
-        }}
-      />
-      <div className="flex gap-3">
+      {!showInput && (
+        <Divider
+          sx={{
+            marginTop: "5px",
+          }}
+        />
+      )}
+      <div className="flex gap-3 mt-5">
         {showInput && (
           <>
             <Button
@@ -81,7 +97,7 @@ const BioTags = (props) => {
             </Button>
             <Button
               className="w-full"
-              onClick={onSubmit}
+              onClick={handleUpdate}
               type="submit"
               sx={{
                 marginBottom: "20px",
@@ -103,13 +119,4 @@ const BioTags = (props) => {
   );
 };
 
-export default BioTags;
-
-// <div className={styles.bio__detail}>
-// <span>
-//   <span>{content}</span> <span>{subContent}</span>
-//   <span>
-//     <Link>{linkedContent}</Link>
-//   </span>
-// </span>
-// </div>
+export default BioTagSelectDate;

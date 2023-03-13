@@ -1,22 +1,29 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "@mui/material";
 import React, { useEffect } from "react";
+import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as yup from "yup";
-import BioTags from "../../../../../ReusableComponents/Profile__Bio/BioTags/BioTags";
+import BioTagInput from "../../../../../ReusableComponents/Profile__Bio/BioTags/BioTagInput";
+import BioTagSelect from "../../../../../ReusableComponents/Profile__Bio/BioTags/BioTagSelect";
+import BioTagSelectDate from "../../../../../ReusableComponents/Profile__Bio/BioTags/BioTagSelectDate";
+import BioTagSelectMultiple from "../../../../../ReusableComponents/Profile__Bio/BioTags/BioTagSelectMultiple";
 import { getUser } from "../../../Slices/userProfileSlice";
 import styles from "./Profile__Bio.module.scss";
 
 const ProfileBio = (props) => {
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [isSkill] = useState(true);
   const schema = yup.object().shape({
     name: yup.string().required("Please enter your username"),
     // password: yup.string().required("Please enter password").min(6),
     // email: yup.string().email(),
-    // phone: yup.string().min(10).max(10),
+    phone: yup
+      .number("Please fill in number")
+      .required("Please enter your phone number"),
     // birthday: yup.date(),
     // skill: yup
     //   .array()
@@ -33,7 +40,7 @@ const ProfileBio = (props) => {
   const defaultValues = {
     name: "",
     phone: "",
-    birthday: new Date(1990, 0, 1),
+    birthday: "",
     gender: true,
     role: "",
     skill: [],
@@ -96,7 +103,7 @@ const ProfileBio = (props) => {
         <div className={styles.cardLayout}>
           <div className={styles.cardWrapper}>
             <form onSubmit={onSubmit}>
-              <BioTags
+              <BioTagInput
                 leftHeader="Name"
                 rightHeader="Edit your name"
                 register={register}
@@ -104,6 +111,57 @@ const ProfileBio = (props) => {
                 getValues={getValues}
                 onSubmit={onSubmit}
                 errors={errors}
+              />
+              <BioTagInput
+                leftHeader="Phone"
+                rightHeader="Edit your phone number"
+                register={register}
+                name="phone"
+                getValues={getValues}
+                onSubmit={onSubmit}
+                errors={errors}
+              />
+              <BioTagSelectDate
+                leftHeader="Date of birth"
+                errors={errors}
+                rightHeader="Edit your Date of birth"
+                getValues={getValues}
+                name="birthday"
+                onSubmit={onSubmit}
+                control={control}
+                form={form}
+              />
+              <BioTagSelect
+                leftHeader="Gender"
+                errors={errors}
+                rightHeader="Edit your gender"
+                getValues={getValues}
+                name="gender"
+                onSubmit={onSubmit}
+                control={control}
+                form={form}
+              />
+              <BioTagSelectMultiple
+                leftHeader="Skill"
+                errors={errors}
+                rightHeader="Edit your skill"
+                getValues={getValues}
+                name="skill"
+                onSubmit={onSubmit}
+                control={control}
+                form={form}
+                isSkill={true}
+              />
+              <BioTagSelectMultiple
+                leftHeader="Certificate"
+                errors={errors}
+                rightHeader="Edit your certificate"
+                getValues={getValues}
+                name="certification"
+                onSubmit={onSubmit}
+                control={control}
+                form={form}
+                isSkill={false}
               />
             </form>
           </div>

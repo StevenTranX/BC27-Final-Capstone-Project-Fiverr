@@ -19,7 +19,6 @@ const Profile = () => {
           <ProfileAvatar />
           <EarnBadges />
           <ProfileBio />
-          <ShareActivity />
         </div>
       </Container>
     </div>
