@@ -40,25 +40,18 @@ function getStyles(name, personName, theme) {
 }
 
 export default function MultipleSelectCertification(props) {
-  const { form, name, label, disabled, value } = props;
-  const {
-    formState: { errors },
-    control,
-  } = form;
-  const hasError = errors[name];
+  const { name, label, disabled, value, setValue, control } = props;
+
   const theme = useTheme();
-  const [certification, setCertification] = React.useState([]);
   const handleChange = (event) => {
     const { value } = event.target;
-
-    setCertification(value);
+    setValue(value);
   };
 
   return (
     <div>
       <Controller
         disabled={disabled}
-        error={!!hasError}
         label={label}
         control={control}
         name={name}

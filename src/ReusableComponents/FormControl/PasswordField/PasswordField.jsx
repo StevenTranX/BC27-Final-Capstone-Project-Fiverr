@@ -9,9 +9,9 @@ import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 
 const PasswordField = (props) => {
-  const { name, label, disabled, control, form } = props;
-  const { formState: errors } = form;
-  const hasError = errors[name];
+  const { name, label, disabled, control, errors } = props;
+  const errorMessage = errors ? errors[name]?.message : "";
+
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => {
     setShowPassword((x) => !x);
@@ -42,10 +42,14 @@ const PasswordField = (props) => {
             }
           />
           <FormHelperText
-            sx={{ margin: 0, marginTop: "12px", fontWeight: "14px" }}
-            error={!!hasError}
+            sx={{
+              margin: 0,
+              marginTop: "12px",
+              fontWeight: "14px",
+              color: "red",
+            }}
           >
-            {errors[name]?.message}
+            {errorMessage}
           </FormHelperText>
         </FormControl>
       )}

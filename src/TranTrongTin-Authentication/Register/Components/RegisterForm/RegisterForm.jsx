@@ -7,17 +7,18 @@ import Grid from "@mui/material/Grid";
 import { useSnackbar } from "notistack";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import DatePickerField from "../../../../ReusableComponents/FormControl/DatePickerField";
 import InputField from "../../../../ReusableComponents/FormControl/InputField";
 import MultipleSelectCertification from "../../../../ReusableComponents/FormControl/MultipleSelectField/MultipleSelectCertification";
 import MultipleSelectSkillField from "../../../../ReusableComponents/FormControl/MultipleSelectField/MultipleSelectSkillField";
 import PasswordField from "../../../../ReusableComponents/FormControl/PasswordField";
-import { registerUser } from "../../../slices/authSlice";
+import { closeModal, registerUser } from "../../../slices/authSlice";
 import omit from "lodash/omit";
 import SelectGender from "../../../../ReusableComponents/FormControl/SelectField/SelectGender";
 import SelectRole from "../../../../ReusableComponents/FormControl/SelectField/SelectRole";
+import dayjs from "dayjs";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -27,18 +28,10 @@ const RegisterForm = () => {
     password: yup.string().required("Please enter password").min(6),
     retypePassword: yup
       .string()
-      .oneOf([yup.ref("password"), `Password doesn't match, please try again`])
+      .oneOf([yup.ref("password")], `Password doesn't match, please try again`)
       .required("Please Retype your Password"),
     email: yup.string().email().required("Please enter your email"),
     phone: yup.string().required("Phone number is required").min(10).max(10),
-    birthday: yup.date().required("Please enter your date of birth"),
-    gender: yup.bool().required("Please select your gender"),
-    role: yup.string().required("Please enter your role"),
-    skill: yup
-      .array()
-      .of(yup.string())
-      .required("Please select at least 1 skill"),
-    certification: yup.array().required("Please select certification"),
   });
 
   const form = useForm({
@@ -50,22 +43,35 @@ const RegisterForm = () => {
       phone: "",
       birthday: "",
       gender: true,
-      role: "",
+      role: "USER",
       skill: [],
       certification: [],
     },
-    // resolver: yupResolver(schema),
+    resolver: yupResolver(schema),
   });
 
   const [retypePassword, setRetypePassword] = useState();
-  const { register, handleSubmit, setValue, control, reset } = form;
-  const { isSubmitting } = form.formState;
+  const { register, handleSubmit, setValue, control, reset, getValues } = form;
+  const { isSubmitting, errors } = form.formState;
+  const [localValue, setLocalValue] = React.useState(new Date(1990, 0, 1));
+  const handleChangeDate = (date) => {
+    setValue("birthday", dayjs(date).format("DD/MM/YYYY"));
+    setLocalValue(date);
+  };
+  console.log(errors);
+  const skillValues = getValues("skill");
+  const certificationValues = getValues("certification");
+
   const onSubmit = handleSubmit(async (values) => {
     const newValues = omit(values, "retypePassword");
+    console.log(newValues);
     try {
       await dispatch(registerUser(newValues)).unwrap();
       reset();
       enqueueSnackbar("Register Successfully", { variant: "success" });
+      setTimeout(() => {
+        dispatch(closeModal());
+      }, 1500);
     } catch (error) {
       enqueueSnackbar(error.message, { variant: "error" });
     }
@@ -90,6 +96,7 @@ const RegisterForm = () => {
           label="Username"
           form={form}
           control={control}
+          errors={errors}
         />
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
@@ -97,29 +104,37 @@ const RegisterForm = () => {
               name="password"
               label="Password"
               control={control}
-              form={form}
+              errors={errors}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <PasswordField
               name="retypePassword"
               label="Retype Password"
-              form={form}
               control={control}
               value={retypePassword}
               onChange={(event) => setRetypePassword(event.target.value)}
+              errors={errors}
             />
           </Grid>
         </Grid>
-        <InputField name="email" label="Email" control={control} form={form} />
+        <InputField
+          name="email"
+          label="Email"
+          control={control}
+          form={form}
+          errors={errors}
+        />
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <DatePickerField
               name="birthday"
               label="Birthday"
               form={form}
-              setValue={setValue}
+              onChange={handleChangeDate}
               control={control}
+              value={localValue}
+              setValue={setValue}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -160,6 +175,11 @@ const RegisterForm = () => {
               form={form}
               control={control}
               onChange={setValue}
+              getValues={getValues}
+              disabled={isSubmitting}
+              value={skillValues}
+              setValue={setValue}
+              errrors={errors}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -170,6 +190,11 @@ const RegisterForm = () => {
               form={form}
               control={control}
               onChange={setValue}
+              getValues={getValues}
+              disabled={isSubmitting}
+              value={certificationValues}
+              setValue={setValue}
+              errrors={errors}
             />
           </Grid>
         </Grid>

@@ -20,15 +20,13 @@ const BioTagSelectDate = (props) => {
     disabled,
   } = props;
   const [showInput, setShowInput] = useState(false);
-  const [localValue, setLocalValueValues] = React.useState(
-    new Date(1990, 0, 1)
-  );
+  const [localValue, setLocalValue] = React.useState(new Date(1990, 0, 1));
   const dateValues = getValues(name);
   console.log(dateValues);
 
   const handleChange = (date) => {
     setValue("birthday", dayjs(date).format("DD/MM/YYYY"));
-    setLocalValueValues(date);
+    setLocalValue(date);
   };
   const handleCloseInput = () => {
     setShowInput(false);

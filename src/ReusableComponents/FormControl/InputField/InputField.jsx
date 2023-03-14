@@ -3,15 +3,15 @@ import { Controller } from "react-hook-form";
 import { FormHelperText } from "@mui/material";
 
 const InputField = (props) => {
-  const { form, name, label, type, defaultValue, setValue, value, control } =
+  const { name, label, type, defaultValue, setValue, value, control, errors } =
     props;
-  const { formState: errors } = form;
-  const hasError = errors[name];
+  // const hasError = errors[name];
+  const errorMessage = errors ? errors[name]?.message : "";
 
   return (
     <>
       <Controller
-        error={!!hasError}
+        // error={!!hasError}
         label={label}
         control={control}
         name={name}
@@ -28,8 +28,8 @@ const InputField = (props) => {
           />
         )}
       />
-      <FormHelperText sx={{ fontWeight: "14px" }} error={errors[name]}>
-        {errors[name]?.message}
+      <FormHelperText sx={{ fontWeight: "14px", color: "red" }}>
+        {errorMessage}
       </FormHelperText>
     </>
   );
