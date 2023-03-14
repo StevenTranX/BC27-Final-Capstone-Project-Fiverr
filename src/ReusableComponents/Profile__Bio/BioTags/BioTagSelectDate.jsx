@@ -15,12 +15,20 @@ const BioTagSelectDate = (props) => {
     onSubmit,
     control,
     form,
+    getValues,
+    setValue,
+    disabled,
   } = props;
   const [showInput, setShowInput] = useState(false);
-  const [values, setValues] = React.useState(new Date(1990, 0, 1));
+  const [localValue, setLocalValueValues] = React.useState(
+    new Date(1990, 0, 1)
+  );
+  const dateValues = getValues(name);
+  console.log(dateValues);
 
   const handleChange = (date) => {
-    setValues(date);
+    setValue("birthday", dayjs(date).format("DD/MM/YYYY"));
+    setLocalValueValues(date);
   };
   const handleCloseInput = () => {
     setShowInput(false);
@@ -29,7 +37,7 @@ const BioTagSelectDate = (props) => {
     setShowInput(true);
   };
   const handleUpdate = async () => {
-    await onSubmit();
+    // await onSubmit();
     handleCloseInput();
   };
   const errorMessage = errors ? errors[name]?.message : "";
@@ -54,13 +62,13 @@ const BioTagSelectDate = (props) => {
           type={type}
           form={form}
           className={`${classNameInput} mt-3`}
-          value={values}
+          value={localValue}
           onChange={handleChange}
         />
       )}
 
       {!showInput && errors && (
-        <div className="mt-3">{dayjs(values).format("DD/MM/YYYY")}</div>
+        <div className="mt-3">{dayjs(localValue).format("DD/MM/YYYY")}</div>
       )}
 
       {errorMessage && (
@@ -98,6 +106,7 @@ const BioTagSelectDate = (props) => {
             <Button
               className="w-full"
               onClick={handleUpdate}
+              disabled={disabled}
               type="submit"
               sx={{
                 marginBottom: "20px",

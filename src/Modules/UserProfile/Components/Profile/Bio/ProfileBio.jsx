@@ -1,8 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button } from "@mui/material";
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useSnackbar } from "notistack";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as yup from "yup";
@@ -10,7 +9,7 @@ import BioTagInput from "../../../../../ReusableComponents/Profile__Bio/BioTags/
 import BioTagSelect from "../../../../../ReusableComponents/Profile__Bio/BioTags/BioTagSelect";
 import BioTagSelectDate from "../../../../../ReusableComponents/Profile__Bio/BioTags/BioTagSelectDate";
 import BioTagSelectMultiple from "../../../../../ReusableComponents/Profile__Bio/BioTags/BioTagSelectMultiple";
-import { getUser } from "../../../Slices/userProfileSlice";
+import { getUser, updateUser } from "../../../Slices/userProfileSlice";
 import styles from "./Profile__Bio.module.scss";
 
 const ProfileBio = (props) => {
@@ -32,12 +31,15 @@ const ProfileBio = (props) => {
     // certification: yup.array().required("Please select certification"),
   });
   const { userId } = useParams();
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     dispatch(getUser(userId));
   }, [userId, dispatch]);
 
   const defaultValues = {
+    id: 0,
+    email: "",
     name: "",
     phone: "",
     birthday: "",
@@ -61,6 +63,8 @@ const ProfileBio = (props) => {
   } = form;
   useEffect(() => {
     if (currentUser) {
+      setValue("id", currentUser.id);
+      setValue("email", currentUser.email);
       setValue("name", currentUser.name);
       setValue("phone", currentUser.phone);
       setValue("birthday", currentUser.birthday);
@@ -73,30 +77,15 @@ const ProfileBio = (props) => {
 
   const onSubmit = handleSubmit(async (values) => {
     console.log(values);
-    // const { onSubmit } = props;
-    // try {
-    //   if (onSubmit) {
-    //     await onSubmit(values);
-    //     // form.reset();
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      await dispatch(updateUser(values)).unwrap();
+      enqueueSnackbar("User updated successfully", { variant: "success" });
+    } catch (error) {
+      console.log(error);
+      enqueueSnackbar(error.message, { variant: "error" });
+    }
   });
 
-  // const handleSubmit = async (values) => {
-  //   console.log(values);
-  //   try {
-  //     await dispatch(updateUser(values))
-  //       .unwrap()
-  //       .then(() => {
-  //         enqueueSnackbar("User Updated", { variant: "success" });
-  //       });
-  //   } catch (error) {
-  //     console.log(error);
-  //     enqueueSnackbar(error.message, { variant: "error" });
-  //   }
-  // };
   if (currentUser) {
     return (
       <>
@@ -111,6 +100,7 @@ const ProfileBio = (props) => {
                 getValues={getValues}
                 onSubmit={onSubmit}
                 errors={errors}
+                disabled={isSubmitting}
               />
               <BioTagInput
                 leftHeader="Phone"
@@ -120,6 +110,7 @@ const ProfileBio = (props) => {
                 getValues={getValues}
                 onSubmit={onSubmit}
                 errors={errors}
+                disabled={isSubmitting}
               />
               <BioTagSelectDate
                 leftHeader="Date of birth"
@@ -130,6 +121,7 @@ const ProfileBio = (props) => {
                 onSubmit={onSubmit}
                 control={control}
                 form={form}
+                setValue={setValue}
               />
               <BioTagSelect
                 leftHeader="Gender"
@@ -140,6 +132,7 @@ const ProfileBio = (props) => {
                 onSubmit={onSubmit}
                 control={control}
                 form={form}
+                disabled={isSubmitting}
               />
               <BioTagSelectMultiple
                 leftHeader="Skill"
@@ -151,6 +144,7 @@ const ProfileBio = (props) => {
                 control={control}
                 form={form}
                 isSkill={true}
+                disabled={isSubmitting}
               />
               <BioTagSelectMultiple
                 leftHeader="Certificate"
@@ -162,6 +156,7 @@ const ProfileBio = (props) => {
                 control={control}
                 form={form}
                 isSkill={false}
+                disabled={isSubmitting}
               />
             </form>
           </div>

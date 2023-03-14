@@ -14,6 +14,7 @@ const BioTagInput = (props) => {
     classNameError = "mt-1 text-red-600 min-h-[1rem] text-sm",
     getValues,
     onSubmit,
+    disabled,
   } = props;
   const [showInput, setShowInput] = useState(false);
   const handleCloseInput = () => {
@@ -88,6 +89,7 @@ const BioTagInput = (props) => {
             <Button
               className="w-full"
               onClick={handleUpdate}
+              disabled={disabled}
               type="submit"
               sx={{
                 marginBottom: "20px",

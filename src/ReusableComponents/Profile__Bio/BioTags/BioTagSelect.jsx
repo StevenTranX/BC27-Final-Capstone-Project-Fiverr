@@ -17,6 +17,7 @@ const BioTagSelect = (props) => {
     onSubmit,
     control,
     form,
+    disabled,
   } = props;
   const [showInput, setShowInput] = useState(false);
   const handleCloseInput = () => {
@@ -95,6 +96,7 @@ const BioTagSelect = (props) => {
             <Button
               className="w-full"
               onClick={handleUpdate}
+              disabled={disabled}
               type="submit"
               sx={{
                 marginBottom: "20px",

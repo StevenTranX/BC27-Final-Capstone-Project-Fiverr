@@ -18,6 +18,7 @@ const BioTagSelectMultiple = (props) => {
     control,
     form,
     isSkill,
+    disabled,
   } = props;
   const [showInput, setShowInput] = useState(false);
   const [values, setValues] = React.useState([]);
@@ -112,6 +113,7 @@ const BioTagSelectMultiple = (props) => {
             <Button
               className="w-full"
               onClick={handleUpdate}
+              disabled={disabled}
               type="submit"
               sx={{
                 marginBottom: "20px",
