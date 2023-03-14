@@ -84,7 +84,7 @@ const JobList = () => {
             </div>
           )}
           {isLoading ? (
-            <CardListSkeleton />
+            <CardListSkeleton length={jobsByName?.length} />
           ) : (
             <JobListCards jobsByName={jobsByName} />
           )}
